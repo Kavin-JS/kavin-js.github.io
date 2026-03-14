@@ -1,6 +1,7 @@
 /* ============================================================
    KAVIN J.S — PORTFOLIO CSS
-   Theme: Dark · Syne + DM Sans · Accent blue #3b82f6
+   Theme: Dark · Syne + DM Sans + JetBrains Mono · Accent blue #3b82f6
+   v2 — Branding, noise reduction, typography, stat cleanup
    ============================================================ */
 
 /* ── Reset & Variables ────────────────────────────────────── */
@@ -21,6 +22,7 @@
   --white:     #ffffff;
   --font-display: 'Syne', sans-serif;
   --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
   --radius:    12px;
   --radius-lg: 20px;
   --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -45,7 +47,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.25;
 }
 
 /* ── Custom Cursor ────────────────────────────────────────── */
@@ -109,11 +111,11 @@ body {
   margin-bottom: 2rem;
 }
 .label-number {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
 }
 .label-text {
   font-size: 0.75rem;
@@ -205,11 +207,11 @@ body {
 }
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--white);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .nav-logo .dot { color: var(--accent); }
 .nav-links {
@@ -275,15 +277,12 @@ body {
   overflow: hidden;
 }
 
-/* Decorative grid overlay */
+/* Background grid — disabled to reduce visual noise */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-image: none;
   pointer-events: none;
 }
 
@@ -308,11 +307,21 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--accent);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+/* "Hi, I'm Kavin." — friendly intro above the big name */
+.hero-intro {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
 }
 .hero-eyebrow::before {
   content: '';
@@ -330,12 +339,12 @@ body {
 
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(5rem, 14vw, 11rem);
+  font-size: clamp(48px, 6vw, 72px);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 1.0;
   color: var(--white);
-  letter-spacing: -0.04em;
-  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
 }
 
 .hero-roles {
@@ -360,6 +369,9 @@ body {
   margin: 0 auto 2.5rem;
   line-height: 1.8;
 }
+
+/* Constrain bio width for visual balance */
+.hero-sub { max-width: 520px; }
 
 .hero-cta {
   display: flex;
@@ -420,20 +432,29 @@ body {
 
 .about-stats {
   display: flex;
-  gap: 2.5rem;
+  gap: 3rem;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--border);
+  flex-wrap: wrap;
 }
-.stat { display: flex; flex-direction: column; gap: 0.25rem; }
+.stat { display: flex; flex-direction: column; gap: 0.35rem; }
 .stat-num {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--white);
   line-height: 1;
+  letter-spacing: -0.02em;
 }
-.stat-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  max-width: 120px;
+}
 
 /* Profile visual card */
 .about-card {
@@ -452,14 +473,13 @@ body {
   position: relative;
   overflow: hidden;
 }
+/* Subtle top glow only — no heavy layered effects */
 .profile-visual::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 0%, rgba(59,130,246,0.08), transparent 60%);
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
   pointer-events: none;
 }
 
@@ -647,16 +667,17 @@ body {
   margin-bottom: 0.75rem;
 }
 .project-index {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
   color: var(--accent);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 .project-year {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   color: var(--text-dim);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 .project-title {
   font-family: var(--font-display);
@@ -970,13 +991,23 @@ body {
   .hamburger { display: flex; z-index: 1001; }
   .github-inner { flex-direction: column; text-align: center; }
   .footer-inner { flex-direction: column; align-items: center; text-align: center; }
-  .about-stats { gap: 1.5rem; }
+  .about-stats { gap: 2rem; flex-wrap: wrap; }
   .cursor-dot, .cursor-ring { display: none; }
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(3.5rem, 20vw, 5rem); }
+  /* hero-name uses clamp(48px,6vw,72px) — no override needed at mobile */
   .hero-roles { flex-direction: column; gap: 0.25rem; }
   .role-sep { display: none; }
   .projects-grid { grid-template-columns: 1fr; }
+  .about-stats { gap: 1.5rem; }
 }
+
+/* ── Nav pill padding refinement (per spec) ───────────────── */
+.nav-pill { padding: 10px 22px; }
+
+/* ── Scroll hint label uses mono for that technical feel ─── */
+.hero-scroll-hint span { font-family: var(--font-mono); }
+
+/* ── Badge text sharper with mono ───────────────────────── */
+.badge { font-family: var(--font-mono); font-size: 0.68rem; }
