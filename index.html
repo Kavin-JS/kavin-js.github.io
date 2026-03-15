@@ -4,133 +4,135 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kavin J.S — Software Engineer</title>
+  <meta name="description" content="CS Engineering student building software products, AI tools, and scalable web platforms." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- ============================================================
-       CANVAS — background particle / grid effect
-  ============================================================ -->
-  <canvas id="bg-canvas"></canvas>
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursor-trail"></div>
 
-  <!-- ============================================================
-       CURSOR
-  ============================================================ -->
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
-
-  <!-- ============================================================
-       NAVBAR
-  ============================================================ -->
+  <!-- ── NAVBAR ─────────────────────────────────── -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Kavin J<span class="dot">.</span>S</a>
+      <a href="#hero" class="nav-logo">
+        <span class="logo-k">K</span>JS<span class="logo-dot">.</span>
+      </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Work</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#building">Building</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-hire">Hire me ↗</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ============================================================
-       HERO
-  ============================================================ -->
+  <!-- ── HERO ──────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="hero-content">
-      <p class="hero-eyebrow reveal-up">Based in India &nbsp;·&nbsp; Open to opportunities</p>
-      <h1 class="hero-name reveal-up delay-1">
-        Kavin<br /><span class="hero-name-accent">J.S.</span>
-      </h1>
-      <div class="hero-roles reveal-up delay-2">
-        <span class="role-tag">CS Engineering Student</span>
-        <span class="role-sep">/</span>
-        <span class="role-tag">Software Engineer</span>
-        <span class="role-sep">/</span>
-        <span class="role-tag">Startup Builder</span>
+    <div class="hero-left">
+
+      <div class="hero-availability reveal-up">
+        <span class="avail-dot"></span>
+        Available for opportunities
       </div>
+
+      <h1 class="hero-name reveal-up delay-1">
+        Kavin<br /><span class="name-serif">J.S.</span>
+      </h1>
+
+      <p class="hero-tagline reveal-up delay-2">
+        CS Student &nbsp;·&nbsp; Software Engineer &nbsp;·&nbsp; AI Builder
+      </p>
+
       <p class="hero-bio reveal-up delay-3">
         I build software products, AI tools, and scalable web platforms —
-        turning ideas into real systems, one commit at a time.
+        treating every project like a startup, shipping things that actually work.
       </p>
-      <div class="hero-cta reveal-up delay-4">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+
+      <div class="hero-actions reveal-up delay-4">
+        <a href="#projects" class="btn btn-primary">
+          <span>View my work</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 3l5 4-5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:kavinjs.dev@gmail.com" class="btn btn-outline">Get in touch</a>
       </div>
+
+      <div class="hero-meta reveal-up delay-5">
+        <span>Amrita Vishwa Vidyapeetham</span>
+        <span class="dot-sep">·</span>
+        <span>Chennai, India</span>
+        <span class="dot-sep">·</span>
+        <span>3rd Year CSE</span>
+      </div>
+
     </div>
-    <div class="hero-scroll-hint reveal-up delay-5">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+
+    <div class="hero-right reveal-up delay-2">
+      <div class="photo-wrap">
+        <img src="profile.jpg" alt="Kavin J.S" class="hero-photo" />
+        <div class="photo-ring"></div>
+        <div class="photo-glow"></div>
+      </div>
+      <div class="hero-chips">
+        <div class="chip chip-1">
+          <span class="chip-dot"></span>
+          <span>Open to work</span>
+        </div>
+        <div class="chip chip-2">
+          <span>102+ LeetCode</span>
+        </div>
+        <div class="chip chip-3">
+          <span>AI + Systems</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       ABOUT
-  ============================================================ -->
+  <!-- ── ABOUT ──────────────────────────────────── -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="section-label">
-        <span class="label-number">01</span>
-        <span class="label-text">About</span>
-      </div>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-heading reveal-up">Turning ideas into<br /><em>working systems.</em></h2>
+      <p class="section-eyebrow reveal-up"><span>01</span> About</p>
+      <div class="about-layout">
+        <div class="about-heading-col">
+          <h2 class="section-heading reveal-up delay-1">
+            Building things<br />that <em>matter.</em>
+          </h2>
+        </div>
+        <div class="about-content-col">
           <p class="about-body reveal-up delay-1">
-            I'm a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham with a focus on building products that matter. My background spans systems programming in C, web development, and AI-assisted development workflows.
+            I'm a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham with a sharp focus on building products that matter. My background spans systems programming in C, full-stack web development, and AI-assisted workflows.
           </p>
           <p class="about-body reveal-up delay-2">
-            I'm drawn to the intersection of software engineering and product thinking — I don't just want to write code, I want to ship things that solve real problems. From static sites to local AI assistants, I treat every project as a mini-startup.
+            I treat every project like a mini-startup — thinking about users, flows, and scalability from day one. From e-commerce UIs to locally running AI voice assistants, I ship things that solve real problems.
           </p>
           <p class="about-body reveal-up delay-3">
-            When I'm not building, I'm grinding algorithmic problems on LeetCode or exploring new tools in the open-source ecosystem.
+            When I'm not building, I'm grinding algorithmic problems on LeetCode or digging into new open-source tools.
           </p>
+
           <div class="about-stats reveal-up delay-4">
-            <div class="stat">
-              <span class="stat-num">102<span class="accent">+</span></span>
-              <span class="stat-label">LeetCode Problems</span>
+            <div class="astat">
+              <span class="astat-n">102<sup>+</sup></span>
+              <span class="astat-l">LeetCode<br/>Problems</span>
             </div>
-            <div class="stat">
-              <span class="stat-num">6<span class="accent">+</span></span>
-              <span class="stat-label">Projects</span>
+            <div class="astat">
+              <span class="astat-n">6<sup>+</sup></span>
+              <span class="astat-l">Projects<br/>Shipped</span>
             </div>
-            <div class="stat">
-              <span class="stat-num">6<span class="accent">+</span></span>
-              <span class="stat-label">Certifications</span>
+            <div class="astat">
+              <span class="astat-n">6<sup>+</sup></span>
+              <span class="astat-l">Certifi-<br/>cations</span>
             </div>
-            <div class="stat">
-              <span class="stat-num lor-badge">LOR</span>
-              <span class="stat-label">Industry Recommendation</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-card reveal-up delay-2">
-          <div class="profile-visual">
-            <div class="profile-avatar">
-              <span class="avatar-initials">KJS</span>
-              <div class="avatar-ring"></div>
-              <div class="avatar-ring ring-2"></div>
-            </div>
-            <div class="profile-name">
-              <h3>Kavin J.S.</h3>
-              <p>CS Engineering Student</p>
-            </div>
-            <div class="profile-divider"></div>
-            <div class="profile-badges">
-              <span class="badge">Python</span>
-              <span class="badge">AI / ML</span>
-              <span class="badge">C</span>
-              <span class="badge">Web Dev</span>
-              <span class="badge">Linux</span>
-              <span class="badge">Git</span>
+            <div class="astat">
+              <span class="astat-badge">LOR</span>
+              <span class="astat-l">Industry<br/>Rec.</span>
             </div>
           </div>
         </div>
@@ -138,111 +140,91 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       PROJECTS
-  ============================================================ -->
+  <!-- ── PROJECTS ───────────────────────────────── -->
   <section class="projects section" id="projects">
     <div class="container">
-      <div class="section-label">
-        <span class="label-number">02</span>
-        <span class="label-text">Projects</span>
-      </div>
-      <h2 class="section-heading reveal-up">Things I've<br /><em>built.</em></h2>
+      <p class="section-eyebrow reveal-up"><span>02</span> Selected work</p>
+      <h2 class="section-heading reveal-up delay-1">Things I've built.</h2>
 
-      <div class="projects-grid">
+      <div class="projects-stack">
 
-        <!-- Project 1 -->
-        <article class="project-card reveal-up delay-1" data-index="01">
-          <div class="project-img-wrap">
-            <div class="project-img-placeholder">
-              <span class="project-img-label">Shonowear</span>
-              <div class="placeholder-grid"></div>
-            </div>
-            <div class="project-overlay">
-              <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener" class="overlay-btn">Live Demo ↗</a>
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="overlay-btn overlay-btn-ghost">GitHub ↗</a>
+        <!-- P1 -->
+        <article class="pcard reveal-up delay-1">
+          <div class="pcard-thumb thumb-fashion">
+            <div class="thumb-overlay"></div>
+            <div class="thumb-grid-lines"></div>
+            <div class="pcard-links">
+              <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener" class="tlink">Live Demo ↗</a>
+              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="tlink tlink-ghost">GitHub ↗</a>
             </div>
           </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-index">01</span>
-              <span class="project-year">2025</span>
+          <div class="pcard-body">
+            <div class="pcard-meta">
+              <span class="pcard-num">01</span>
+              <span class="pcard-year">2025</span>
             </div>
-            <h3 class="project-title">Shonowear</h3>
-            <p class="project-desc">A fashion platform prototype built to explore online clothing discovery and product presentation. Startup-style web application with focus on UI/UX, product layout, and branding.</p>
-            <div class="project-tags">
+            <h3 class="pcard-title">Shonowear</h3>
+            <p class="pcard-desc">A fashion platform prototype for online clothing discovery. Built with a startup mindset — focused on UI/UX, product layout, and brand experience from the ground up.</p>
+            <div class="pcard-tags">
               <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span>
             </div>
-            <div class="project-links">
-              <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener">Live Demo ↗</a>
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="project-card reveal-up delay-2" data-index="02">
-          <div class="project-img-wrap">
-            <div class="project-img-placeholder jarvis">
-              <span class="project-img-label">AI Voice Assistant</span>
-              <div class="jarvis-rings">
-                <div class="jr jr1"></div>
-                <div class="jr jr2"></div>
-                <div class="jr jr3"></div>
-              </div>
+        <!-- P2 -->
+        <article class="pcard reveal-up delay-2">
+          <div class="pcard-thumb thumb-ai">
+            <div class="thumb-overlay"></div>
+            <div class="ai-rings-wrap">
+              <div class="air air1"></div>
+              <div class="air air2"></div>
+              <div class="air air3"></div>
+              <div class="air-core"></div>
             </div>
-            <div class="project-overlay">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="overlay-btn">GitHub ↗</a>
+            <div class="pcard-links">
+              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="tlink">GitHub ↗</a>
             </div>
           </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-index">02</span>
-              <span class="project-year">2025</span>
+          <div class="pcard-body">
+            <div class="pcard-meta">
+              <span class="pcard-num">02</span>
+              <span class="pcard-year">2025</span>
             </div>
-            <h3 class="project-title">Local AI Voice Assistant</h3>
-            <p class="project-desc">A Jarvis-style AI assistant running entirely on local open-source LLMs. Voice interaction, command execution, and intelligent responses — zero cloud dependency.</p>
-            <div class="project-tags">
+            <h3 class="pcard-title">Local AI Voice Assistant</h3>
+            <p class="pcard-desc">Jarvis-style AI assistant running entirely on local open-source LLMs. Voice interaction, command execution, intelligent responses — complete offline, zero cloud dependency.</p>
+            <div class="pcard-tags">
               <span>Python</span><span>Local LLMs</span><span>Speech Recognition</span><span>TTS</span><span>Linux</span>
             </div>
-            <div class="project-links">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
           </div>
         </article>
 
-        <!-- Project 3 -->
-        <article class="project-card reveal-up delay-3" data-index="03">
-          <div class="project-img-wrap">
-            <div class="project-img-placeholder algo">
-              <span class="project-img-label">Algorithms</span>
-              <div class="algo-visual">
-                <div class="bar" style="--h:60%"></div>
-                <div class="bar" style="--h:85%"></div>
-                <div class="bar" style="--h:40%"></div>
-                <div class="bar" style="--h:95%"></div>
-                <div class="bar" style="--h:55%"></div>
-                <div class="bar" style="--h:70%"></div>
-                <div class="bar" style="--h:30%"></div>
-                <div class="bar" style="--h:80%"></div>
-              </div>
+        <!-- P3 -->
+        <article class="pcard reveal-up delay-3">
+          <div class="pcard-thumb thumb-algo">
+            <div class="thumb-overlay"></div>
+            <div class="algo-viz">
+              <div class="algobar" style="--h:55%"></div>
+              <div class="algobar" style="--h:82%"></div>
+              <div class="algobar" style="--h:38%"></div>
+              <div class="algobar" style="--h:96%"></div>
+              <div class="algobar" style="--h:60%"></div>
+              <div class="algobar" style="--h:72%"></div>
+              <div class="algobar" style="--h:28%"></div>
+              <div class="algobar" style="--h:88%"></div>
             </div>
-            <div class="project-overlay">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="overlay-btn">GitHub ↗</a>
+            <div class="pcard-links">
+              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="tlink">GitHub ↗</a>
             </div>
           </div>
-          <div class="project-info">
-            <div class="project-meta">
-              <span class="project-index">03</span>
-              <span class="project-year">2025</span>
+          <div class="pcard-body">
+            <div class="pcard-meta">
+              <span class="pcard-num">03</span>
+              <span class="pcard-year">2025</span>
             </div>
-            <h3 class="project-title">Algorithm & Optimization Practice</h3>
-            <p class="project-desc">A collection of implementations and experiments — Fibonacci variants, search techniques, optimization methods, and classic data structures built from scratch.</p>
-            <div class="project-tags">
-              <span>C</span><span>Python</span><span>Algorithms</span><span>DSA</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
+            <h3 class="pcard-title">Algorithm & Optimization Practice</h3>
+            <p class="pcard-desc">A curated collection of algorithm implementations — Fibonacci variants, search techniques, sorting, and optimization. Built to sharpen problem-solving at a competitive level.</p>
+            <div class="pcard-tags">
+              <span>C</span><span>Python</span><span>DSA</span><span>Algorithms</span>
             </div>
           </div>
         </article>
@@ -251,193 +233,163 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SKILLS
-  ============================================================ -->
+  <!-- ── SKILLS ─────────────────────────────────── -->
   <section class="skills section" id="skills">
     <div class="container">
-      <div class="section-label">
-        <span class="label-number">03</span>
-        <span class="label-text">Skills</span>
-      </div>
-      <h2 class="section-heading reveal-up">What I work<br /><em>with.</em></h2>
+      <p class="section-eyebrow reveal-up"><span>03</span> Skills &amp; tools</p>
+      <h2 class="section-heading reveal-up delay-1">What I work with.</h2>
 
-      <div class="skills-grid">
-        <div class="skill-category reveal-up delay-1">
-          <h3 class="skill-cat-title"><span class="cat-icon">{ }</span> Languages</h3>
-          <ul class="skill-list">
-            <li><span class="skill-pill">C</span></li>
-            <li><span class="skill-pill">Python</span></li>
-            <li><span class="skill-pill">JavaScript</span></li>
-            <li><span class="skill-pill">SQL</span></li>
-            <li><span class="skill-pill">C++</span></li>
-            <li><span class="skill-pill">Java</span></li>
-          </ul>
+      <div class="skills-table reveal-up delay-2">
+        <div class="skill-row">
+          <span class="skill-label">Languages</span>
+          <div class="skill-tags">
+            <span>C</span><span>Python</span><span>JavaScript</span>
+            <span>SQL</span><span>C++</span><span>Java</span>
+          </div>
         </div>
-
-        <div class="skill-category reveal-up delay-2">
-          <h3 class="skill-cat-title"><span class="cat-icon">◈</span> Web Dev</h3>
-          <ul class="skill-list">
-            <li><span class="skill-pill">HTML5</span></li>
-            <li><span class="skill-pill">CSS3</span></li>
-            <li><span class="skill-pill">JavaScript</span></li>
-            <li><span class="skill-pill">Responsive Design</span></li>
-            <li><span class="skill-pill">GitHub Pages</span></li>
-          </ul>
+        <div class="skill-row">
+          <span class="skill-label">Web Dev</span>
+          <div class="skill-tags">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+            <span>Responsive Design</span><span>GitHub Pages</span>
+          </div>
         </div>
-
-        <div class="skill-category reveal-up delay-3">
-          <h3 class="skill-cat-title"><span class="cat-icon">⚙</span> Tools</h3>
-          <ul class="skill-list">
-            <li><span class="skill-pill">Git</span></li>
-            <li><span class="skill-pill">GitHub</span></li>
-            <li><span class="skill-pill">Linux</span></li>
-            <li><span class="skill-pill">Kali Linux</span></li>
-            <li><span class="skill-pill">VS Code</span></li>
-            <li><span class="skill-pill">Bash</span></li>
-          </ul>
+        <div class="skill-row">
+          <span class="skill-label">Tools</span>
+          <div class="skill-tags">
+            <span>Git</span><span>GitHub</span><span>Linux</span>
+            <span>Kali Linux</span><span>VS Code</span><span>Bash</span>
+          </div>
         </div>
-
-        <div class="skill-category reveal-up delay-4">
-          <h3 class="skill-cat-title"><span class="cat-icon">◎</span> Concepts</h3>
-          <ul class="skill-list">
-            <li><span class="skill-pill">Data Structures</span></li>
-            <li><span class="skill-pill">Algorithms</span></li>
-            <li><span class="skill-pill">OOP</span></li>
-            <li><span class="skill-pill">DBMS</span></li>
-            <li><span class="skill-pill">OS Fundamentals</span></li>
-            <li><span class="skill-pill">System Design</span></li>
-          </ul>
+        <div class="skill-row">
+          <span class="skill-label">CS Concepts</span>
+          <div class="skill-tags">
+            <span>Data Structures</span><span>Algorithms</span><span>OOP</span>
+            <span>DBMS</span><span>OS Fundamentals</span><span>System Design</span>
+          </div>
         </div>
-
-        <div class="skill-category reveal-up delay-5">
-          <h3 class="skill-cat-title"><span class="cat-icon">✦</span> AI / Data</h3>
-          <ul class="skill-list">
-            <li><span class="skill-pill">Prompt Engineering</span></li>
-            <li><span class="skill-pill">GPT Models</span></li>
-            <li><span class="skill-pill">Local LLMs</span></li>
-            <li><span class="skill-pill">Generative AI</span></li>
-          </ul>
+        <div class="skill-row">
+          <span class="skill-label">AI / Data</span>
+          <div class="skill-tags">
+            <span>Prompt Engineering</span><span>GPT Models</span>
+            <span>Local LLMs</span><span>Generative AI</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CURRENTLY BUILDING
-  ============================================================ -->
+  <!-- ── CURRENTLY BUILDING ─────────────────────── -->
   <section class="building section" id="building">
     <div class="container">
-      <div class="section-label">
-        <span class="label-number">04</span>
-        <span class="label-text">Currently Building</span>
-      </div>
-      <h2 class="section-heading reveal-up">What's in<br /><em>progress.</em></h2>
+      <p class="section-eyebrow reveal-up"><span>04</span> Currently building</p>
+      <h2 class="section-heading reveal-up delay-1">What's in progress.</h2>
+      <div class="bento-grid">
 
-      <div class="building-grid">
-        <div class="building-card reveal-up delay-1">
-          <div class="building-status"><span class="status-dot"></span> Active</div>
-          <h3>Startup-Style Web Products</h3>
-          <p>Designing and building full web applications with a product mindset — thinking about users, flows, and scalability from day one.</p>
+        <div class="bento-card bento-lg reveal-up delay-1">
+          <div class="bento-badge active"><span></span>Active</div>
+          <h3>Startup-Style<br/>Web Products</h3>
+          <p>Full applications built with a product mindset — users, flows, and scalability from day one.</p>
         </div>
-        <div class="building-card reveal-up delay-2">
-          <div class="building-status"><span class="status-dot"></span> Active</div>
-          <h3>AI Tools & Assistants</h3>
-          <p>Experimenting with local LLMs, speech interfaces, and prompt-engineered workflows to build practical AI tools that run anywhere.</p>
+
+        <div class="bento-card reveal-up delay-2">
+          <div class="bento-badge active"><span></span>Active</div>
+          <h3>AI Tools &amp; Assistants</h3>
+          <p>Local LLMs, speech interfaces, prompt-engineered workflows that run anywhere.</p>
         </div>
-        <div class="building-card reveal-up delay-3">
-          <div class="building-status"><span class="status-dot"></span> Active</div>
+
+        <div class="bento-card reveal-up delay-3">
+          <div class="bento-badge active"><span></span>Active</div>
           <h3>DSA Mastery</h3>
-          <p>Systematically solving algorithmic problems in Python and C, targeting 200+ LeetCode problems and competitive-level thinking.</p>
+          <p>200+ LeetCode problems — systematic, competitive-level thinking in Python and C.</p>
         </div>
-        <div class="building-card reveal-up delay-4">
-          <div class="building-status"><span class="status-dot orange"></span> Exploring</div>
-          <h3>Systems & Backend</h3>
-          <p>Exploring backend architecture, APIs, and how large-scale systems are designed — transitioning from frontend-first to full-stack thinking.</p>
+
+        <div class="bento-card bento-accent reveal-up delay-4">
+          <div class="bento-badge exploring"><span></span>Exploring</div>
+          <h3>Systems &amp;<br/>Backend</h3>
+          <p>Backend architecture, APIs, and large-scale system design — full-stack evolution.</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       GITHUB
-  ============================================================ -->
-  <section class="github-section section" id="github">
+  <!-- ── GITHUB ─────────────────────────────────── -->
+  <section class="gh-section" id="github">
     <div class="container">
-      <div class="github-inner reveal-up">
-        <div class="github-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+      <div class="gh-banner reveal-up">
+        <div class="gh-left">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" aria-hidden="true" class="gh-icon">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
+          <div>
+            <p class="gh-handle">github.com/Kavin-JS</p>
+            <p class="gh-sub">All the code — algorithms, AI experiments, web projects.</p>
+          </div>
         </div>
-        <div class="github-text">
-          <h2>See everything I'm building</h2>
-          <p>My GitHub has all the code — from algorithm practice to AI experiments to web projects. Come take a look.</p>
-        </div>
-        <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="btn btn-primary">github.com/Kavin-JS ↗</a>
+        <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="btn btn-primary">View Profile ↗</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CONTACT
-  ============================================================ -->
+  <!-- ── CONTACT ────────────────────────────────── -->
   <section class="contact section" id="contact">
     <div class="container">
-      <div class="section-label">
-        <span class="label-number">05</span>
-        <span class="label-text">Contact</span>
-      </div>
-      <h2 class="section-heading reveal-up">Let's<br /><em>connect.</em></h2>
-      <p class="contact-sub reveal-up delay-1">I'm always open to interesting conversations, collaborations, or opportunities. Drop a message.</p>
-
-      <div class="contact-grid">
-        <a href="mailto:kavinjs.dev@gmail.com" class="contact-card reveal-up delay-1">
-          <div class="contact-icon">✉</div>
-          <div class="contact-info">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">kavinjs.dev@gmail.com</span>
-          </div>
-          <span class="contact-arrow">↗</span>
-        </a>
-        <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="contact-card reveal-up delay-2">
-          <div class="contact-icon">⌥</div>
-          <div class="contact-info">
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">github.com/Kavin-JS</span>
-          </div>
-          <span class="contact-arrow">↗</span>
-        </a>
-        <a href="https://linkedin.com/in/kavinjs" target="_blank" rel="noopener" class="contact-card reveal-up delay-3">
-          <div class="contact-icon">in</div>
-          <div class="contact-info">
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">linkedin.com/in/kavinjs</span>
-          </div>
-          <span class="contact-arrow">↗</span>
-        </a>
-        <a href="https://leetcode.com/u/KavinJS" target="_blank" rel="noopener" class="contact-card reveal-up delay-4">
-          <div class="contact-icon">⊕</div>
-          <div class="contact-info">
-            <span class="contact-label">LeetCode</span>
-            <span class="contact-value">leetcode.com/u/KavinJS</span>
-          </div>
-          <span class="contact-arrow">↗</span>
-        </a>
+      <p class="section-eyebrow reveal-up"><span>05</span> Contact</p>
+      <div class="contact-layout">
+        <div class="contact-heading reveal-up delay-1">
+          <h2 class="section-heading">Let's build<br /><em>something.</em></h2>
+          <p class="contact-sub">Open to internships, collaborations, and interesting conversations. I reply fast.</p>
+          <a href="#contact" class="btn btn-primary contact-btn">
+            Send a message ↗
+          </a>
+        </div>
+        <div class="contact-links reveal-up delay-2">
+          <a href="mailto:kavinjs.dev@gmail.com" class="clink">
+            <span class="cl-icon">✉</span>
+            <div class="cl-text">
+              <span class="cl-label">Email</span>
+              <span class="cl-val">kavinjs.dev@gmail.com</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="clink">
+            <span class="cl-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </span>
+            <div class="cl-text">
+              <span class="cl-label">GitHub</span>
+              <span class="cl-val">github.com/Kavin-JS</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a href="https://linkedin.com/in/kavinjs" target="_blank" rel="noopener" class="clink">
+            <span class="cl-icon">in</span>
+            <div class="cl-text">
+              <span class="cl-label">LinkedIn</span>
+              <span class="cl-val">linkedin.com/in/kavinjs</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a href="https://leetcode.com/u/KavinJS" target="_blank" rel="noopener" class="clink">
+            <span class="cl-icon">LC</span>
+            <div class="cl-text">
+              <span class="cl-label">LeetCode</span>
+              <span class="cl-val">leetcode.com/u/KavinJS</span>
+            </div>
+            <span class="cl-arrow">↗</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
+  <!-- ── FOOTER ─────────────────────────────────── -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-logo">Kavin J<span class="accent">.</span>S</span>
-        <span class="footer-copy">© 2025 Kavin J.S. — Designed & Built from scratch.</span>
-        <a href="#hero" class="footer-top">Back to top ↑</a>
-      </div>
+    <div class="footer-inner">
+      <span class="footer-logo">KJS<span>.</span></span>
+      <span class="footer-copy">© 2025 Kavin J.S. — Built from scratch.</span>
+      <a href="#hero" class="footer-up">↑ Back to top</a>
     </div>
   </footer>
 
