@@ -56,13 +56,16 @@ body  {
 ::selection { background: var(--green-2); color: #000; }
 img { display: block; max-width: 100%; }
 
-/* ── Cursor canvas ─────────────────────────────────────────── */
+/* ── Cursor canvas — Antigravity confetti burst layer ───────── */
 #cursor-canvas {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
 }
+
+/* cursor-ring is hidden via JS for confetti mode */
+#cursor-ring { display: none; }
 
 /* ── Utility ───────────────────────────────────────────────── */
 .container {
