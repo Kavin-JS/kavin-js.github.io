@@ -207,7 +207,164 @@
   hero.addEventListener('mouseleave', () => { photo.style.transform = ''; });
 })();
 
-/* ── 8. PROJECT CARD 3D TILT ─────────────────────────────── */
+/* ── 8. SCRATCH CARD PHOTO REVEAL ────────────────────────────
+   Canvas sits over the photo. Drawing with destination-out
+   compositing erases the cover layer — revealing the photo.
+   Tracks % revealed; auto-completes at 55% scratched.
+─────────────────────────────────────────────────────────────── */
+(function initScratchCard() {
+  const wrap   = document.getElementById('scratch-wrap');
+  const canvas = document.getElementById('scratch-canvas');
+  const hint   = document.getElementById('scratch-hint');
+  const done   = document.getElementById('scratch-done');
+  const photo  = document.getElementById('scratch-photo');
+  if (!wrap || !canvas || !photo) return;
+
+  const ctx = canvas.getContext('2d');
+  let W, H, isDrawing = false, revealed = false, hintHidden = false;
+
+  // ── Fill canvas with the scratch cover once photo loads ───
+  function initCover() {
+    W = canvas.width  = wrap.offsetWidth;
+    H = canvas.height = wrap.offsetHeight;
+
+    // Dark textured cover — grid of dots like a real scratch card
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, W, H);
+
+    // Dot-pattern texture
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    for (let x = 0; x < W; x += 8) {
+      for (let y = 0; y < H; y += 8) {
+        if ((x / 8 + y / 8) % 2 === 0) ctx.fillRect(x, y, 4, 4);
+      }
+    }
+
+    // Green shimmer label in centre
+    ctx.save();
+    ctx.font = '500 13px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.letterSpacing = '0.2em';
+
+    // Subtle repeating text rows
+    ctx.fillStyle = 'rgba(74,222,128,0.07)';
+    for (let row = 30; row < H; row += 44) {
+      ctx.fillText('✦  SCRATCH TO REVEAL  ✦  SCRATCH TO REVEAL  ✦', W / 2, row);
+    }
+    ctx.restore();
+
+    // Green border glow on cover
+    ctx.save();
+    ctx.strokeStyle = 'rgba(74,222,128,0.2)';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(1, 1, W - 2, H - 2);
+    ctx.restore();
+  }
+
+  // Wait for photo to load before sizing canvas
+  if (photo.complete) {
+    initCover();
+  } else {
+    photo.addEventListener('load', initCover, { once: true });
+  }
+  window.addEventListener('resize', initCover, { passive: true });
+
+  // ── Scratch at position (x, y) ────────────────────────────
+  const BRUSH = 38; // scratch brush radius in px
+
+  function scratch(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+
+    // Soft eraser — radial gradient for feathered edges
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, BRUSH);
+    grad.addColorStop(0,   'rgba(0,0,0,1)');
+    grad.addColorStop(0.6, 'rgba(0,0,0,0.8)');
+    grad.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = grad;
+    ctx.arc(x, y, BRUSH, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalCompositeOperation = 'source-over';
+
+    // Hide hint after first scratch
+    if (!hintHidden) {
+      hintHidden = true;
+      hint?.classList.add('hide');
+    }
+  }
+
+  // ── Check % revealed ──────────────────────────────────────
+  let checkTimer;
+  function checkReveal() {
+    clearTimeout(checkTimer);
+    checkTimer = setTimeout(() => {
+      const px    = ctx.getImageData(0, 0, W, H).data;
+      let transparent = 0;
+      // Sample every 16th pixel for performance
+      for (let i = 3; i < px.length; i += 64) {
+        if (px[i] < 128) transparent++;
+      }
+      const pct = transparent / (px.length / 64);
+      if (pct > 0.55 && !revealed) completeReveal();
+    }, 150);
+  }
+
+  // ── Full reveal animation ─────────────────────────────────
+  function completeReveal() {
+    revealed = true;
+    let alpha = 1;
+    const fade = setInterval(() => {
+      alpha -= 0.035;
+      ctx.clearRect(0, 0, W, H);
+      if (alpha > 0) {
+        ctx.globalAlpha = Math.max(0, alpha);
+        ctx.fillStyle = '#0a0a0a';
+        ctx.fillRect(0, 0, W, H);
+        ctx.globalAlpha = 1;
+      } else {
+        clearInterval(fade);
+        canvas.style.pointerEvents = 'none'; // disable canvas after reveal
+      }
+    }, 18);
+
+    // Show ✓ badge
+    setTimeout(() => done?.classList.add('show'), 400);
+  }
+
+  // ── Pointer events (mouse + touch) ───────────────────────
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const src  = e.touches ? e.touches[0] : e;
+    return {
+      x: (src.clientX - rect.left) * (W / rect.width),
+      y: (src.clientY - rect.top)  * (H / rect.height),
+    };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    isDrawing = true;
+    const p = getPos(e); scratch(p.x, p.y);
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!isDrawing || revealed) return;
+    const p = getPos(e); scratch(p.x, p.y); checkReveal();
+  });
+  canvas.addEventListener('mouseup',   () => { isDrawing = false; checkReveal(); });
+  canvas.addEventListener('mouseleave',() => { isDrawing = false; });
+
+  // Touch support
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault(); isDrawing = true;
+    const p = getPos(e); scratch(p.x, p.y);
+  }, { passive: false });
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (!isDrawing || revealed) return;
+    const p = getPos(e); scratch(p.x, p.y); checkReveal();
+  }, { passive: false });
+  canvas.addEventListener('touchend', () => { isDrawing = false; checkReveal(); });
+})();
 (function () {
   if (window.matchMedia('(hover:none)').matches) return;
   document.querySelectorAll('.pj-card').forEach(card => {
