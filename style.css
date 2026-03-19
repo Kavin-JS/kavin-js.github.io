@@ -732,8 +732,10 @@ img { display: block; max-width: 100%; }
 .footer-logo { font-family: var(--mono); font-size: .9rem; font-weight: 500; color: var(--white); letter-spacing: .1em; }
 .footer-logo span { color: var(--green); }
 .footer-copy { font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); }
-.footer-top  { font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-2); text-decoration: none; transition: color var(--t); }
-.footer-top:hover { color: var(--green); }
+.footer-top,
+.footer-up   { font-family: var(--mono); font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-2); text-decoration: none; transition: color var(--t); }
+.footer-top:hover,
+.footer-up:hover { color: var(--green); }
 
 /* ============================================================
    RESPONSIVE
