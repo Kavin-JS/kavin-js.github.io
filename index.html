@@ -11,8 +11,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <!-- Cursor canvas — green confetti particles -->
   <canvas id="cursor-canvas"></canvas>
 
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">KJS<span>.</span></a>
@@ -23,103 +28,168 @@
         <li><a href="#building">Building</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
     </div>
   </nav>
 
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
   <section class="hero" id="hero">
+    <!-- Decorative orbital rings -->
     <div class="orb-ring orb-1" aria-hidden="true"></div>
     <div class="orb-ring orb-2" aria-hidden="true"></div>
     <div class="orb-ring orb-3" aria-hidden="true"></div>
-    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-glow"      aria-hidden="true"></div>
 
+    <!-- Left — text content -->
     <div class="hero-inner">
       <div class="hero-label reveal-up">
         <span class="label-dot"></span>
         Available for opportunities
       </div>
+
       <h1 class="hero-title reveal-up delay-1">
         <span class="hero-line-1">Kavin</span>
         <span class="hero-line-2">J.S.</span>
       </h1>
+
       <p class="hero-sub reveal-up delay-2">
         CS Engineering student building software products,<br class="br-desk" />
-        AI tools and scalable platforms — one commit at a time.
+        AI tools and scalable platforms &mdash; one commit at a time.
       </p>
+
       <div class="hero-actions reveal-up delay-3">
         <a href="#projects" class="btn btn-light">View my work</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        <a href="#contact"  class="btn btn-ghost">Get in touch</a>
       </div>
+
       <div class="hero-meta reveal-up delay-4">
         <span>Amrita Vishwa Vidyapeetham</span>
-        <span class="sep">·</span>
+        <span class="sep">&middot;</span>
         <span>Chennai, India</span>
-        <span class="sep">·</span>
+        <span class="sep">&middot;</span>
         <span>3rd Year CSE</span>
       </div>
     </div>
 
+    <!-- Right — photo + chips -->
     <div class="hero-photo-wrap reveal-up delay-2">
       <div class="photo-halo"></div>
-      <img src="profile.jpg" alt="Kavin J.S" class="hero-photo" />
+      <img src="profile.jpg" alt="Kavin J.S — CS Engineer" class="hero-photo" />
       <div class="photo-chips">
         <div class="pchip"><span class="pchip-dot"></span>Open to work</div>
         <div class="pchip pchip-mono">102+ LeetCode</div>
-        <div class="pchip pchip-mono">AI · Systems</div>
+        <div class="pchip pchip-mono">AI &middot; Systems</div>
       </div>
     </div>
 
+    <!-- Scroll indicator -->
     <div class="scroll-cue" aria-hidden="true">
       <span>Scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════ -->
   <section class="about section" id="about">
     <div class="container">
-      <p class="eyebrow reveal-up"><span class="eyebrow-num">01</span>About</p>
+      <p class="eyebrow reveal-up">
+        <span class="eyebrow-num">01</span>About
+      </p>
       <div class="about-grid">
+
         <div class="about-left">
-          <h2 class="h2 reveal-up delay-1">Building things<br />that <em>matter.</em></h2>
+          <h2 class="h2 reveal-up delay-1">
+            Building things<br />that <em>matter.</em>
+          </h2>
         </div>
+
         <div class="about-right">
-          <p class="body-text reveal-up delay-1">I'm a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham with a sharp focus on building products that matter. My background spans systems programming in C, full-stack web development, and AI-assisted workflows.</p>
-          <p class="body-text reveal-up delay-2">I treat every project like a mini-startup — thinking about users, flows, and scalability from day one. From e-commerce UIs to locally-running AI voice assistants, I ship things that solve real problems.</p>
-          <p class="body-text reveal-up delay-3">When I'm not building, I'm grinding algorithmic problems on LeetCode or digging into new open-source tools.</p>
+          <p class="body-text reveal-up delay-1">
+            I&rsquo;m a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham
+            with a sharp focus on building products that matter. My background spans systems
+            programming in C, full-stack web development, and AI-assisted workflows.
+          </p>
+          <p class="body-text reveal-up delay-2">
+            I treat every project like a mini-startup &mdash; thinking about users, flows,
+            and scalability from day one. From e-commerce UIs to locally-running AI voice
+            assistants, I ship things that solve real problems.
+          </p>
+          <p class="body-text reveal-up delay-3">
+            When I&rsquo;m not building, I&rsquo;m grinding algorithmic problems on LeetCode
+            or digging into new open-source tools.
+          </p>
+
           <div class="stats-row reveal-up delay-4">
-            <div class="stat"><span class="stat-n">102<sup>+</sup></span><span class="stat-l">LeetCode Problems</span></div>
-            <div class="stat"><span class="stat-n">6<sup>+</sup></span><span class="stat-l">Projects Shipped</span></div>
-            <div class="stat"><span class="stat-n">6<sup>+</sup></span><span class="stat-l">Certifications</span></div>
-            <div class="stat"><span class="stat-badge">LOR</span><span class="stat-l">Industry Rec.</span></div>
+            <div class="stat">
+              <span class="stat-n">102<sup>+</sup></span>
+              <span class="stat-l">LeetCode Problems</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">6<sup>+</sup></span>
+              <span class="stat-l">Projects Shipped</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">6<sup>+</sup></span>
+              <span class="stat-l">Certifications</span>
+            </div>
+            <div class="stat">
+              <span class="stat-badge">LOR</span>
+              <span class="stat-l">Industry Rec.</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════ -->
   <section class="projects section" id="projects">
     <div class="container">
-      <p class="eyebrow reveal-up"><span class="eyebrow-num">02</span>Selected work</p>
-      <h2 class="h2 reveal-up delay-1">Things I've built.</h2>
+      <p class="eyebrow reveal-up">
+        <span class="eyebrow-num">02</span>Selected work
+      </p>
+      <h2 class="h2 reveal-up delay-1">Things I&rsquo;ve built.</h2>
+
       <div class="proj-grid">
 
+        <!-- Project 01 — Shonowear (wide) -->
         <article class="pj-card pj-large reveal-up delay-1">
           <div class="pj-thumb thumb-fashion">
             <div class="thumb-pattern"></div>
             <div class="thumb-glow"></div>
             <div class="pj-hover-links">
-              <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener" class="hl">Live Demo &#8599;</a>
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl hl-ghost">GitHub &#8599;</a>
+              <a href="https://kavin-js.github.io/Shonowear-Ver3.0/"
+                 target="_blank" rel="noopener" class="hl">Live Demo &#8599;</a>
+              <a href="https://github.com/Kavin-JS"
+                 target="_blank" rel="noopener" class="hl hl-ghost">GitHub &#8599;</a>
             </div>
           </div>
           <div class="pj-info">
-            <div class="pj-top"><span class="pj-num">01</span><span class="pj-yr">2025</span></div>
+            <div class="pj-top">
+              <span class="pj-num">01</span>
+              <span class="pj-yr">2025</span>
+            </div>
             <h3 class="pj-title">Shonowear</h3>
-            <p class="pj-desc">Fashion platform prototype for online clothing discovery — startup-style UX focused on product layout and brand experience.</p>
-            <div class="pj-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
+            <p class="pj-desc">
+              Fashion platform prototype for online clothing discovery &mdash;
+              startup-style UX focused on product layout and brand experience.
+            </p>
+            <div class="pj-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span>
+            </div>
           </div>
         </article>
 
+        <!-- Project 02 — AI Voice Assistant -->
         <article class="pj-card reveal-up delay-2">
           <div class="pj-thumb thumb-ai">
             <div class="ai-core-wrap">
@@ -129,17 +199,27 @@
               <div class="ai-dot"></div>
             </div>
             <div class="pj-hover-links">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl">GitHub &#8599;</a>
+              <a href="https://github.com/Kavin-JS"
+                 target="_blank" rel="noopener" class="hl">GitHub &#8599;</a>
             </div>
           </div>
           <div class="pj-info">
-            <div class="pj-top"><span class="pj-num">02</span><span class="pj-yr">2025</span></div>
+            <div class="pj-top">
+              <span class="pj-num">02</span>
+              <span class="pj-yr">2025</span>
+            </div>
             <h3 class="pj-title">Local AI Voice Assistant</h3>
-            <p class="pj-desc">Jarvis-style AI running on local open-source LLMs. Voice interaction, command execution — zero cloud dependency.</p>
-            <div class="pj-tags"><span>Python</span><span>Local LLMs</span><span>TTS</span><span>Linux</span></div>
+            <p class="pj-desc">
+              Jarvis-style AI running on local open-source LLMs. Voice interaction,
+              command execution &mdash; zero cloud dependency.
+            </p>
+            <div class="pj-tags">
+              <span>Python</span><span>Local LLMs</span><span>TTS</span><span>Linux</span>
+            </div>
           </div>
         </article>
 
+        <!-- Project 03 — Algorithm Practice -->
         <article class="pj-card reveal-up delay-3">
           <div class="pj-thumb thumb-algo">
             <div class="algo-bars-wrap">
@@ -153,14 +233,23 @@
               <div class="ab" style="--h:88%"></div>
             </div>
             <div class="pj-hover-links">
-              <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl">GitHub &#8599;</a>
+              <a href="https://github.com/Kavin-JS"
+                 target="_blank" rel="noopener" class="hl">GitHub &#8599;</a>
             </div>
           </div>
           <div class="pj-info">
-            <div class="pj-top"><span class="pj-num">03</span><span class="pj-yr">2025</span></div>
+            <div class="pj-top">
+              <span class="pj-num">03</span>
+              <span class="pj-yr">2025</span>
+            </div>
             <h3 class="pj-title">Algorithm &amp; Optimization</h3>
-            <p class="pj-desc">Curated implementations of Fibonacci, search, sorting, and optimization — built for competitive-level thinking.</p>
-            <div class="pj-tags"><span>C</span><span>Python</span><span>DSA</span></div>
+            <p class="pj-desc">
+              Curated implementations of Fibonacci, search, sorting, and optimization
+              &mdash; built for competitive-level thinking.
+            </p>
+            <div class="pj-tags">
+              <span>C</span><span>Python</span><span>DSA</span>
+            </div>
           </div>
         </article>
 
@@ -168,65 +257,193 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       SKILLS
+  ═══════════════════════════════════════ -->
   <section class="skills section" id="skills">
     <div class="container">
-      <p class="eyebrow reveal-up"><span class="eyebrow-num">03</span>Skills &amp; tools</p>
+      <p class="eyebrow reveal-up">
+        <span class="eyebrow-num">03</span>Skills &amp; tools
+      </p>
       <h2 class="h2 reveal-up delay-1">What I work with.</h2>
+
       <div class="skills-board reveal-up delay-2">
-        <div class="sk-row"><span class="sk-cat">Languages</span><div class="sk-tags"><span>C</span><span>Python</span><span>JavaScript</span><span>SQL</span><span>C++</span><span>Java</span></div></div>
-        <div class="sk-row"><span class="sk-cat">Web Dev</span><div class="sk-tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive Design</span><span>GitHub Pages</span></div></div>
-        <div class="sk-row"><span class="sk-cat">Tools</span><div class="sk-tags"><span>Git</span><span>GitHub</span><span>Linux</span><span>Kali Linux</span><span>VS Code</span><span>Bash</span></div></div>
-        <div class="sk-row"><span class="sk-cat">CS Concepts</span><div class="sk-tags"><span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>DBMS</span><span>OS</span><span>System Design</span></div></div>
-        <div class="sk-row"><span class="sk-cat">AI / Data</span><div class="sk-tags"><span>Prompt Engineering</span><span>GPT Models</span><span>Local LLMs</span><span>Generative AI</span></div></div>
+        <div class="sk-row">
+          <span class="sk-cat">Languages</span>
+          <div class="sk-tags">
+            <span>C</span><span>Python</span><span>JavaScript</span>
+            <span>SQL</span><span>C++</span><span>Java</span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <span class="sk-cat">Web Dev</span>
+          <div class="sk-tags">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+            <span>Responsive Design</span><span>GitHub Pages</span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <span class="sk-cat">Tools</span>
+          <div class="sk-tags">
+            <span>Git</span><span>GitHub</span><span>Linux</span>
+            <span>Kali Linux</span><span>VS Code</span><span>Bash</span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <span class="sk-cat">CS Concepts</span>
+          <div class="sk-tags">
+            <span>Data Structures</span><span>Algorithms</span><span>OOP</span>
+            <span>DBMS</span><span>OS</span><span>System Design</span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <span class="sk-cat">AI / Data</span>
+          <div class="sk-tags">
+            <span>Prompt Engineering</span><span>GPT Models</span>
+            <span>Local LLMs</span><span>Generative AI</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       CURRENTLY BUILDING
+  ═══════════════════════════════════════ -->
   <section class="building section" id="building">
     <div class="container">
-      <p class="eyebrow reveal-up"><span class="eyebrow-num">04</span>Currently building</p>
-      <h2 class="h2 reveal-up delay-1">What's in progress.</h2>
+      <p class="eyebrow reveal-up">
+        <span class="eyebrow-num">04</span>Currently building
+      </p>
+      <h2 class="h2 reveal-up delay-1">What&rsquo;s in progress.</h2>
+
       <div class="bento reveal-up delay-2">
-        <div class="bc bc-wide"><div class="bc-badge bc-active"><span></span>Active</div><h3>Startup-Style Web Products</h3><p>Full applications built with a product mindset — users, flows, scalability from day one.</p></div>
-        <div class="bc"><div class="bc-badge bc-active"><span></span>Active</div><h3>AI Tools &amp; Assistants</h3><p>Local LLMs, speech interfaces, prompt workflows — practical AI that runs anywhere.</p></div>
-        <div class="bc"><div class="bc-badge bc-active"><span></span>Active</div><h3>DSA Mastery</h3><p>200+ LeetCode systematically in Python and C. Competitive-level algorithmic thinking.</p></div>
-        <div class="bc bc-accent"><div class="bc-badge bc-explore"><span></span>Exploring</div><h3>Systems &amp; Backend</h3><p>Backend architecture, APIs, and large-scale system design — going full-stack.</p></div>
+        <div class="bc bc-wide">
+          <div class="bc-badge bc-active"><span></span>Active</div>
+          <h3>Startup-Style Web Products</h3>
+          <p>Full applications built with a product mindset &mdash; users, flows, scalability from day one.</p>
+        </div>
+        <div class="bc">
+          <div class="bc-badge bc-active"><span></span>Active</div>
+          <h3>AI Tools &amp; Assistants</h3>
+          <p>Local LLMs, speech interfaces, prompt workflows &mdash; practical AI that runs anywhere.</p>
+        </div>
+        <div class="bc">
+          <div class="bc-badge bc-active"><span></span>Active</div>
+          <h3>DSA Mastery</h3>
+          <p>200+ LeetCode systematically in Python and C. Competitive-level algorithmic thinking.</p>
+        </div>
+        <div class="bc bc-accent">
+          <div class="bc-badge bc-explore"><span></span>Exploring</div>
+          <h3>Systems &amp; Backend</h3>
+          <p>Backend architecture, APIs, and large-scale system design &mdash; going full-stack.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       GITHUB
+  ═══════════════════════════════════════ -->
   <section class="gh-section" id="github">
     <div class="container">
       <div class="gh-strip reveal-up">
         <div class="gh-text">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><p class="gh-handle">github.com/Kavin-JS</p><p class="gh-sub">All the code — algorithms, AI experiments, web projects.</p></div>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
+              0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695
+              -.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99
+              .105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225
+              -.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405
+              c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225
+              0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3
+              0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <div>
+            <p class="gh-handle">github.com/Kavin-JS</p>
+            <p class="gh-sub">All the code &mdash; algorithms, AI experiments, web projects.</p>
+          </div>
         </div>
-        <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="btn btn-light">View Profile &#8599;</a>
+        <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener"
+           class="btn btn-light">View Profile &#8599;</a>
       </div>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════ -->
   <section class="contact section" id="contact">
     <div class="container">
-      <p class="eyebrow reveal-up"><span class="eyebrow-num">05</span>Contact</p>
+      <p class="eyebrow reveal-up">
+        <span class="eyebrow-num">05</span>Contact
+      </p>
+
       <div class="contact-layout">
+
         <div class="contact-left reveal-up delay-1">
-          <h2 class="h2">Let's build<br /><em>something.</em></h2>
-          <p class="body-text" style="max-width:320px;margin-top:1rem">Open to internships, collaborations and interesting conversations. I reply fast.</p>
-          <a href="mailto:kavinjs.dev@gmail.com" class="btn btn-light" style="margin-top:2rem">Send a message &#8599;</a>
+          <h2 class="h2">Let&rsquo;s build<br /><em>something.</em></h2>
+          <p class="body-text" style="max-width:320px;margin-top:1rem;">
+            Open to internships, collaborations and interesting conversations. I reply fast.
+          </p>
+          <a href="mailto:kavinjs.dev@gmail.com" class="btn btn-light"
+             style="margin-top:2rem;">Send a message &#8599;</a>
         </div>
+
         <div class="contact-links reveal-up delay-2">
-          <a href="mailto:kavinjs.dev@gmail.com" class="cl"><div class="cl-icon">&#x2709;</div><div class="cl-body"><span class="cl-lbl">Email</span><span class="cl-val">kavinjs.dev@gmail.com</span></div><span class="cl-arr">&#8599;</span></a>
-          <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="cl"><div class="cl-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></div><div class="cl-body"><span class="cl-lbl">GitHub</span><span class="cl-val">github.com/Kavin-JS</span></div><span class="cl-arr">&#8599;</span></a>
-          <a href="https://linkedin.com/in/kavinjs" target="_blank" rel="noopener" class="cl"><div class="cl-icon" style="font-weight:700;font-size:.8rem">in</div><div class="cl-body"><span class="cl-lbl">LinkedIn</span><span class="cl-val">linkedin.com/in/kavinjs</span></div><span class="cl-arr">&#8599;</span></a>
-          <a href="https://leetcode.com/u/KavinJS" target="_blank" rel="noopener" class="cl"><div class="cl-icon" style="font-family:var(--mono);font-size:.55rem;font-weight:500">LC</div><div class="cl-body"><span class="cl-lbl">LeetCode</span><span class="cl-val">leetcode.com/u/KavinJS</span></div><span class="cl-arr">&#8599;</span></a>
+          <a href="mailto:kavinjs.dev@gmail.com" class="cl">
+            <div class="cl-icon">&#x2709;</div>
+            <div class="cl-body">
+              <span class="cl-lbl">Email</span>
+              <span class="cl-val">kavinjs.dev@gmail.com</span>
+            </div>
+            <span class="cl-arr">&#8599;</span>
+          </a>
+          <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="cl">
+            <div class="cl-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57
+                  0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695
+                  -.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99
+                  .105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225
+                  -.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405
+                  c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225
+                  0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3
+                  0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="cl-body">
+              <span class="cl-lbl">GitHub</span>
+              <span class="cl-val">github.com/Kavin-JS</span>
+            </div>
+            <span class="cl-arr">&#8599;</span>
+          </a>
+          <a href="https://linkedin.com/in/kavinjs" target="_blank" rel="noopener" class="cl">
+            <div class="cl-icon" style="font-weight:700;font-size:.8rem;">in</div>
+            <div class="cl-body">
+              <span class="cl-lbl">LinkedIn</span>
+              <span class="cl-val">linkedin.com/in/kavinjs</span>
+            </div>
+            <span class="cl-arr">&#8599;</span>
+          </a>
+          <a href="https://leetcode.com/u/KavinJS" target="_blank" rel="noopener" class="cl">
+            <div class="cl-icon" style="font-family:var(--mono);font-size:.55rem;font-weight:500;">LC</div>
+            <div class="cl-body">
+              <span class="cl-lbl">LeetCode</span>
+              <span class="cl-val">leetcode.com/u/KavinJS</span>
+            </div>
+            <span class="cl-arr">&#8599;</span>
+          </a>
         </div>
+
       </div>
     </div>
   </section>
 
-    <footer class="footer">
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer">
     <div class="footer-inner">
       <span class="footer-logo">KJS<span>.</span></span>
       <span class="footer-copy">&copy; 2025 Kavin J.S.</span>
