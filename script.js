@@ -4,153 +4,182 @@
    + Navbar · Hamburger · Reveal · Algo bars · Active nav
 ============================================================ */
 
-/* ── 1. CURSOR — ANTIGRAVITY CONFETTI-BURST ─────────────────
-   Matches Google Antigravity exactly:
-   · Coloured dash/streak confetti that BURST outward from cursor
-   · Each particle is a short rotated rectangle (not a dot)
-   · Physics: initial velocity outward + gravity drag + fade
-   · Colours: Google's palette — blue, red, yellow, green, purple
-   · Continuous stream while moving, burst on click
-   · Tiny sharp dot follows cursor exactly
+/* ── 1. CURSOR — ANTIGRAVITY AMBIENT FIELD ───────────────────
+   Matches Google Antigravity EXACTLY (Image 2):
+   · Hundreds of tiny colored dots/dashes fill the ENTIRE viewport
+   · They float gently, always visible across the whole screen
+   · The cursor ATTRACTS / DISTURBS nearby particles as it moves
+   · On move: nearby particles scatter outward (repulsion burst)
+   · Particles slowly drift back to random idle positions
+   · Colors: Google palette — blue, red, yellow, green, purple, etc.
+   · No ring. No orbit. Just the ambient confetti field.
 ─────────────────────────────────────────────────────────────── */
-(function initCursor() {
-  if (window.matchMedia('(hover: none)').matches) return;
-
+(function initAmbientCursor() {
   const canvas = document.getElementById('cursor-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  const isTouch = window.matchMedia('(hover: none)').matches;
 
   let W, H;
-  const resize = () => {
+  function resize() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
-  };
+  }
   resize();
-  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('resize', () => { resize(); initParticles(); }, { passive: true });
 
-  // ── Mouse state
-  let mx = -300, my = -300;
-  let pmx = -300, pmy = -300; // previous position (for velocity)
-  let isMoving = false;
-  let moveTimer;
-
-  // ── Antigravity colour palette — exact hues from the site
+  // ── Google Antigravity colour palette — brightened for dark bg
   const COLORS = [
-    '#4285F4', // Google blue
-    '#EA4335', // Google red
-    '#FBBC05', // Google yellow
-    '#34A853', // Google green
-    '#AB47BC', // purple
-    '#00ACC1', // cyan
-    '#FF7043', // deep orange
-    '#7E57C2', // deep purple
+    '#60a5fa', '#60a5fa', '#60a5fa', // bright blue (most common)
+    '#f87171', '#f87171',             // bright red
+    '#fcd34d',                        // bright yellow
+    '#4ade80',                        // bright green
+    '#c084fc',                        // bright purple
+    '#22d3ee',                        // bright cyan
+    '#fb923c',                        // bright orange
+    '#818cf8',                        // bright indigo
   ];
 
-  // ── Confetti particle pool
-  const particles = [];
+  // ── Particle count scales with screen size
+  const COUNT = () => Math.floor((W * H) / 6000);
 
-  function spawnConfetti(x, y, vxBase, vyBase, count) {
-    for (let i = 0; i < count; i++) {
-      const angle  = Math.random() * Math.PI * 2;
-      const speed  = 1.5 + Math.random() * 4.5;
-      const color  = COLORS[Math.floor(Math.random() * COLORS.length)];
+  let particles = [];
+  let mx = -9999, my = -9999; // cursor off screen initially
 
-      particles.push({
-        x, y,
-        // Outward burst + bias from mouse velocity
-        vx: Math.cos(angle) * speed + vxBase * 0.25,
-        vy: Math.sin(angle) * speed + vyBase * 0.25,
-        // Each particle is a short dash stroke
-        len:    4 + Math.random() * 7,      // stroke length
-        width:  1.5 + Math.random() * 1.5,  // stroke width
-        rot:    angle,                       // initial rotation = launch angle
-        color,
-        alpha:  0.85 + Math.random() * 0.15,
-        decay:  0.018 + Math.random() * 0.022,
-        gravity:0.06 + Math.random() * 0.06, // slight downward pull
-        drag:   0.96,                        // air resistance
-      });
-    }
+  function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+  // Each particle: position, velocity, idle drift, color, shape
+  function makeParticle() {
+    const angle = Math.random() * Math.PI * 2;
+    const isLong = Math.random() > 0.45; // mix of dots and dashes
+    return {
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: 0,
+      vy: 0,
+      // Idle drift — very slow natural float
+      driftX: randBetween(-0.08, 0.08),
+      driftY: randBetween(-0.12, 0.04), // slight upward bias
+      // Visual
+      color:  COLORS[Math.floor(Math.random() * COLORS.length)],
+      alpha:  randBetween(0.55, 1.0),
+      targetAlpha: randBetween(0.5, 1.0),
+      len:    isLong ? randBetween(3, 9) : randBetween(1, 2.5),
+      width:  randBetween(1.2, 2.2),
+      rot:    Math.random() * Math.PI * 2,
+      rotV:   randBetween(-0.008, 0.008),
+      // State
+      scattered: false,
+      returnX: 0, returnY: 0, // set when scattered
+    };
   }
 
-  // ── Continuous gentle stream while mouse moves
-  let lastSpawn = 0;
-  document.addEventListener('mousemove', e => {
-    const dx = e.clientX - mx;
-    const dy = e.clientY - my;
-    pmx = mx; pmy = my;
-    mx = e.clientX; my = e.clientY;
+  function initParticles() {
+    const n = COUNT();
+    particles = Array.from({ length: n }, makeParticle);
+  }
+  initParticles();
 
-    isMoving = true;
-    clearTimeout(moveTimer);
-    moveTimer = setTimeout(() => { isMoving = false; }, 80);
+  // ── Track cursor
+  if (!isTouch) {
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    }, { passive: true });
 
-    // Throttle: spawn every ~20ms during movement
-    const now = performance.now();
-    if (now - lastSpawn > 20) {
-      lastSpawn = now;
-      const speed = Math.sqrt(dx * dx + dy * dy);
-      // More particles the faster you move
-      const count = Math.min(2 + Math.floor(speed * 0.2), 6);
-      spawnConfetti(mx, my, dx, dy, count);
-    }
-  }, { passive: true });
+    // Big burst on click
+    document.addEventListener('mousedown', () => {
+      particles.forEach(p => {
+        const dx = p.x - mx, dy = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200) {
+          const force = (200 - dist) / 200 * 6;
+          const angle = Math.atan2(dy, dx);
+          p.vx += Math.cos(angle) * force;
+          p.vy += Math.sin(angle) * force;
+          p.scattered = true;
+        }
+      });
+    });
+  }
 
-  // ── Big burst on click
-  document.addEventListener('mousedown', () => {
-    spawnConfetti(mx, my, 0, 0, 28);
-  });
+  // ── Render
+  const INFLUENCE_RADIUS = 120; // px — cursor disturbs particles within this radius
+  const REPEL_STRENGTH   = 0.8;
+  const FRICTION         = 0.92;
+  const RETURN_SPEED     = 0.015;
 
-  // ── Render loop
   function render() {
     ctx.clearRect(0, 0, W, H);
 
-    // Update + draw particles
-    for (let i = particles.length - 1; i >= 0; i--) {
-      const p = particles[i];
+    particles.forEach(p => {
+      // ── Cursor repulsion
+      if (!isTouch && mx > -9000) {
+        const dx   = p.x - mx;
+        const dy   = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Physics
-      p.vx   *= p.drag;
-      p.vy    = p.vy * p.drag + p.gravity;
-      p.x    += p.vx;
-      p.y    += p.vy;
-      p.alpha -= p.decay;
-      p.rot  += 0.04; // gentle spin
+        if (dist < INFLUENCE_RADIUS && dist > 0) {
+          const force  = (INFLUENCE_RADIUS - dist) / INFLUENCE_RADIUS;
+          const angle  = Math.atan2(dy, dx);
+          p.vx += Math.cos(angle) * force * REPEL_STRENGTH;
+          p.vy += Math.sin(angle) * force * REPEL_STRENGTH;
+        }
+      }
 
-      if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+      // ── Idle drift + velocity
+      p.vx  = (p.vx + p.driftX) * FRICTION;
+      p.vy  = (p.vy + p.driftY) * FRICTION;
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.rot += p.rotV;
 
-      // Draw as a short angled dash (matching Antigravity's stroke style)
+      // ── Wrap around screen edges (particles re-enter from opposite side)
+      if (p.x < -20)    p.x = W + 10;
+      if (p.x > W + 20) p.x = -10;
+      if (p.y < -20)    p.y = H + 10;
+      if (p.y > H + 20) p.y = -10;
+
+      // ── Gentle alpha breathing
+      p.alpha += (p.targetAlpha - p.alpha) * 0.02;
+      if (Math.abs(p.alpha - p.targetAlpha) < 0.01) {
+        p.targetAlpha = randBetween(0.45, 1.0);
+      }
+
+      // ── Draw particle
       ctx.save();
       ctx.globalAlpha = p.alpha;
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
       ctx.strokeStyle = p.color;
+      ctx.fillStyle   = p.color;
       ctx.lineWidth   = p.width;
       ctx.lineCap     = 'round';
-      ctx.beginPath();
-      ctx.moveTo(-p.len / 2, 0);
-      ctx.lineTo( p.len / 2, 0);
-      ctx.stroke();
+
+      if (p.len > 2.5) {
+        // Dash stroke
+        ctx.beginPath();
+        ctx.moveTo(-p.len / 2, 0);
+        ctx.lineTo( p.len / 2, 0);
+        ctx.stroke();
+      } else {
+        // Tiny dot
+        ctx.beginPath();
+        ctx.arc(0, 0, p.len, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
-    }
+    });
 
-    // ── Cursor dot — sharp white dot, snaps instantly to cursor
-    if (mx > -200) {
-      // Soft halo
-      const halo = ctx.createRadialGradient(mx, my, 0, mx, my, 16);
-      halo.addColorStop(0, 'rgba(255,255,255,0.12)');
-      halo.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.beginPath();
-      ctx.arc(mx, my, 16, 0, Math.PI * 2);
-      ctx.fillStyle = halo;
-      ctx.fill();
-
-      // Dot
-      ctx.beginPath();
-      ctx.arc(mx, my, 3, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
+    // ── Cursor dot (sharp white, snaps to cursor instantly)
+    if (!isTouch && mx > -9000) {
+      ctx.save();
       ctx.globalAlpha = 1;
+      ctx.beginPath();
+      ctx.arc(mx, my, 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
       ctx.fill();
+      ctx.restore();
     }
 
     requestAnimationFrame(render);
@@ -158,7 +187,7 @@
 
   render();
 
-  // ── Hide #cursor-ring — not needed for confetti style
+  // Hide the old ring element — not used in this mode
   const ring = document.getElementById('cursor-ring');
   if (ring) ring.style.display = 'none';
 })();
@@ -235,4 +264,18 @@
     photo.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg) scale(1.015)`;
   }, { passive: true });
   hero.addEventListener('mouseleave', () => { photo.style.transform = ''; });
+})();
+
+/* ── 8. PROJECT CARD 3D TILT ─────────────────────────────── */
+(function () {
+  if (window.matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('.pj-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const { left, top, width, height } = card.getBoundingClientRect();
+      const x = (e.clientX - left) / width  - 0.5;
+      const y = (e.clientY - top)  / height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
 })();
