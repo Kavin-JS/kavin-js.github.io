@@ -4,21 +4,17 @@
    + Navbar · Hamburger · Reveal · Algo bars · Active nav
 ============================================================ */
 
-/* ── 1. CURSOR — ANTIGRAVITY AMBIENT FIELD ───────────────────
-   Matches Google Antigravity EXACTLY (Image 2):
-   · Hundreds of tiny colored dots/dashes fill the ENTIRE viewport
-   · They float gently, always visible across the whole screen
-   · The cursor ATTRACTS / DISTURBS nearby particles as it moves
-   · On move: nearby particles scatter outward (repulsion burst)
-   · Particles slowly drift back to random idle positions
-   · Colors: Google palette — blue, red, yellow, green, purple, etc.
-   · No ring. No orbit. Just the ambient confetti field.
+/* ── 1. CURSOR — ANTIGRAVITY CONFETTI (cursor-only) ──────────
+   Particles ONLY appear at the cursor position.
+   They burst outward, fall with gravity, and fade out.
+   The screen is clean — confetti only exists near/around cursor.
 ─────────────────────────────────────────────────────────────── */
-(function initAmbientCursor() {
+(function initCursor() {
+  if (window.matchMedia('(hover: none)').matches) return;
+
   const canvas = document.getElementById('cursor-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const isTouch = window.matchMedia('(hover: none)').matches;
 
   let W, H;
   function resize() {
@@ -26,157 +22,106 @@
     H = canvas.height = window.innerHeight;
   }
   resize();
-  window.addEventListener('resize', () => { resize(); initParticles(); }, { passive: true });
+  window.addEventListener('resize', resize, { passive: true });
 
-  // ── Google Antigravity colour palette — brightened for dark bg
+  // Google's exact palette — bright on dark background
   const COLORS = [
-    '#60a5fa', '#60a5fa', '#60a5fa', // bright blue (most common)
-    '#f87171', '#f87171',             // bright red
-    '#fcd34d',                        // bright yellow
-    '#4ade80',                        // bright green
-    '#c084fc',                        // bright purple
-    '#22d3ee',                        // bright cyan
-    '#fb923c',                        // bright orange
-    '#818cf8',                        // bright indigo
+    '#4285F4', '#4285F4',  // blue (most frequent)
+    '#EA4335',             // red
+    '#FBBC05',             // yellow
+    '#34A853',             // green
+    '#AB47BC',             // purple
+    '#00ACC1',             // cyan
+    '#FF7043',             // orange
   ];
 
-  // ── Particle count scales with screen size
-  const COUNT = () => Math.floor((W * H) / 6000);
+  let mx = -500, my = -500;
+  let pmx = -500, pmy = -500;
+  const particles = [];
 
-  let particles = [];
-  let mx = -9999, my = -9999; // cursor off screen initially
-
-  function randBetween(a, b) { return a + Math.random() * (b - a); }
-
-  // Each particle: position, velocity, idle drift, color, shape
-  function makeParticle() {
-    const angle = Math.random() * Math.PI * 2;
-    const isLong = Math.random() > 0.45; // mix of dots and dashes
-    return {
-      x:  Math.random() * W,
-      y:  Math.random() * H,
-      vx: 0,
-      vy: 0,
-      // Idle drift — very slow natural float
-      driftX: randBetween(-0.08, 0.08),
-      driftY: randBetween(-0.12, 0.04), // slight upward bias
-      // Visual
-      color:  COLORS[Math.floor(Math.random() * COLORS.length)],
-      alpha:  randBetween(0.55, 1.0),
-      targetAlpha: randBetween(0.5, 1.0),
-      len:    isLong ? randBetween(3, 9) : randBetween(1, 2.5),
-      width:  randBetween(1.2, 2.2),
-      rot:    Math.random() * Math.PI * 2,
-      rotV:   randBetween(-0.008, 0.008),
-      // State
-      scattered: false,
-      returnX: 0, returnY: 0, // set when scattered
-    };
-  }
-
-  function initParticles() {
-    const n = COUNT();
-    particles = Array.from({ length: n }, makeParticle);
-  }
-  initParticles();
-
-  // ── Track cursor
-  if (!isTouch) {
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-    }, { passive: true });
-
-    // Big burst on click
-    document.addEventListener('mousedown', () => {
-      particles.forEach(p => {
-        const dx = p.x - mx, dy = p.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const force = (200 - dist) / 200 * 6;
-          const angle = Math.atan2(dy, dx);
-          p.vx += Math.cos(angle) * force;
-          p.vy += Math.sin(angle) * force;
-          p.scattered = true;
-        }
+  // Spawn a burst of confetti at (x,y)
+  function spawn(x, y, count, speedMult) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = (1.5 + Math.random() * 3.5) * speedMult;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - Math.random() * 1.5, // slight upward bias
+        len:   3 + Math.random() * 6,
+        width: 1.2 + Math.random() * 1.4,
+        rot:   angle,
+        rotV:  (Math.random() - 0.5) * 0.12,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        alpha: 0.9 + Math.random() * 0.1,
+        decay: 0.022 + Math.random() * 0.018,
+        gravity: 0.08 + Math.random() * 0.05,
+        drag:    0.94,
       });
-    });
+    }
   }
 
-  // ── Render
-  const INFLUENCE_RADIUS = 120; // px — cursor disturbs particles within this radius
-  const REPEL_STRENGTH   = 0.8;
-  const FRICTION         = 0.92;
-  const RETURN_SPEED     = 0.015;
+  // Track cursor movement — spawn only when moving
+  let lastSpawn = 0;
+  document.addEventListener('mousemove', e => {
+    pmx = mx; pmy = my;
+    mx = e.clientX; my = e.clientY;
 
+    const dx = mx - pmx, dy = my - pmy;
+    const speed = Math.sqrt(dx * dx + dy * dy);
+    if (speed < 1) return; // don't spawn if barely moving
+
+    const now = performance.now();
+    if (now - lastSpawn < 16) return; // max ~60fps spawning
+    lastSpawn = now;
+
+    // Scale count with movement speed, 1–5 particles per frame
+    spawn(mx, my, Math.min(1 + Math.floor(speed * 0.18), 5), 1);
+  }, { passive: true });
+
+  // Big burst on click
+  document.addEventListener('mousedown', () => {
+    spawn(mx, my, 24, 1.4);
+  });
+
+  // Render loop
   function render() {
     ctx.clearRect(0, 0, W, H);
 
-    particles.forEach(p => {
-      // ── Cursor repulsion
-      if (!isTouch && mx > -9000) {
-        const dx   = p.x - mx;
-        const dy   = p.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
 
-        if (dist < INFLUENCE_RADIUS && dist > 0) {
-          const force  = (INFLUENCE_RADIUS - dist) / INFLUENCE_RADIUS;
-          const angle  = Math.atan2(dy, dx);
-          p.vx += Math.cos(angle) * force * REPEL_STRENGTH;
-          p.vy += Math.sin(angle) * force * REPEL_STRENGTH;
-        }
-      }
-
-      // ── Idle drift + velocity
-      p.vx  = (p.vx + p.driftX) * FRICTION;
-      p.vy  = (p.vy + p.driftY) * FRICTION;
+      // Physics
+      p.vx *= p.drag;
+      p.vy  = p.vy * p.drag + p.gravity;
       p.x  += p.vx;
       p.y  += p.vy;
       p.rot += p.rotV;
+      p.alpha -= p.decay;
 
-      // ── Wrap around screen edges (particles re-enter from opposite side)
-      if (p.x < -20)    p.x = W + 10;
-      if (p.x > W + 20) p.x = -10;
-      if (p.y < -20)    p.y = H + 10;
-      if (p.y > H + 20) p.y = -10;
+      if (p.alpha <= 0) { particles.splice(i, 1); continue; }
 
-      // ── Gentle alpha breathing
-      p.alpha += (p.targetAlpha - p.alpha) * 0.02;
-      if (Math.abs(p.alpha - p.targetAlpha) < 0.01) {
-        p.targetAlpha = randBetween(0.45, 1.0);
-      }
-
-      // ── Draw particle
+      // Draw dash
       ctx.save();
       ctx.globalAlpha = p.alpha;
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
       ctx.strokeStyle = p.color;
-      ctx.fillStyle   = p.color;
       ctx.lineWidth   = p.width;
       ctx.lineCap     = 'round';
-
-      if (p.len > 2.5) {
-        // Dash stroke
-        ctx.beginPath();
-        ctx.moveTo(-p.len / 2, 0);
-        ctx.lineTo( p.len / 2, 0);
-        ctx.stroke();
-      } else {
-        // Tiny dot
-        ctx.beginPath();
-        ctx.arc(0, 0, p.len, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.beginPath();
+      ctx.moveTo(-p.len / 2, 0);
+      ctx.lineTo( p.len / 2, 0);
+      ctx.stroke();
       ctx.restore();
-    });
+    }
 
-    // ── Cursor dot (sharp white, snaps to cursor instantly)
-    if (!isTouch && mx > -9000) {
+    // Sharp cursor dot
+    if (mx > -400) {
       ctx.save();
       ctx.globalAlpha = 1;
       ctx.beginPath();
-      ctx.arc(mx, my, 2.8, 0, Math.PI * 2);
+      ctx.arc(mx, my, 3, 0, Math.PI * 2);
       ctx.fillStyle = '#ffffff';
       ctx.fill();
       ctx.restore();
@@ -187,7 +132,6 @@
 
   render();
 
-  // Hide the old ring element — not used in this mode
   const ring = document.getElementById('cursor-ring');
   if (ring) ring.style.display = 'none';
 })();
