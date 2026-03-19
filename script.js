@@ -24,15 +24,12 @@
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  // Google's exact palette — bright on dark background
+  // Green only
   const COLORS = [
-    '#4285F4', '#4285F4',  // blue (most frequent)
-    '#EA4335',             // red
-    '#FBBC05',             // yellow
-    '#34A853',             // green
-    '#AB47BC',             // purple
-    '#00ACC1',             // cyan
-    '#FF7043',             // orange
+    '#4ade80', '#4ade80', '#4ade80',
+    '#22c55e', '#22c55e',
+    '#86efac',
+    '#16a34a',
   ];
 
   let mx = -500, my = -500;
