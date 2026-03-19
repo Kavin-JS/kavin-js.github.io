@@ -4,162 +4,163 @@
    + Navbar · Hamburger · Reveal · Algo bars · Active nav
 ============================================================ */
 
-/* ── 1. CURSOR — RING PARTICLE SYSTEM ────────────────────────
-   Mimics the Google Antigravity orbital ring cursor:
-   - A sharp inner dot
-   - A lagging outer ring
-   - Multiple orbiting particles that ring around the cursor
-   - Comet-style trailing particles that decay over time
+/* ── 1. CURSOR — ANTIGRAVITY CONFETTI-BURST ─────────────────
+   Matches Google Antigravity exactly:
+   · Coloured dash/streak confetti that BURST outward from cursor
+   · Each particle is a short rotated rectangle (not a dot)
+   · Physics: initial velocity outward + gravity drag + fade
+   · Colours: Google's palette — blue, red, yellow, green, purple
+   · Continuous stream while moving, burst on click
+   · Tiny sharp dot follows cursor exactly
 ─────────────────────────────────────────────────────────────── */
 (function initCursor() {
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+  if (window.matchMedia('(hover: none)').matches) return;
+
   const canvas = document.getElementById('cursor-canvas');
   if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-  const ctx    = canvas.getContext('2d');
-  let W = canvas.width  = window.innerWidth;
-  let H = canvas.height = window.innerHeight;
-
-  // ── State
-  let mx = -200, my = -200;          // mouse position
-  let rx = -200, ry = -200;          // ring (lagging)
-  let isHovering = false;
-
-  const GREEN    = { r: 74, g: 222, b: 128 };
-  const WHITE    = { r: 240, g: 240, b: 240 };
-
-  // ── Trailing comet particles
-  const TRAIL_MAX = 28;
-  const trail = [];
-
-  // ── Orbiting particles (ring)
-  const ORBIT_COUNT = 8;
-  const orbiters = Array.from({ length: ORBIT_COUNT }, (_, i) => ({
-    angle:  (i / ORBIT_COUNT) * Math.PI * 2,
-    speed:  0.028 + (i % 2 === 0 ? 0.008 : 0),
-    radius: 24 + (i % 3) * 4,
-    size:   1.2 + (i % 2) * 0.8,
-    alpha:  0.5 + (i % 3) * 0.15,
-  }));
-
-  // ── Helper: lerp
-  const lerp = (a, b, t) => a + (b - a) * t;
-
-  // ── Resize
-  window.addEventListener('resize', () => {
+  let W, H;
+  const resize = () => {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
-  }, { passive: true });
+  };
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
 
-  // ── Mouse tracking
-  if (!isTouchDevice) {
-    document.addEventListener('mousemove', e => {
-      // Push trail particle
-      trail.push({ x: mx, y: my, alpha: 1, size: 2.5 });
-      if (trail.length > TRAIL_MAX) trail.shift();
-      mx = e.clientX; my = e.clientY;
-    }, { passive: true });
+  // ── Mouse state
+  let mx = -300, my = -300;
+  let pmx = -300, pmy = -300; // previous position (for velocity)
+  let isMoving = false;
+  let moveTimer;
+
+  // ── Antigravity colour palette — exact hues from the site
+  const COLORS = [
+    '#4285F4', // Google blue
+    '#EA4335', // Google red
+    '#FBBC05', // Google yellow
+    '#34A853', // Google green
+    '#AB47BC', // purple
+    '#00ACC1', // cyan
+    '#FF7043', // deep orange
+    '#7E57C2', // deep purple
+  ];
+
+  // ── Confetti particle pool
+  const particles = [];
+
+  function spawnConfetti(x, y, vxBase, vyBase, count) {
+    for (let i = 0; i < count; i++) {
+      const angle  = Math.random() * Math.PI * 2;
+      const speed  = 1.5 + Math.random() * 4.5;
+      const color  = COLORS[Math.floor(Math.random() * COLORS.length)];
+
+      particles.push({
+        x, y,
+        // Outward burst + bias from mouse velocity
+        vx: Math.cos(angle) * speed + vxBase * 0.25,
+        vy: Math.sin(angle) * speed + vyBase * 0.25,
+        // Each particle is a short dash stroke
+        len:    4 + Math.random() * 7,      // stroke length
+        width:  1.5 + Math.random() * 1.5,  // stroke width
+        rot:    angle,                       // initial rotation = launch angle
+        color,
+        alpha:  0.85 + Math.random() * 0.15,
+        decay:  0.018 + Math.random() * 0.022,
+        gravity:0.06 + Math.random() * 0.06, // slight downward pull
+        drag:   0.96,                        // air resistance
+      });
+    }
   }
 
-  // ── Hover states on interactive elements
-  const interactEls = () => document.querySelectorAll('a, button, .sk-tags span, .pj-card, .bc, .cl');
-  const bindHover   = () => {
-    interactEls().forEach(el => {
-      el.addEventListener('mouseenter', () => { isHovering = true; });
-      el.addEventListener('mouseleave', () => { isHovering = false; });
-    });
-  };
-  bindHover();
-  // Rebind after DOM updates (none expected but safe)
-  setTimeout(bindHover, 1500);
+  // ── Continuous gentle stream while mouse moves
+  let lastSpawn = 0;
+  document.addEventListener('mousemove', e => {
+    const dx = e.clientX - mx;
+    const dy = e.clientY - my;
+    pmx = mx; pmy = my;
+    mx = e.clientX; my = e.clientY;
 
-  // ── Draw frame
-  function draw() {
+    isMoving = true;
+    clearTimeout(moveTimer);
+    moveTimer = setTimeout(() => { isMoving = false; }, 80);
+
+    // Throttle: spawn every ~20ms during movement
+    const now = performance.now();
+    if (now - lastSpawn > 20) {
+      lastSpawn = now;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+      // More particles the faster you move
+      const count = Math.min(2 + Math.floor(speed * 0.2), 6);
+      spawnConfetti(mx, my, dx, dy, count);
+    }
+  }, { passive: true });
+
+  // ── Big burst on click
+  document.addEventListener('mousedown', () => {
+    spawnConfetti(mx, my, 0, 0, 28);
+  });
+
+  // ── Render loop
+  function render() {
     ctx.clearRect(0, 0, W, H);
 
-    if (mx < -100) { requestAnimationFrame(draw); return; } // hide before first move
+    // Update + draw particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
 
-    // Lerp ring toward cursor
-    rx = lerp(rx, mx, 0.11);
-    ry = lerp(ry, my, 0.11);
+      // Physics
+      p.vx   *= p.drag;
+      p.vy    = p.vy * p.drag + p.gravity;
+      p.x    += p.vx;
+      p.y    += p.vy;
+      p.alpha -= p.decay;
+      p.rot  += 0.04; // gentle spin
 
-    const tHover = isHovering ? 1 : 0;
-    const ringR  = lerp(18, 32, tHover);
-    const dotR   = lerp(3.5, 5, tHover);
+      if (p.alpha <= 0) { particles.splice(i, 1); continue; }
 
-    // ── Trail comet particles
-    for (let i = trail.length - 1; i >= 0; i--) {
-      const p = trail[i];
-      p.alpha *= 0.82;
-      p.size  *= 0.92;
-      if (p.alpha < 0.01) { trail.splice(i, 1); continue; }
+      // Draw as a short angled dash (matching Antigravity's stroke style)
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.strokeStyle = p.color;
+      ctx.lineWidth   = p.width;
+      ctx.lineCap     = 'round';
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${GREEN.r},${GREEN.g},${GREEN.b},${p.alpha * 0.35})`;
+      ctx.moveTo(-p.len / 2, 0);
+      ctx.lineTo( p.len / 2, 0);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // ── Cursor dot — sharp white dot, snaps instantly to cursor
+    if (mx > -200) {
+      // Soft halo
+      const halo = ctx.createRadialGradient(mx, my, 0, mx, my, 16);
+      halo.addColorStop(0, 'rgba(255,255,255,0.12)');
+      halo.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.beginPath();
+      ctx.arc(mx, my, 16, 0, Math.PI * 2);
+      ctx.fillStyle = halo;
+      ctx.fill();
+
+      // Dot
+      ctx.beginPath();
+      ctx.arc(mx, my, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.globalAlpha = 1;
       ctx.fill();
     }
 
-    // ── Outer ring
-    ctx.beginPath();
-    ctx.arc(rx, ry, ringR, 0, Math.PI * 2);
-    ctx.strokeStyle = `rgba(${GREEN.r},${GREEN.g},${GREEN.b},${lerp(0.3, 0.55, tHover)})`;
-    ctx.lineWidth   = lerp(1, 1.5, tHover);
-    ctx.stroke();
-
-    // Outer ring glow
-    const glowGrad = ctx.createRadialGradient(rx, ry, ringR - 4, rx, ry, ringR + 10);
-    glowGrad.addColorStop(0, `rgba(${GREEN.r},${GREEN.g},${GREEN.b},${lerp(0.06, 0.14, tHover)})`);
-    glowGrad.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.beginPath();
-    ctx.arc(rx, ry, ringR + 10, 0, Math.PI * 2);
-    ctx.fillStyle = glowGrad;
-    ctx.fill();
-
-    // ── Orbiting particles
-    orbiters.forEach(orb => {
-      orb.angle += orb.speed * (isHovering ? 1.5 : 1);
-      const px = rx + Math.cos(orb.angle) * (ringR * 1.15 + orb.radius * tHover * 0.4);
-      const py = ry + Math.sin(orb.angle) * (ringR * 1.15 + orb.radius * tHover * 0.4);
-
-      // Glow behind particle
-      const pgGrad = ctx.createRadialGradient(px, py, 0, px, py, orb.size * 4);
-      pgGrad.addColorStop(0, `rgba(${GREEN.r},${GREEN.g},${GREEN.b},${orb.alpha * 0.5})`);
-      pgGrad.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.beginPath();
-      ctx.arc(px, py, orb.size * 4, 0, Math.PI * 2);
-      ctx.fillStyle = pgGrad;
-      ctx.fill();
-
-      // Particle dot
-      ctx.beginPath();
-      ctx.arc(px, py, orb.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${GREEN.r},${GREEN.g},${GREEN.b},${orb.alpha})`;
-      ctx.fill();
-    });
-
-    // ── Inner dot (snaps to exact mouse position)
-    ctx.beginPath();
-    ctx.arc(mx, my, dotR, 0, Math.PI * 2);
-    const dotGrad = ctx.createRadialGradient(mx, my, 0, mx, my, dotR * 2.5);
-    dotGrad.addColorStop(0, `rgba(${WHITE.r},${WHITE.g},${WHITE.b},1)`);
-    dotGrad.addColorStop(0.5, `rgba(${GREEN.r},${GREEN.g},${GREEN.b},0.8)`);
-    dotGrad.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = dotGrad;
-    ctx.fill();
-
-    // Inner dot glow
-    const idGrad = ctx.createRadialGradient(mx, my, 0, mx, my, 14);
-    idGrad.addColorStop(0, `rgba(${GREEN.r},${GREEN.g},${GREEN.b},0.2)`);
-    idGrad.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.beginPath();
-    ctx.arc(mx, my, 14, 0, Math.PI * 2);
-    ctx.fillStyle = idGrad;
-    ctx.fill();
-
-    requestAnimationFrame(draw);
+    requestAnimationFrame(render);
   }
 
-  if (!isTouchDevice) draw();
+  render();
+
+  // ── Hide #cursor-ring — not needed for confetti style
+  const ring = document.getElementById('cursor-ring');
+  if (ring) ring.style.display = 'none';
 })();
 
 /* ── 2. NAVBAR ───────────────────────────────────────────── */
