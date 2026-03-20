@@ -243,3 +243,62 @@ img{display:block;max-width:100%}
   .st{border-right:none;margin-right:0;padding-right:0;border-bottom:1px solid var(--bd);padding-bottom:.75rem;margin-bottom:.75rem}
   .st:last-child{border-bottom:none;margin-bottom:0}
 }
+/* ============================================================
+   SCRATCH-TO-REVEAL PHOTO
+============================================================ */
+.scratch-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(74,222,128,.15), 0 32px 80px rgba(0,0,0,.8);
+  touch-action: none;
+  user-select: none;
+}
+.hphoto {
+  display: block;
+  width: 100%; height: 420px;
+  object-fit: cover; object-position: center top;
+  border-radius: 0;
+  filter: contrast(1.02) brightness(.96);
+  -webkit-user-drag: none;
+}
+#sc {
+  position: absolute;
+  inset: 0; width: 100%; height: 100%;
+  border-radius: 0;
+  z-index: 3;
+  cursor: crosshair;
+}
+.scratch-hint {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: .6rem;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+.scratch-icon {
+  font-size: 2rem; color: var(--g);
+  animation: hintPulse 1.8s ease infinite;
+}
+.scratch-hint span:last-child {
+  font-family: var(--mono); font-size: .7rem;
+  text-transform: uppercase; letter-spacing: .2em; color: var(--t2);
+}
+@keyframes hintPulse {
+  0%,100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%      { transform: scale(1.2) rotate(15deg); opacity: .7; }
+}
+.scratch-hint.hide { opacity: 0; pointer-events: none; }
+.scratch-done {
+  position: absolute; bottom: 1rem; right: 1rem; z-index: 5;
+  font-family: var(--mono); font-size: .62rem;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--g); background: rgba(0,0,0,.6);
+  border: 1px solid rgba(74,222,128,.25);
+  border-radius: 100px; padding: .3rem .85rem;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .5s ease, transform .5s ease;
+  pointer-events: none;
+}
+.scratch-done.show { opacity: 1; transform: translateY(0); }

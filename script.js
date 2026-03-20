@@ -125,3 +125,114 @@
     });
   }
 })();
+// ── SCRATCH-TO-REVEAL PHOTO ─────────────────────────────────
+(function(){
+  var wrap  = document.getElementById('scratch-wrap');
+  var photo = document.getElementById('hphoto');
+  var sc    = document.getElementById('sc');
+  var hint  = document.getElementById('scratch-hint');
+  var done  = document.getElementById('scratch-done');
+  if(!wrap||!photo||!sc||!hint||!done) return;
+
+  var ctx = sc.getContext('2d');
+  var isDrawing = false;
+  var revealed = 0;
+  var total = 0;
+  var finished = false;
+  var BRUSH = 44; // scratch brush radius
+
+  // Fill the scratch canvas with a dark overlay once photo loads
+  function initCanvas(){
+    sc.width  = wrap.offsetWidth;
+    sc.height = wrap.offsetHeight;
+    total = sc.width * sc.height;
+
+    // Dark brushed-metal overlay with green tint
+    ctx.fillStyle = '#050a0e';
+    ctx.fillRect(0, 0, sc.width, sc.height);
+
+    // Subtle noise texture overlay
+    ctx.fillStyle = 'rgba(74,222,128,0.03)';
+    for(var i = 0; i < sc.width; i += 4){
+      for(var j = 0; j < sc.height; j += 4){
+        if(Math.random() > 0.5) ctx.fillRect(i, j, 2, 2);
+      }
+    }
+
+    // Hint text painted on the overlay
+    ctx.fillStyle = 'rgba(74,222,128,0.08)';
+    ctx.fillRect(0, 0, sc.width, sc.height);
+  }
+
+  photo.complete ? initCanvas() : photo.addEventListener('load', initCanvas);
+  window.addEventListener('resize', function(){
+    if(!finished) initCanvas();
+  }, {passive:true});
+
+  function getPos(e){
+    var r = sc.getBoundingClientRect();
+    if(e.touches){
+      return {
+        x: e.touches[0].clientX - r.left,
+        y: e.touches[0].clientY - r.top
+      };
+    }
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  function scratch(x, y){
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, BRUSH, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Hide hint after first scratch
+    hint.classList.add('hide');
+  }
+
+  function checkReveal(){
+    if(finished) return;
+    // Sample every 32px for performance
+    var data = ctx.getImageData(0, 0, sc.width, sc.height).data;
+    var transparent = 0;
+    var sample = 0;
+    for(var i = 3; i < data.length; i += 4 * 32){
+      if(data[i] < 128) transparent++;
+      sample++;
+    }
+    var pct = transparent / sample;
+    if(pct > 0.55){
+      finished = true;
+      // Fade out remaining overlay
+      sc.style.transition = 'opacity .8s ease';
+      sc.style.opacity = '0';
+      setTimeout(function(){ sc.style.display = 'none'; }, 800);
+      done.classList.add('show');
+    }
+  }
+
+  // Mouse events
+  sc.addEventListener('mousedown', function(e){
+    isDrawing = true;
+    var p = getPos(e); scratch(p.x, p.y);
+  });
+  sc.addEventListener('mousemove', function(e){
+    if(!isDrawing) return;
+    var p = getPos(e); scratch(p.x, p.y);
+    checkReveal();
+  });
+  sc.addEventListener('mouseup',   function(){ isDrawing = false; checkReveal(); });
+  sc.addEventListener('mouseleave',function(){ isDrawing = false; });
+
+  // Touch events
+  sc.addEventListener('touchstart', function(e){
+    e.preventDefault(); isDrawing = true;
+    var p = getPos(e); scratch(p.x, p.y);
+  }, {passive:false});
+  sc.addEventListener('touchmove',  function(e){
+    e.preventDefault(); if(!isDrawing) return;
+    var p = getPos(e); scratch(p.x, p.y);
+    checkReveal();
+  }, {passive:false});
+  sc.addEventListener('touchend',   function(){ isDrawing = false; checkReveal(); });
+})();
