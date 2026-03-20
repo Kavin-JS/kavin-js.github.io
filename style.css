@@ -90,7 +90,7 @@ img{display:block;max-width:100%}
 .hmeta{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--t3);display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}
 .sp{opacity:.4}
 .hpw{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
-.hphoto{width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:20px;border:1px solid var(--bd2);box-shadow:0 0 0 1px rgba(74,222,128,.1),0 32px 80px rgba(0,0,0,.8);filter:contrast(1.02) brightness(.96)}
+.hphoto{width:100%;height:420px;object-fit:cover;object-position:center top;border-radius:0;border:none;box-shadow:none;filter:contrast(1.02) brightness(.96)}
 .pcs{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem}
 .pc{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;padding:.32rem .85rem;border:1px solid var(--bd);border-radius:100px;background:rgba(255,255,255,.03);color:var(--t2);animation:cFloat 3s ease infinite}
 .pc:nth-child(2){animation-delay:.7s}.pc:nth-child(3){animation-delay:1.3s}
@@ -268,7 +268,6 @@ img{display:block;max-width:100%}
   inset: 0; width: 100%; height: 100%;
   border-radius: 0;
   z-index: 3;
-  cursor: crosshair;
 }
 .scratch-hint {
   position: absolute; inset: 0; z-index: 4;
