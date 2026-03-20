@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kavin J.S &mdash; Software Engineer</title>
-<meta name="description" content="CS Engineering student building software products, AI tools, and scalable web platforms." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kavin J.S — Software Engineer</title>
+<meta name="description" content="CS Engineering student building software products, AI tools, and scalable web platforms."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
 <canvas id="cc"></canvas>
 
+<!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-i">
     <a href="#hero" class="nav-logo">KJS<span>.</span></a>
+    <div class="nav-clock" id="nav-clock">--:--:-- IST</div>
     <ul class="nav-ul" id="navul">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Work</a></li>
@@ -28,172 +29,210 @@
   </div>
 </nav>
 
+<!-- HERO — full bleed centered -->
 <section class="hero" id="hero">
-  <div class="orb o1"></div>
-  <div class="orb o2"></div>
-  <div class="orb o3"></div>
-  <div class="hglow"></div>
-  <div class="hi">
-    <div class="hlbl rv d1"><span class="ldot"></span>Available for opportunities</div>
-    <h1 class="ht rv d2"><span class="hl1">Kavin</span><span class="hl2">J.S.</span></h1>
-    <p class="hsub rv d3">CS Engineering student building software products,<br>AI tools and scalable platforms &mdash; one commit at a time.</p>
-    <div class="ha rv d4">
+  <div class="hero-bg-grid" aria-hidden="true"></div>
+  <div class="hero-center">
+    <div class="hero-top-row rv">
+      <span class="hero-tag"><span class="ldot"></span>Available for opportunities</span>
+      <span class="hero-tag hero-tag-mono">Chennai, India · 3rd Year CSE</span>
+    </div>
+    <h1 class="hero-name rv d1">
+      <span class="hn-line">Kavin</span>
+      <span class="hn-line hn-stroke">J.S.</span>
+    </h1>
+    <div class="hero-sub-row rv d2">
+      <div class="hero-photo-sm">
+        <div class="hero-photo-clip">
+          <img src="profile.jpg" alt="Kavin J.S" class="hphoto"/>
+          <div class="photo-scan"></div>
+        </div>
+      </div>
+      <p class="hero-desc">CS Engineering student building software products, AI tools and scalable platforms — one commit at a time.</p>
+    </div>
+    <div class="hero-actions rv d3">
       <a href="#projects" class="btn btn-w">View my work</a>
       <a href="#contact" class="btn btn-o">Get in touch</a>
-    </div>
-    <div class="hmeta rv d4">
-      <span>Amrita Vishwa Vidyapeetham</span>
-      <span class="sp">&middot;</span>
-      <span>Chennai, India</span>
-      <span class="sp">&middot;</span>
-      <span>3rd Year CSE</span>
+      <div class="hero-stats">
+        <span class="hstat"><span class="hstat-n" data-count="102">0</span><span class="hstat-l">LeetCode</span></span>
+        <span class="hstat"><span class="hstat-n" data-count="6">0</span><span class="hstat-l">Projects</span></span>
+        <span class="hstat"><span class="hstat-n" data-count="6">0</span><span class="hstat-l">Certs</span></span>
+      </div>
     </div>
   </div>
-  <div class="hpw rv d2">
-    <div class="photo-frame">
-      <div class="photo-clip">
-        <div class="photo-scan"></div>
-        <img src="profile.jpg" alt="Kavin J.S" class="hphoto" />
-      </div>
-      <div class="photo-corner pc-tl"></div>
-      <div class="photo-corner pc-tr"></div>
-      <div class="photo-corner pc-bl"></div>
-      <div class="photo-corner pc-br"></div>
-      <div class="photo-badge">
-        <span class="photo-badge-dot"></span>
-        <span>Available</span>
-      </div>
-      <div class="code-float cf1"><span class="cf-k">const</span> <span class="cf-v">kavin</span> <span class="cf-o">=</span> <span class="cf-s">"builder"</span></div>
-      <div class="code-float cf2"><span class="cf-k">while</span>(<span class="cf-v">learning</span>) <span class="cf-s">ship()</span></div>
-    </div>
-    <div class="pcs">
-      <div class="pc"><span class="pcdot"></span>Open to work</div>
-      <div class="pc">102+ LeetCode</div>
-      <div class="pc">AI &middot; Systems</div>
-    </div>
-  </div>
-  <div class="scue"><span>Scroll</span><div class="sline"></div></div>
+  <div class="scroll-cue rv d4"><span>Scroll</span><div class="sline"></div></div>
 </section>
 
+<!-- ABOUT -->
 <section class="about section" id="about">
   <div class="container">
     <p class="ey rv"><span class="ey-n">01</span>About</p>
-    <div class="ag">
-      <div class="al"><h2 class="h2 rv d1">Building things<br>that <em>matter.</em></h2></div>
-      <div>
-        <p class="bt rv d1">I'm a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham focused on building products that matter. My background spans systems programming in C, full-stack web development, and AI-assisted workflows.</p>
-        <p class="bt rv d2">I treat every project like a mini-startup &mdash; thinking about users, flows, and scalability from day one. From e-commerce UIs to locally-running AI voice assistants, I ship things that solve real problems.</p>
-        <p class="bt rv d3">When I'm not building, I'm grinding algorithmic problems on LeetCode or digging into new open-source tools.</p>
-        <div class="sr rv d4">
-          <div class="st"><span class="sn">102<sup>+</sup></span><span class="sl">LeetCode Problems</span></div>
-          <div class="st"><span class="sn">6<sup>+</sup></span><span class="sl">Projects Shipped</span></div>
-          <div class="st"><span class="sn">6<sup>+</sup></span><span class="sl">Certifications</span></div>
-          <div class="st"><span class="sbdg">LOR</span><span class="sl">Industry Rec.</span></div>
+    <div class="about-grid">
+      <div class="about-left rv d1">
+        <h2 class="h2">Building things<br>that <em>matter.</em></h2>
+        <div class="about-tags">
+          <span>Systems</span><span>Web</span><span>AI</span><span>DSA</span>
+        </div>
+      </div>
+      <div class="about-right">
+        <p class="bt rv d1">I'm a 3rd-year Computer Engineering student at Amrita Vishwa Vidyapeetham with a sharp focus on building products that matter. My background spans systems programming in C, full-stack web development, and AI-assisted workflows.</p>
+        <p class="bt rv d2">I treat every project like a mini-startup — thinking about users, flows, and scalability from day one. From e-commerce UIs to locally-running AI voice assistants, I ship things that solve real problems.</p>
+        <p class="bt rv d3">When I'm not building, I'm grinding LeetCode or digging into new open-source tools.</p>
+        <div class="about-badges rv d4">
+          <div class="abadge"><span class="abadge-n" data-count="102">0</span><span class="abadge-plus">+</span><span class="abadge-l">LeetCode Problems</span></div>
+          <div class="abadge"><span class="abadge-n" data-count="6">0</span><span class="abadge-plus">+</span><span class="abadge-l">Projects Shipped</span></div>
+          <div class="abadge"><span class="abadge-n" data-count="6">0</span><span class="abadge-plus">+</span><span class="abadge-l">Certifications</span></div>
+          <div class="abadge abadge-special"><span class="abadge-n">LOR</span><span class="abadge-l">Industry Rec.</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PROJECTS — list style -->
 <section class="projects section" id="projects">
   <div class="container">
     <p class="ey rv"><span class="ey-n">02</span>Selected work</p>
     <h2 class="h2 rv d1">Things I've built.</h2>
-    <div class="pg">
-      <article class="pjc pjl rv d1">
-        <div class="pjt tf">
-          <div class="tp"></div><div class="tg"></div>
-          <div class="phl">
-            <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener" class="hl">Live Demo &#8599;</a>
-            <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl hlg">GitHub &#8599;</a>
+    <div class="proj-list">
+
+      <article class="pl-item rv d1" data-index="01">
+        <div class="pl-inner">
+          <span class="pl-num">01</span>
+          <div class="pl-info">
+            <h3 class="pl-title">Shonowear</h3>
+            <p class="pl-desc">Fashion platform prototype — startup-style UX for online clothing discovery.</p>
+            <div class="pl-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
+          </div>
+          <div class="pl-thumb tf">
+            <div class="tp"></div><div class="tg"></div>
+          </div>
+          <div class="pl-links">
+            <a href="https://kavin-js.github.io/Shonowear-Ver3.0/" target="_blank" rel="noopener">Live ↗</a>
+            <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
-        <div class="pji">
-          <div class="pjtp"><span class="pjn">01</span><span class="pjy">2025</span></div>
-          <h3 class="pjtl">Shonowear</h3>
-          <p class="pjd">Fashion platform prototype for online clothing discovery &mdash; startup-style UX focused on product layout and brand experience.</p>
-          <div class="pjtg"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span></div>
-        </div>
       </article>
-      <article class="pjc rv d2">
-        <div class="pjt ta">
-          <div class="acw"><div class="ar ar1"></div><div class="ar ar2"></div><div class="ar ar3"></div><div class="adot"></div></div>
-          <div class="phl"><a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl">GitHub &#8599;</a></div>
-        </div>
-        <div class="pji">
-          <div class="pjtp"><span class="pjn">02</span><span class="pjy">2025</span></div>
-          <h3 class="pjtl">Local AI Voice Assistant</h3>
-          <p class="pjd">Jarvis-style AI running on local open-source LLMs. Voice interaction, command execution &mdash; zero cloud dependency.</p>
-          <div class="pjtg"><span>Python</span><span>Local LLMs</span><span>TTS</span><span>Linux</span></div>
-        </div>
-      </article>
-      <article class="pjc rv d3">
-        <div class="pjt talg">
-          <div class="abw">
-            <div class="ab" style="--h:55%"></div><div class="ab" style="--h:82%"></div><div class="ab" style="--h:38%"></div>
-            <div class="ab" style="--h:96%"></div><div class="ab" style="--h:60%"></div><div class="ab" style="--h:72%"></div>
-            <div class="ab" style="--h:28%"></div><div class="ab" style="--h:88%"></div>
+
+      <article class="pl-item rv d2" data-index="02">
+        <div class="pl-inner">
+          <span class="pl-num">02</span>
+          <div class="pl-info">
+            <h3 class="pl-title">Local AI Voice Assistant</h3>
+            <p class="pl-desc">Jarvis-style AI on local open-source LLMs. Voice interaction, zero cloud dependency.</p>
+            <div class="pl-tags"><span>Python</span><span>Local LLMs</span><span>TTS</span><span>Linux</span></div>
           </div>
-          <div class="phl"><a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="hl">GitHub &#8599;</a></div>
-        </div>
-        <div class="pji">
-          <div class="pjtp"><span class="pjn">03</span><span class="pjy">2025</span></div>
-          <h3 class="pjtl">Algorithm &amp; Optimization</h3>
-          <p class="pjd">Curated implementations of Fibonacci, search, sorting, and optimization &mdash; built for competitive-level thinking.</p>
-          <div class="pjtg"><span>C</span><span>Python</span><span>DSA</span></div>
+          <div class="pl-thumb ta">
+            <div class="acw"><div class="ar ar1"></div><div class="ar ar2"></div><div class="ar ar3"></div><div class="adot"></div></div>
+          </div>
+          <div class="pl-links">
+            <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
         </div>
       </article>
+
+      <article class="pl-item rv d3" data-index="03">
+        <div class="pl-inner">
+          <span class="pl-num">03</span>
+          <div class="pl-info">
+            <h3 class="pl-title">Algorithm &amp; Optimization</h3>
+            <p class="pl-desc">Curated Fibonacci, search, sorting, and optimization — competitive-level thinking.</p>
+            <div class="pl-tags"><span>C</span><span>Python</span><span>DSA</span></div>
+          </div>
+          <div class="pl-thumb talg">
+            <div class="abw">
+              <div class="ab" style="--h:55%"></div><div class="ab" style="--h:82%"></div>
+              <div class="ab" style="--h:38%"></div><div class="ab" style="--h:96%"></div>
+              <div class="ab" style="--h:60%"></div><div class="ab" style="--h:72%"></div>
+              <div class="ab" style="--h:28%"></div><div class="ab" style="--h:88%"></div>
+            </div>
+          </div>
+          <div class="pl-links">
+            <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
 <section class="skills section" id="skills">
   <div class="container">
     <p class="ey rv"><span class="ey-n">03</span>Skills &amp; tools</p>
     <h2 class="h2 rv d1">What I work with.</h2>
-    <div class="skb rv d2">
-      <div class="skr"><span class="skc">Languages</span><div class="skt"><span>C</span><span>Python</span><span>JavaScript</span><span>SQL</span><span>C++</span><span>Java</span></div></div>
-      <div class="skr"><span class="skc">Web Dev</span><div class="skt"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive Design</span><span>GitHub Pages</span></div></div>
-      <div class="skr"><span class="skc">Tools</span><div class="skt"><span>Git</span><span>GitHub</span><span>Linux</span><span>Kali Linux</span><span>VS Code</span><span>Bash</span></div></div>
-      <div class="skr"><span class="skc">CS Concepts</span><div class="skt"><span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>DBMS</span><span>OS</span><span>System Design</span></div></div>
-      <div class="skr"><span class="skc">AI / Data</span><div class="skt"><span>Prompt Engineering</span><span>GPT Models</span><span>Local LLMs</span><span>Generative AI</span></div></div>
+  </div>
+  <div class="skill-ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ti">C</span><span class="ti">Python</span><span class="ti">JavaScript</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">AI&nbsp;/&nbsp;ML</span><span class="ti">Data&nbsp;Structures</span><span class="ti">Web&nbsp;Dev</span><span class="ti">Local&nbsp;LLMs</span><span class="ti">Prompt&nbsp;Engineering</span><span class="ti">SQL</span><span class="ti">Bash</span><span class="ti">C++</span><span class="ti">Java</span><span class="ti">OOP</span><span class="ti">System&nbsp;Design</span>
+      <span class="ti">C</span><span class="ti">Python</span><span class="ti">JavaScript</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">AI&nbsp;/&nbsp;ML</span><span class="ti">Data&nbsp;Structures</span><span class="ti">Web&nbsp;Dev</span><span class="ti">Local&nbsp;LLMs</span><span class="ti">Prompt&nbsp;Engineering</span><span class="ti">SQL</span><span class="ti">Bash</span><span class="ti">C++</span><span class="ti">Java</span><span class="ti">OOP</span><span class="ti">System&nbsp;Design</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="skill-groups rv d2">
+      <div class="sg">
+        <span class="sg-label">Languages</span>
+        <div class="sg-pills"><span>C</span><span>Python</span><span>JavaScript</span><span>SQL</span><span>C++</span><span>Java</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label">Web Dev</span>
+        <div class="sg-pills"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive Design</span><span>GitHub Pages</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label">Tools</span>
+        <div class="sg-pills"><span>Git</span><span>GitHub</span><span>Linux</span><span>Kali Linux</span><span>VS Code</span><span>Bash</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label">CS Concepts</span>
+        <div class="sg-pills"><span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>DBMS</span><span>OS</span><span>System Design</span></div>
+      </div>
+      <div class="sg">
+        <span class="sg-label">AI / Data</span>
+        <div class="sg-pills"><span>Prompt Engineering</span><span>GPT Models</span><span>Local LLMs</span><span>Generative AI</span></div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- BUILDING -->
 <section class="building section" id="building">
   <div class="container">
     <p class="ey rv"><span class="ey-n">04</span>Currently building</p>
     <h2 class="h2 rv d1">What's in progress.</h2>
     <div class="bento rv d2">
-      <div class="bc bcw"><div class="bcbdg bca2"><span></span>Active</div><h3>Startup-Style Web Products</h3><p>Full applications built with a product mindset &mdash; users, flows, scalability from day one.</p></div>
-      <div class="bc"><div class="bcbdg bca2"><span></span>Active</div><h3>AI Tools &amp; Assistants</h3><p>Local LLMs, speech interfaces, prompt workflows &mdash; practical AI that runs anywhere.</p></div>
-      <div class="bc"><div class="bcbdg bca2"><span></span>Active</div><h3>DSA Mastery</h3><p>200+ LeetCode systematically in Python and C. Competitive-level algorithmic thinking.</p></div>
-      <div class="bc bca"><div class="bcbdg bce"><span></span>Exploring</div><h3>Systems &amp; Backend</h3><p>Backend architecture, APIs, and large-scale system design &mdash; going full-stack.</p></div>
+      <div class="bc bcw"><div class="bcbdg bca2"><span></span>Active</div><h3>Startup-Style Web Products</h3><p>Full applications built with a product mindset — users, flows, scalability from day one.</p></div>
+      <div class="bc"><div class="bcbdg bca2"><span></span>Active</div><h3>AI Tools &amp; Assistants</h3><p>Local LLMs, speech interfaces, prompt workflows — practical AI that runs anywhere.</p></div>
+      <div class="bc"><div class="bcbdg bca2"><span></span>Active</div><h3>DSA Mastery</h3><p>200+ LeetCode in Python and C. Competitive-level algorithmic thinking.</p></div>
+      <div class="bc bca"><div class="bcbdg bce"><span></span>Exploring</div><h3>Systems &amp; Backend</h3><p>Backend architecture, APIs, and large-scale system design — going full-stack.</p></div>
     </div>
   </div>
 </section>
 
+<!-- GITHUB -->
 <section class="ghs" id="github">
   <div class="container">
     <div class="ghst rv">
       <div class="ght">
         <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        <div><p class="ghh">github.com/Kavin-JS</p><p class="ghs2">All the code &mdash; algorithms, AI experiments, web projects.</p></div>
+        <div><p class="ghh">github.com/Kavin-JS</p><p class="ghs2">All the code — algorithms, AI experiments, web projects.</p></div>
       </div>
       <a href="https://github.com/Kavin-JS" target="_blank" rel="noopener" class="btn btn-w">View Profile &#8599;</a>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact section" id="contact">
   <div class="container">
     <p class="ey rv"><span class="ey-n">05</span>Contact</p>
-    <div class="cl">
-      <div class="rv d1">
+    <div class="contact-inner">
+      <div class="contact-big rv d1">
+        <div class="contact-bg-text" aria-hidden="true">HELLO</div>
         <h2 class="h2">Let's build<br><em>something.</em></h2>
-        <p class="bt" style="max-width:320px;margin-top:1rem">Open to internships, collaborations and interesting conversations. I reply fast.</p>
-        <a href="mailto:kavinjs.dev@gmail.com" class="btn btn-w" style="margin-top:2rem">Send a message &#8599;</a>
+        <a href="mailto:kavinjs.dev@gmail.com" class="big-email rv d2">kavinjs.dev@gmail.com <span>↗</span></a>
+        <p class="bt rv d3" style="max-width:340px;margin-top:1.25rem">Open to internships, collaborations and interesting conversations. I reply fast.</p>
+        <a href="mailto:kavinjs.dev@gmail.com" class="btn btn-w rv d4" style="margin-top:2rem">Send a message &#8599;</a>
       </div>
       <div class="clnk rv d2">
         <a href="mailto:kavinjs.dev@gmail.com" class="cli"><div class="clic">&#x2709;</div><div class="clib"><span class="clil">Email</span><span class="cliv">kavinjs.dev@gmail.com</span></div><span class="clia">&#8599;</span></a>
