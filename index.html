@@ -262,19 +262,6 @@
       box-shadow: 0 0 8px var(--accent);
     }
 
-    /* ─── HERO PHOTO 3D TILT ──────────────────── */
-    .hero-photo-wrap {
-      perspective: 1000px;
-    }
-    .hero-photo-diamond {
-      transition: transform .15s ease-out, box-shadow .3s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
-    .hero-photo-diamond img {
-      transition: transform .15s ease-out;
-    }
-
     /* ─── PARALLAX BG NUMBERS ─────────────────── */
     .section-bg-num {
       will-change: transform;
@@ -1636,27 +1623,6 @@
     }
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
-
-    // 3D tilt on hero photo (mouse-driven, desktop only)
-    const heroPhoto = document.querySelector('.hero-photo-diamond');
-    const heroPhotoWrap = document.querySelector('.hero-photo-wrap');
-    if (heroPhoto && heroPhotoWrap && !window.matchMedia('(hover:none)').matches) {
-      heroPhotoWrap.addEventListener('mousemove', e => {
-        const r = heroPhoto.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        const rotateY = px * 24;
-        const rotateX = py * -24;
-        heroPhoto.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-        const img = heroPhoto.querySelector('img');
-        if (img) img.style.transform = `scale(1.1) translate(${px * -10}px, ${py * -10}px)`;
-      });
-      heroPhotoWrap.addEventListener('mouseleave', () => {
-        heroPhoto.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        const img = heroPhoto.querySelector('img');
-        if (img) img.style.transform = 'scale(1.05)';
-      });
-    }
 
     // Subtle parallax on giant background section numbers
     const bgNums = document.querySelectorAll('.section-bg-num');
