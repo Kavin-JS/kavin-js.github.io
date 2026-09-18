@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kavin JS — CSE Student & Builder</title>
-  <meta name="description" content="Kavin JS — 3rd-year CSE student at Amrita Vishwa Vidyapeetham, Chennai. Prompt engineer, web developer, AI-curious builder. Open to internships & placements.">
+  <title>Kavin JS — CSE Student & Software Developer</title>
+  <meta name="description" content="Kavin JS — Computer Science undergraduate at Amrita Vishwa Vidyapeetham, Chennai. Full-stack & AI application builder (FastAPI, React, RAG). Open to Software Development Engineer internships.">
 
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kavin-js.github.io/">
-  <meta property="og:title" content="Kavin JS — CSE Student & Builder">
-  <meta property="og:description" content="3rd-year CSE student at Amrita Vishwa Vidyapeetham. Prompt engineer, web developer, AI-curious builder. CGPA 8.08 · 103 LeetCode problems · LoR from SkillCraft Tech Lead.">
+  <meta property="og:title" content="Kavin JS — CSE Student & Software Developer">
+  <meta property="og:description" content="Computer Science undergraduate at Amrita Vishwa Vidyapeetham. Building full-stack & AI-powered apps with FastAPI, React, and RAG pipelines. CGPA 8.08 · 103 LeetCode problems.">
   <meta property="og:image" content="https://kavin-js.github.io/og-preview.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kavin JS — CSE Student & Builder">
-  <meta name="twitter:description" content="3rd-year CSE student at Amrita Vishwa Vidyapeetham. Prompt engineer · Web developer · AI-curious builder.">
+  <meta name="twitter:title" content="Kavin JS — CSE Student & Software Developer">
+  <meta name="twitter:description" content="Computer Science undergraduate. Full-stack & AI application builder — FastAPI · React · RAG · Prompt Engineering.">
 
   <!-- Favicon: K monogram in lime green -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><text x='16' y='23' font-family='Arial Black,sans-serif' font-size='20' font-weight='900' fill='%23c8ff3e' text-anchor='middle'>K</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><text x='16' y='23' font-family='Arial Black,sans-serif' font-size='20' font-weight='900' fill='%23e6b800' text-anchor='middle'>K</text></svg>">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,14 +36,21 @@
       --surface:   #111111;
       --surface2:  #161616;
       --border:    #222222;
-      --accent:    #c8ff3e;
-      --accent-dim:#8fb52a;
+      --accent:    #e6b800;
+      --accent-dim:#a37e00;
       --text:      #efefef;
       --muted:     #666666;
       --sidebar-w: 240px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .site-brand, .section-bg-num, h1, h2, h3, .display-hero, .display-section,
+    .spec-num, .skills-section-title, .project-title, .exp-title, .edu-degree,
+    .stat-val, .contact-big-email {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -73,7 +80,7 @@
     }
 
     .site-brand {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 28px;
       letter-spacing: 2px;
       color: var(--accent);
@@ -163,7 +170,7 @@
     .section-bg-num {
       position: absolute;
       right: -20px; top: 60px;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 180px;
       color: var(--surface2);
       line-height: 1;
@@ -174,18 +181,18 @@
 
     .section-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: none;
+      color: var(--muted);
       display: block;
       margin-bottom: 12px;
     }
 
-    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; }
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 
     .display-hero {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(72px, 10vw, 130px);
       line-height: .9;
       letter-spacing: -1px;
@@ -193,7 +200,7 @@
     }
 
     .display-section {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(48px, 7vw, 80px);
       line-height: 1;
       color: var(--text);
@@ -336,7 +343,7 @@
       padding-top: 20px;
     }
     .spec-num {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 48px;
       color: var(--accent);
       line-height: 1;
@@ -394,7 +401,7 @@
 
     /* Skills pills */
     .skills-section-title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 24px;
       color: var(--text);
       margin-bottom: 16px;
@@ -422,7 +429,7 @@
       transition: border-color .2s, color .2s;
     }
     .pill:hover { border-color: var(--accent); color: var(--accent); }
-    .pill.accent { border-color: var(--accent); color: var(--accent); background: rgba(200,255,62,.06); }
+    .pill.accent { border-color: var(--accent); color: var(--accent); background: rgba(230,184,0,.06); }
 
     /* ─── PROJECTS ────────────────────────────── */
     .projects-grid {
@@ -467,7 +474,7 @@
     }
 
     .project-title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 28px;
       color: var(--text);
       letter-spacing: 1px;
@@ -512,7 +519,7 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
       padding: 2px 8px;
-      background: rgba(200,255,62,.12);
+      background: rgba(230,184,0,.12);
       border: 1px solid var(--accent);
       border-radius: 2px;
       color: var(--accent);
@@ -547,7 +554,7 @@
 
     .exp-content { }
     .exp-title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 32px;
       color: var(--text);
       letter-spacing: 1px;
@@ -575,8 +582,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(200,255,62,.08);
-      border: 1px solid rgba(200,255,62,.3);
+      background: rgba(230,184,0,.08);
+      border: 1px solid rgba(230,184,0,.3);
       border-radius: 2px;
       padding: 10px 16px;
       margin-top: 16px;
@@ -634,7 +641,7 @@
       letter-spacing: 1px;
     }
     .edu-degree {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 28px;
       color: var(--text);
       letter-spacing: 1px;
@@ -670,7 +677,7 @@
     .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
 
     .stat-val {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 52px;
       color: var(--accent);
       line-height: 1;
@@ -698,7 +705,7 @@
     }
 
     .contact-big-email {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(24px, 3vw, 36px);
       color: var(--text);
       text-decoration: none;
@@ -743,8 +750,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(200,255,62,.08);
-      border: 1px solid rgba(200,255,62,.3);
+      background: rgba(230,184,0,.08);
+      border: 1px solid rgba(230,184,0,.3);
       border-radius: 20px;
       padding: 8px 16px;
       font-size: 13px;
@@ -923,9 +930,9 @@
             <p class="hero-role"><span id="typewriter"></span></p>
             <h1 class="display-hero slide-up">Kavin<br>JS</h1>
             <div class="hero-tags">
-              <span class="hero-tag">Prompt Engineering</span>
-              <span class="hero-tag">Web Development</span>
-              <span class="hero-tag">Python · SQL</span>
+              <span class="hero-tag">Full-Stack Development</span>
+              <span class="hero-tag">FastAPI · React</span>
+              <span class="hero-tag">AI / RAG Systems</span>
               <span class="hero-tag">Amrita '28</span>
             </div>
             <div class="hero-cta">
@@ -947,9 +954,9 @@
             <div class="spec-sub">Arrays · Strings · DSA</div>
           </div>
           <div class="spec-box">
-            <div class="spec-num">4+</div>
+            <div class="spec-num">6+</div>
             <div class="spec-label">Shipped Projects</div>
-            <div class="spec-sub">Web · AI · DSA · Systems</div>
+            <div class="spec-sub">Full-Stack · AI · Systems</div>
           </div>
         </div>
       </div>
@@ -965,19 +972,19 @@
       <div class="about-grid">
         <div class="about-text" data-aos="fade-up">
           <p>
-            I'm a 3rd-year <strong>Computer Science & Engineering student</strong> at Amrita Vishwa Vidyapeetham, Chennai.
-            I build things that work — from multi-page web platforms to prompt engineering pipelines
-            for real LLM workflows.
+            I'm a <strong>Computer Science & Engineering undergraduate</strong> at Amrita Vishwa Vidyapeetham, Chennai
+            (CGPA 8.08), with a strong foundation in data structures, algorithms, and object-oriented design —
+            backed by 103+ solved LeetCode problems.
           </p>
           <p>
-            My background spans <strong>Python, SQL, and web development</strong>, with hands-on experience in
-            generative AI through a certified internship at SkillCraft Technology, where I engineered
-            prompt workflows commended by the Tech Lead and earned a formal Letter of Recommendation.
+            I build and ship <strong>full-stack and AI-powered applications</strong> — FastAPI backends, React
+            frontends, and retrieval-augmented generation (RAG) pipelines using vector stores like FAISS and
+            ChromaDB. I'm proficient in <strong>Python, Java, and C++</strong>, and HackerRank SQL Advanced Certified.
           </p>
           <p>
-            I'm currently expanding into <strong>AI tooling and ML</strong> — building a Prompt Evaluator Tool
-            that tests and scores LLM output quality. I work on Kali Linux, practice DSA daily,
-            and believe the best way to learn is to ship.
+            I've also completed a short prompt engineering internship at SkillCraft Technology, working with
+            LLM prompt workflows. I work on Kali Linux, practice DSA daily, and I'm currently seeking a
+            <strong>Software Development Engineer internship</strong> role.
           </p>
 
           <table class="about-table">
@@ -999,7 +1006,7 @@
             </tr>
             <tr>
               <td>Available</td>
-              <td style="color: var(--accent);">Open to Internships & Placements</td>
+              <td style="color: var(--accent);">Open to SDE Internships & Placements</td>
             </tr>
           </table>
         </div>
@@ -1007,46 +1014,49 @@
         <div data-aos="fade-up" data-aos-delay="100">
           <div class="skill-ticker" aria-hidden="true">
             <div class="ticker-track">
-              <span class="ti">Python</span><span class="ti">SQL</span><span class="ti">Prompt Engineering</span><span class="ti">C</span><span class="ti">C++</span><span class="ti">Java</span><span class="ti">Haskell</span><span class="ti">HTML · CSS · JS</span><span class="ti">LLMs / GPT</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">DSA</span><span class="ti">MySQL</span><span class="ti">OOP</span><span class="ti">DBMS</span><span class="ti">Generative AI</span>
-              <span class="ti">Python</span><span class="ti">SQL</span><span class="ti">Prompt Engineering</span><span class="ti">C</span><span class="ti">C++</span><span class="ti">Java</span><span class="ti">Haskell</span><span class="ti">HTML · CSS · JS</span><span class="ti">LLMs / GPT</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">DSA</span><span class="ti">MySQL</span><span class="ti">OOP</span><span class="ti">DBMS</span><span class="ti">Generative AI</span>
+              <span class="ti">Python</span><span class="ti">Java</span><span class="ti">C++</span><span class="ti">FastAPI</span><span class="ti">React</span><span class="ti">SQL</span><span class="ti">PostgreSQL</span><span class="ti">RAG</span><span class="ti">FAISS</span><span class="ti">ChromaDB</span><span class="ti">OpenAI API</span><span class="ti">Prompt Engineering</span><span class="ti">Haskell</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">DSA</span><span class="ti">REST APIs</span>
+              <span class="ti">Python</span><span class="ti">Java</span><span class="ti">C++</span><span class="ti">FastAPI</span><span class="ti">React</span><span class="ti">SQL</span><span class="ti">PostgreSQL</span><span class="ti">RAG</span><span class="ti">FAISS</span><span class="ti">ChromaDB</span><span class="ti">OpenAI API</span><span class="ti">Prompt Engineering</span><span class="ti">Haskell</span><span class="ti">Linux</span><span class="ti">Git</span><span class="ti">DSA</span><span class="ti">REST APIs</span>
             </div>
           </div>
           <div class="skill-group">
             <div class="skill-group-label">Languages</div>
             <div class="skill-pills">
               <span class="pill accent">Python</span>
-              <span class="pill accent">SQL</span>
+              <span class="pill accent">Java</span>
+              <span class="pill accent">C++</span>
               <span class="pill">C</span>
-              <span class="pill">C++</span>
-              <span class="pill">Java</span>
               <span class="pill">Haskell</span>
+              <span class="pill">SQL</span>
               <span class="pill">VHDL</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-label">AI & ML</div>
+            <div class="skill-group-label">Web / Backend</div>
             <div class="skill-pills">
-              <span class="pill accent">Prompt Engineering</span>
-              <span class="pill accent">LLMs / GPT</span>
-              <span class="pill">Generative AI</span>
-              <span class="pill">Chain-of-Thought</span>
-              <span class="pill">NLP (Learning)</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-label">Web & Tools</div>
-            <div class="skill-pills">
-              <span class="pill accent">HTML · CSS · JS</span>
+              <span class="pill accent">FastAPI</span>
+              <span class="pill accent">React</span>
+              <span class="pill">REST APIs</span>
+              <span class="pill">HTML · CSS · JS</span>
               <span class="pill">Bootstrap</span>
-              <span class="pill">GitHub Pages</span>
-              <span class="pill">Git</span>
-              <span class="pill">Linux / Bash</span>
-              <span class="pill">MySQL</span>
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-label">CS Fundamentals</div>
+            <div class="skill-group-label">AI / Dev Tools</div>
             <div class="skill-pills">
+              <span class="pill accent">LLM Integration</span>
+              <span class="pill accent">RAG</span>
+              <span class="pill">OpenAI API</span>
+              <span class="pill">Prompt Engineering</span>
+              <span class="pill">Git · GitHub</span>
+              <span class="pill">Linux / Bash</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Databases & CS Core</div>
+            <div class="skill-pills">
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">MySQL</span>
+              <span class="pill">FAISS · ChromaDB</span>
               <span class="pill">DSA</span>
               <span class="pill">OOP</span>
               <span class="pill">DBMS</span>
@@ -1067,80 +1077,77 @@
 
       <div class="projects-grid">
 
-        <!-- Prompt Evaluator -->
+        <!-- AI Knowledge Assistant -->
         <div class="project-card featured" data-aos="fade-up">
           <div class="project-num">01 &nbsp;·&nbsp; FEATURED</div>
-          <h3 class="project-title">Prompt Evaluator Tool <span class="badge-wip">In Dev</span></h3>
+          <h3 class="project-title">AI Knowledge Assistant <span class="badge-wip">RAG</span></h3>
           <p class="project-desc">
-            A web-based tool that tests prompts against an LLM and scores output quality across
-            dimensions like clarity, relevance, and format adherence. Built from direct experience
-            engineering production-grade prompt workflows at SkillCraft Technology.
-            Addresses a real gap: there's no lightweight tool for prompt engineers to rapidly
-            benchmark and iterate prompt quality.
+            A RAG-based document Q&A app. FastAPI backend with REST endpoints for document upload,
+            chunking, and querying, paired with a React chat frontend. Uses vector embeddings
+            (FAISS / ChromaDB) for semantic search and returns cited answers — runs locally as a
+            working prototype.
           </p>
           <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">LLM APIs</span>
-            <span class="project-tag">Prompt Engineering</span>
-            <span class="project-tag">NLP</span>
-            <span class="project-tag">HTML/CSS/JS</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">React</span>
+            <span class="project-tag">FAISS / ChromaDB</span>
+            <span class="project-tag">OpenAI API</span>
+            <span class="project-tag">REST APIs</span>
           </div>
           <a href="https://github.com/Kavin-JS" target="_blank" class="project-link">View on GitHub →</a>
         </div>
 
-        <!-- Shonowear -->
+        <!-- StyleMind AI -->
         <div class="project-card" data-aos="fade-up" data-aos-delay="100">
           <div class="project-num">02</div>
-          <h3 class="project-title">ShonoWear v4.0</h3>
+          <h3 class="project-title">StyleMind AI <span class="badge-wip">In Dev</span></h3>
           <p class="project-desc">
-            Anime-inspired streetwear discovery platform. 13 HTML pages, 25+ files,
-            full product discovery flow with Outfit Builder, drop countdown timer,
-            promo code system, cart, and lookbook — zero backend, deployed on GitHub Pages.
-            Iterated across 4 major versions.
+            An AI personal stylist app — the next-generation build of ShonoWear. Full-stack styling
+            platform with a PostgreSQL-backed virtual wardrobe, pretrained computer vision models,
+            and an LLM-based chat interface for outfit recommendations. Code is being finalized before
+            it's pushed to GitHub.
           </p>
           <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">JavaScript</span>
-            <span class="project-tag">GitHub Pages</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">React</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">Computer Vision</span>
+            <span class="project-tag">LLM Integration</span>
           </div>
-          <a href="https://kavin-js.github.io/ShonoWear" target="_blank" class="project-link">Live Site →</a>
+          <a href="https://github.com/Kavin-JS/Shonowear-Ver4.0" target="_blank" class="project-link">Previous Version →</a>
         </div>
 
-        <!-- PixelArchiveX -->
+        <!-- Voice Wake Word System -->
         <div class="project-card" data-aos="fade-up" data-aos-delay="150">
           <div class="project-num">03</div>
-          <h3 class="project-title">PixelArchiveX</h3>
+          <h3 class="project-title">Voice-Wake-Word-System</h3>
           <p class="project-desc">
-            Zero-dependency static wallpaper gallery built on Kali Linux.
-            Custom masonry layout engine using pre-stored image dimensions in JSON,
-            enabling correct JS-based positioning before images load.
-            No external libraries — pure CSS grid + vanilla JS architecture.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Vanilla JS</span>
-            <span class="project-tag">CSS Grid</span>
-            <span class="project-tag">JSON</span>
-            <span class="project-tag">Zero Dependencies</span>
-          </div>
-          <a href="https://github.com/Kavin-JS" target="_blank" class="project-link">View on GitHub →</a>
-        </div>
-
-        <!-- DSA Repo -->
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-num">04</div>
-          <h3 class="project-title">DSA Practice Repository</h3>
-          <p class="project-desc">
-            50+ data structure implementations in Python and C — stacks, queues,
-            linked lists, trees, and more. Pointer-based memory management in C
-            alongside Pythonic equivalents. Paired with active LeetCode practice
-            (103 problems solved).
+            An offline, real-time voice wake-word detection system using Python, Vosk, and SoundDevice,
+            with a live dashboard showing confidence tracking, detection statistics, and a virtual LED
+            indicator.
           </p>
           <div class="project-tags">
             <span class="project-tag">Python</span>
-            <span class="project-tag">C</span>
-            <span class="project-tag">DSA</span>
-            <span class="project-tag">GitHub</span>
+            <span class="project-tag">Vosk</span>
+            <span class="project-tag">SoundDevice</span>
+            <span class="project-tag">Real-Time Audio</span>
+          </div>
+          <a href="https://github.com/Kavin-JS/Voice-Wake-Word-System" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
+        <!-- Recommendation System -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-num">04</div>
+          <h3 class="project-title">Real-Time Recommendation System <span class="badge-wip">In Dev</span></h3>
+          <p class="project-desc">
+            Final-year project: a deep learning-based real-time recommendation system. Designed and
+            implemented a heuristic-based ranking algorithm and inference pipeline for personalized
+            recommendations.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Algorithm Design</span>
+            <span class="project-tag">Recommendation Systems</span>
           </div>
           <a href="https://github.com/Kavin-JS" target="_blank" class="project-link">View on GitHub →</a>
         </div>
@@ -1150,18 +1157,34 @@
           <div class="project-num">05</div>
           <h3 class="project-title">TransportSense</h3>
           <p class="project-desc">
-            A functional terminal dashboard for public transport monitoring, written in Haskell.
-            Demonstrates purely functional architecture, type-safe data pipelines, and monadic IO
-            composition — a deliberate detour from imperative languages to prove range across
-            programming paradigms.
+            AI-powered transport emission analytics — a functional programming approach to global
+            emission intelligence, written in Haskell. Demonstrates purely functional architecture
+            and type-safe data pipelines.
           </p>
           <div class="project-tags">
             <span class="project-tag">Haskell</span>
             <span class="project-tag">Functional Programming</span>
-            <span class="project-tag">Terminal UI</span>
-            <span class="project-tag">Type Systems</span>
+            <span class="project-tag">Data Analytics</span>
           </div>
-          <a href="https://github.com/Kavin-JS" target="_blank" class="project-link">View on GitHub →</a>
+          <a href="https://github.com/Kavin-JS/TransportSense" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
+        <!-- DSA Repo -->
+        <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-num">06</div>
+          <h3 class="project-title">DSA Practice Repositories</h3>
+          <p class="project-desc">
+            CSE coding practice — arrays, strings, sorting & searching, and dynamic programming
+            solutions in Python, alongside pointer-based data structure implementations in C.
+            Paired with active LeetCode practice (103 problems solved).
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">C</span>
+            <span class="project-tag">DSA</span>
+            <span class="project-tag">GitHub</span>
+          </div>
+          <a href="https://github.com/Kavin-JS/CARE_AVV" target="_blank" class="project-link">View on GitHub →</a>
         </div>
 
       </div>
@@ -1176,20 +1199,30 @@
 
       <div class="experience-item" data-aos="fade-up">
         <div class="exp-meta">
+          <div class="exp-date">2026 – 2027</div>
+          <div class="exp-company">AMCFOSS<br>Amrita Vishwa Vidyapeetham, Chennai</div>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-title">PR Lead</h3>
+          <ul class="exp-bullets">
+            <li>Lead structured industry & sponsorship outreach for AMCFOSS — researching organizations, identifying decision-makers, and managing a tracker across event, prize, and technical-collaboration sponsorships.</li>
+            <li>Represent the club in external communication with companies, startups, and developer communities to build partnerships and mentorship/internship pipelines.</li>
+            <li>Drive internal community engagement — member onboarding, volunteer coordination, and cross-team collaboration across workshops, hackathons, and coding contests.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item" data-aos="fade-up">
+        <div class="exp-meta">
           <div class="exp-date">Jan 2026 – Feb 2026</div>
           <div class="exp-company">SkillCraft Technology<br>Remote, India</div>
         </div>
         <div class="exp-content">
           <h3 class="exp-title">Prompt Engineering Intern</h3>
           <ul class="exp-bullets">
-            <li>Engineered 4 structured LLM prompt workflows for summarization, classification, and translation — all accepted and commended by the Tech Lead.</li>
-            <li>Applied chain-of-thought reasoning, role prompting, and few-shot techniques to optimize model output across real-world NLP tasks.</li>
-            <li>Evaluated and iterated on prompt performance, improving output formatting and instruction-following across multiple LLM configurations.</li>
-            <li>Delivered all 4 projects within a 2-month cycle, covering the complete prompt design, testing, and evaluation pipeline.</li>
+            <li>Engineered 4 structured LLM prompt workflows across summarization, classification, translation, and extraction.</li>
+            <li>Applied chain-of-thought reasoning, role prompting, and few-shot techniques, cutting prompt iteration cycles by ~40%.</li>
           </ul>
-          <div class="exp-highlight">
-            ★ &nbsp; Received formal Letter of Recommendation from Tech Lead for exceptional performance
-          </div>
         </div>
       </div>
     </section>
@@ -1199,6 +1232,7 @@
       <div class="section-bg-num">05</div>
       <span class="section-label">Credentials</span>
       <h2 class="display-section" data-aos="fade-up">Certifications</h2>
+      <a href="https://github.com/Kavin-JS/Kavin-JS" target="_blank" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent); margin-top:10px; text-decoration:none; border-bottom:1px solid var(--accent-dim); padding-bottom:2px;">View certificate files on GitHub →</a>
       <div class="section-divider"></div>
 
       <div class="certs-grid">
@@ -1280,7 +1314,7 @@
           <div class="stat-platform">LeetCode</div>
         </a>
         <a href="https://github.com/Kavin-JS" target="_blank" class="stat-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="stat-val">4+</div>
+          <div class="stat-val">17</div>
           <div class="stat-name">Public Repos</div>
           <div class="stat-platform">GitHub</div>
         </a>
@@ -1336,13 +1370,14 @@
         <div data-aos="fade-up" data-aos-delay="100">
           <p style="font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;">Quick Note</p>
           <p style="font-size:15px; color:#888; line-height:1.8; margin-bottom:16px;">
-            I'm a 3rd-year CSE student actively building and learning. I'm most interested in roles involving
-            <strong style="color:var(--text);">AI/ML engineering, software development,</strong> or
-            <strong style="color:var(--text);">data analytics</strong>.
+            I'm a CSE undergraduate seeking a <strong style="color:var(--text);">Software Development Engineer
+            internship</strong>. I'm most interested in roles involving
+            <strong style="color:var(--text);">full-stack development, AI/ML engineering,</strong> or
+            <strong style="color:var(--text);">backend systems</strong>.
           </p>
           <p style="font-size:15px; color:#888; line-height:1.8;">
-            I work well in fast-paced environments, have shipped production-grade work under tight timelines,
-            and hold a <strong style="color:var(--accent);">formal Letter of Recommendation</strong> from my last Tech Lead.
+            I work well in fast-paced environments and have shipped full-stack and AI-powered applications
+            under tight timelines — from RAG pipelines to production prompt workflows.
           </p>
           <div style="margin-top:32px; padding:20px; background:var(--surface); border:1px solid var(--border); border-radius:4px;">
             <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;">Location</div>
@@ -1428,7 +1463,7 @@
         ctx.globalAlpha = 0.9;
         ctx.beginPath();
         ctx.arc(mx, my, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#c8ff3e';
+        ctx.fillStyle = '#e6b800';
         ctx.fill();
         ctx.restore();
 
@@ -1437,7 +1472,7 @@
         ctx.globalAlpha = isHovering ? 0.5 : 0.35;
         ctx.beginPath();
         ctx.arc(fx, fy, currentR, 0, Math.PI * 2);
-        ctx.strokeStyle = '#c8ff3e';
+        ctx.strokeStyle = '#e6b800';
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.restore();
@@ -1462,11 +1497,11 @@
 
     // Typewriter effect
     const roles = [
-      'CSE Student · Builder · AI-Curious',
-      'Prompt Engineer',
-      'Web Developer',
+      'CSE Student · Full-Stack Builder',
+      'Software Development Engineer',
+      'AI / RAG Application Developer',
       'DSA Practitioner',
-      'Open to Internships',
+      'Open to SDE Internships',
     ];
     let rIdx = 0, cIdx = 0, deleting = false;
     const tw = document.getElementById('typewriter');
