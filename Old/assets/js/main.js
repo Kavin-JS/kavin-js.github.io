@@ -101,25 +101,11 @@
   }
 
   /* ---------- IST clock ---------- */
-  var clocks = $$('#clock, #clock2');
-  if (clocks.length) {
+  var clock = $('#clock');
+  if (clock) {
     var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-    var tick = function () { var t = fmt.format(new Date()) + ' IST'; clocks.forEach(function (c) { c.textContent = t; }); };
+    var tick = function () { clock.textContent = fmt.format(new Date()) + ' IST'; };
     tick(); setInterval(tick, 1000);
-  }
-
-  /* ---------- pointer spotlight on cards and the hero grid ---------- */
-  if (!reduce && window.matchMedia && matchMedia('(hover: hover)').matches) {
-    var sel = '.feature, .card, .skill-card, .entry, .cert, .profile, .tile, .note';
-    document.addEventListener('pointermove', function (e) {
-      var t = e.target.closest ? e.target.closest(sel) : null;
-      if (t) { var r = t.getBoundingClientRect(); t.style.setProperty('--mx', (e.clientX - r.left) + 'px'); t.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
-    }, { passive: true });
-    var hero = $('.hero');
-    if (hero) {
-      hero.addEventListener('pointermove', function (e) { var r = hero.getBoundingClientRect(); hero.style.setProperty('--hx', (e.clientX - r.left) + 'px'); hero.style.setProperty('--hy', (e.clientY - r.top) + 'px'); }, { passive: true });
-      hero.addEventListener('pointerleave', function () { hero.style.setProperty('--hx', '-400px'); hero.style.setProperty('--hy', '-400px'); });
-    }
   }
 
   /* ---------- copy email ---------- */

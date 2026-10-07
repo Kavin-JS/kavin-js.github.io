@@ -130,30 +130,19 @@
   <section class="block" id="about">
     <div class="container">
       <div class="sec-head reveal"><span class="eyebrow">01 · About</span><h2>An engineer in training who <em>ships</em>.</h2></div>
-      <div class="bento">
-        <div class="tile t-bio reveal">
+      <div class="about-grid">
+        <div class="prose reveal">
           <p>I'm a <strong>Computer Science and Engineering undergraduate</strong> at Amrita Vishwa Vidyapeetham, Chennai (CGPA 8.08). My foundation is data structures, algorithms and object-oriented design, supported by coursework in databases, operating systems, computer networks and system design fundamentals, and 105+ solved LeetCode problems.</p>
           <p>I build and ship <strong>full-stack and AI-powered applications</strong>: FastAPI backends, React frontends and retrieval-augmented generation (RAG) pipelines on vector stores such as FAISS and ChromaDB. I work mainly in <strong>Python, Java and C++</strong>, and I hold HackerRank's SQL (Advanced) certificate.</p>
           <p>In early 2026 I completed a prompt engineering internship at SkillCraft Technology, and I currently lead PR at AMCFOSS, Amrita's free and open source software club. I work on Kali Linux, practise DSA daily, and I'm looking for a <strong>Software Development Engineer internship</strong>.</p>
         </div>
-        <div class="tile t-now reveal" style="--d:.06s">
-          <span class="t-label">Now building</span>
-          <h3>AIKA</h3>
-          <p>A multi-tenant RAG knowledge platform, validated in Docker at every milestone.</p>
-          <ol class="steps" aria-label="AIKA milestones">
-            <li class="done">Identity</li><li class="done">Tenancy</li><li>Documents</li><li>Retrieval</li>
-          </ol>
-        </div>
-        <div class="tile t-loc reveal" style="--d:.12s">
-          <span class="t-label">Based in</span>
-          <h3>Chennai, India</h3>
-          <p>Open to remote and hybrid</p>
-          <div class="loc-time"><span class="ldot"></span><span id="clock2">--:--:-- IST</span></div>
-        </div>
-        <div class="tile t-mini reveal" style="--d:.04s"><span class="t-label">Education</span><b>B.Tech, Computer Science and Engineering</b><small>Amrita Vishwa Vidyapeetham · Class of 2028</small></div>
-        <div class="tile t-mini reveal" style="--d:.08s"><span class="t-label">Focus</span><b>Full-stack · AI/ML · Backend systems</b><small>FastAPI, React, RAG</small></div>
-        <div class="tile t-mini reveal" style="--d:.12s"><span class="t-label">Availability</span><b>SDE internships and placements</b><small>Remote or hybrid</small></div>
-        <div class="tile t-mini reveal" style="--d:.16s"><span class="t-label">Reach me</span><b><a href="mailto:kavinjs.dev@gmail.com">kavinjs.dev@gmail.com</a></b><small>+91 9360955435</small></div>
+        <dl class="facts reveal" style="--d:.1s">
+          <div class="fact"><dt>Location</dt><dd>Chennai, Tamil Nadu, India<small>Open to remote and hybrid</small></dd></div>
+          <div class="fact"><dt>Education</dt><dd>B.Tech, Computer Science and Engineering<small>Amrita Vishwa Vidyapeetham · Class of 2028</small></dd></div>
+          <div class="fact"><dt>Focus</dt><dd>Full-stack development, AI/ML engineering, backend systems</dd></div>
+          <div class="fact"><dt>Availability</dt><dd>SDE internships and placements</dd></div>
+          <div class="fact"><dt>Email</dt><dd><a href="mailto:kavinjs.dev@gmail.com">kavinjs.dev@gmail.com</a></dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -162,12 +151,12 @@
   <section class="block alt" id="work">
     <div class="container">
       <div class="sec-head reveal"><span class="eyebrow">02 · Work</span><h2>Selected <em>projects</em></h2><p>Three flagship builds, followed by supporting projects across machine learning, systems and fundamentals.</p></div>
-      <div class="features">
-      <article class="feature reveal" style="--i:0">
+      
+      <article class="feature reveal">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="RagForge pipeline: adaptive routing, hybrid sparse and dense retrieval, cross-encoder reranking, answer">
   <rect x="22" y="140" width="76" height="60" rx="12" class="fl"/><text x="60" y="174" text-anchor="middle" class="t-ink">query</text>
   <path class="ln" d="M98 170 H124"/>
-  <circle cx="146" cy="170" r="22" class="ac-soft"/><text x="146" y="174" text-anchor="middle" class="t-ac fit">route</text><text x="146" y="208" text-anchor="middle" class="t-sm">ADAPTIVE</text>
+  <circle cx="146" cy="170" r="22" class="ac-soft"/><text x="146" y="174" text-anchor="middle" class="t-ac">route</text><text x="146" y="208" text-anchor="middle" class="t-sm">ADAPTIVE</text>
   <rect x="206" y="62" width="156" height="216" rx="16" class="ln-d"/><text x="284" y="50" text-anchor="middle" class="t-sm">HYBRID RETRIEVAL</text>
   <rect x="222" y="86" width="124" height="74" rx="10" class="fl-soft"/><text x="234" y="104" class="t-sm">BM25 · SPARSE</text><rect x="234" y="114" width="88" height="5" rx="2.5" class="bar"/><rect x="234" y="124" width="70" height="5" rx="2.5" class="bar"/><rect x="234" y="134" width="80" height="5" rx="2.5" class="bar"/><rect x="234" y="144" width="56" height="5" rx="2.5" class="bar"/>
   <rect x="222" y="180" width="124" height="74" rx="10" class="fl-soft"/><text x="234" y="198" class="t-sm">DENSE · VECTORS</text><rect x="234" y="208" width="76" height="5" rx="2.5" class="bar"/><rect x="234" y="218" width="90" height="5" rx="2.5" class="bar"/><rect x="234" y="228" width="60" height="5" rx="2.5" class="bar"/><rect x="234" y="238" width="72" height="5" rx="2.5" class="bar"/>
@@ -177,7 +166,7 @@
   <rect x="412" y="150" width="54" height="10" rx="3" class="bar"/><rect x="412" y="194" width="54" height="10" rx="3" class="bar"/>
   <rect x="412" y="172" width="54" height="10" rx="3" class="bar-ac"><animate attributeName="y" values="172;128;128;172;172" keyTimes="0;.25;.7;.9;1" dur="5s" repeatCount="indefinite"/></rect>
   <rect x="412" y="128" width="54" height="10" rx="3" class="bar"><animate attributeName="y" values="128;172;172;128;128" keyTimes="0;.25;.7;.9;1" dur="5s" repeatCount="indefinite"/></rect>
-  <path class="ac" d="M480 170 H500"/><rect x="500" y="140" width="48" height="60" rx="12" class="ac-soft"/><text x="524" y="174" text-anchor="middle" class="t-ac fit">answer</text>
+  <path class="ac" d="M480 170 H500"/><rect x="500" y="140" width="48" height="60" rx="12" class="ac-soft"/><text x="524" y="174" text-anchor="middle" class="t-ac">answer</text>
   <line x1="22" y1="296" x2="538" y2="296" class="ln"/><text x="22" y="316" class="t-sm">STATISTICAL EVALUATION OF RETRIEVAL AND ANSWER QUALITY</text>
   <path class="ac" d="M470 322 L486 316 L502 319 L518 310 L538 313" stroke-linecap="round" stroke-linejoin="round"/>
   <circle r="4" class="ac-f"><animateMotion path="M98 170 H168 C192 170 198 123 222 123 H346 C376 123 372 170 398 170 H500" dur="4.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="4.8s" begin="0s" repeatCount="indefinite"/></circle><circle r="4" class="ac-f"><animateMotion path="M98 170 H168 C192 170 198 217 222 217 H346 C376 217 372 170 398 170 H500" dur="4.8s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="4.8s" begin="1.2s" repeatCount="indefinite"/></circle><circle r="4" class="ac-f"><animateMotion path="M98 170 H168 C192 170 198 123 222 123 H346 C376 123 372 170 398 170 H500" dur="4.8s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="4.8s" begin="2.4s" repeatCount="indefinite"/></circle><circle r="4" class="ac-f"><animateMotion path="M98 170 H168 C192 170 198 217 222 217 H346 C376 217 372 170 398 170 H500" dur="4.8s" begin="3.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="4.8s" begin="3.6s" repeatCount="indefinite"/></circle>
@@ -192,7 +181,7 @@
           <a class="link-arrow" href="https://github.com/Kavin-JS/RagForge" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-      <article class="feature reveal" style="--i:1">
+      <article class="feature reveal">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="AIKA architecture: Next.js client, FastAPI modular monolith with identity and tenancy, PostgreSQL with pgvector and Redis, isolated per tenant, inside Docker">
   <rect x="14" y="14" width="532" height="312" rx="18" class="ln-d"/><text x="530" y="34" text-anchor="end" class="t-sm">DOCKER</text>
   <rect x="40" y="52" width="480" height="44" rx="12" class="fl"/><text x="280" y="79" text-anchor="middle" class="t-ink">Next.js client</text>
@@ -218,7 +207,7 @@
           <a class="link-arrow" href="https://github.com/Kavin-JS/AIKA" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-      <article class="feature reveal" style="--i:2">
+      <article class="feature reveal">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="StyleMind AI: a virtual wardrobe tagged by computer vision models, with an LLM chat for outfit recommendations">
   <text x="28" y="40" class="t-sm">WARDROBE · CV TAGS</text>
   <g><rect x="28" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-18 -14 L-8 -20 Q0 -14 8 -20 L18 -14 L13 -4 L9 -6 V16 H-9 V-6 L-13 -4 Z" transform="translate(70,96)" class="glyph"/><text x="70" y="134" text-anchor="middle" class="t-sm">TOP</text><rect x="28" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="0.0s" repeatCount="indefinite"/></rect></g><g><rect x="126" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-10 -18 H10 L12 20 H3 L0 -2 L-3 20 H-12 Z" transform="translate(168,96)" class="glyph"/><text x="168" y="134" text-anchor="middle" class="t-sm">DENIM</text><rect x="126" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="1.2s" repeatCount="indefinite"/></rect></g><g><rect x="224" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-20 10 H16 Q22 10 22 15 H-20 Z M-20 10 V-8 H-8 L-4 0 H8" transform="translate(266,96)" class="glyph"/><text x="266" y="134" text-anchor="middle" class="t-sm">SHOES</text><rect x="224" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="2.4s" repeatCount="indefinite"/></rect></g><g><rect x="28" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-19 -14 L-8 -20 H8 L19 -14 L16 14 H-16 Z M0 -20 V14" transform="translate(70,194)" class="glyph"/><text x="70" y="232" text-anchor="middle" class="t-sm">JACKET</text><rect x="28" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="3.5999999999999996s" repeatCount="indefinite"/></rect></g><g><rect x="126" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-6 -18 H6 L8 -6 L18 20 H-18 L-8 -6 Z" transform="translate(168,194)" class="glyph"/><text x="168" y="232" text-anchor="middle" class="t-sm">DRESS</text><rect x="126" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="4.8s" repeatCount="indefinite"/></rect></g><g><rect x="224" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-18 8 Q-18 -14 0 -14 Q18 -14 18 8 Z M10 8 H26" transform="translate(266,194)" class="glyph"/><text x="266" y="232" text-anchor="middle" class="t-sm">CAP</text><rect x="224" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="6.0s" repeatCount="indefinite"/></rect></g>
@@ -239,7 +228,7 @@
           <div class="tags"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Computer Vision</span><span class="tag">LLM Integration</span></div>
           <a class="link-arrow" href="https://github.com/Kavin-JS/Shonowear-Ver4.0" target="_blank" rel="noopener">See the previous version <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-      </article></div>
+      </article>
       <div class="grid-3">
         <article class="card reveal" style="--d:0s">
           <div class="viz-panel"><svg class="viz" viewBox="0 0 360 200" role="img" aria-label="Live audio waveform with a confidence meter and a wake-word indicator LED">
@@ -432,6 +421,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <span>© <span id="year">2026</span> Kavin JS</span>
+    <span class="mono">Hand-built with HTML, CSS and a little JavaScript</span>
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
