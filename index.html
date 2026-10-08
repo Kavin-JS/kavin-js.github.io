@@ -28,9 +28,9 @@
   <script>
     (function () {
       var d = document.documentElement; d.classList.remove('no-js'); d.classList.add('js');
-      var t = null; try { t = localStorage.getItem('theme'); } catch (e) {}
-      if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      d.setAttribute('data-theme', t);
+      var m = 'auto'; try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark') m = s; } catch (e) {}
+      var dark = m === 'dark' || (m === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      d.setAttribute('data-theme', dark ? 'dark' : 'light'); d.setAttribute('data-theme-mode', m);
     })();
   </script>
   <link rel="stylesheet" href="assets/css/styles.css">
@@ -61,16 +61,17 @@
     <nav class="nav" id="nav" aria-label="Primary">
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="#work">Work</a>
-      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#leadership">Leadership</a>
       <a class="nav-link" href="#skills">Skills</a>
       <a class="nav-link" href="#education">Education</a>
       <a class="nav-link" href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
       <a class="btn btn-ghost btn-sm" href="https://raw.githubusercontent.com/Kavin-JS/Kavin-JS/main/resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle light and dark theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Theme: auto, follows your device. Click to change." title="Theme: Auto (follows your device)">
+        <svg class="ic ic-auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 1 0-17z" fill="currentColor" stroke="none"/></svg>
+        <svg class="ic ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
       </button>
       <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -133,8 +134,8 @@
       <div class="bento">
         <div class="tile t-bio reveal">
           <p>I'm a <strong>Computer Science and Engineering undergraduate</strong> at Amrita Vishwa Vidyapeetham, Chennai (CGPA 8.08). My foundation is data structures, algorithms and object-oriented design, supported by coursework in databases, operating systems, computer networks and system design fundamentals, and 105+ solved LeetCode problems.</p>
-          <p>I build and ship <strong>full-stack and AI-powered applications</strong>: FastAPI backends, React frontends and retrieval-augmented generation (RAG) pipelines on vector stores such as FAISS and ChromaDB. I work mainly in <strong>Python, Java and C++</strong>, and I hold HackerRank's SQL (Advanced) certificate.</p>
-          <p>In early 2026 I completed a prompt engineering internship at SkillCraft Technology, and I currently lead PR at AMCFOSS, Amrita's free and open source software club. I work on Kali Linux, practise DSA daily, and I'm looking for a <strong>Software Development Engineer internship</strong>.</p>
+          <p>I build and ship <strong>full-stack and AI-powered applications</strong>: FastAPI backends, React frontends and retrieval-augmented generation (RAG) pipelines. I work mainly in <strong>Python, Java and C++</strong>, with <strong>HTML, CSS and JavaScript</strong> on the front end, and I hold HackerRank's SQL (Advanced) certificate.</p>
+          <p>I currently lead PR at AMCFOSS, Amrita's free and open source software club. I use Linux day to day, practise DSA daily, and I'm looking for a <strong>Software Development Engineer internship</strong>.</p>
         </div>
         <div class="tile t-now reveal" style="--d:.06s">
           <span class="t-label">Now building</span>
@@ -153,7 +154,7 @@
         <div class="tile t-mini reveal" style="--d:.04s"><span class="t-label">Education</span><b>B.Tech, Computer Science and Engineering</b><small>Amrita Vishwa Vidyapeetham · Class of 2028</small></div>
         <div class="tile t-mini reveal" style="--d:.08s"><span class="t-label">Focus</span><b>Full-stack · AI/ML · Backend systems</b><small>FastAPI, React, RAG</small></div>
         <div class="tile t-mini reveal" style="--d:.12s"><span class="t-label">Availability</span><b>SDE internships and placements</b><small>Remote or hybrid</small></div>
-        <div class="tile t-mini reveal" style="--d:.16s"><span class="t-label">Reach me</span><b><a href="mailto:kavinjs.dev@gmail.com">kavinjs.dev@gmail.com</a></b><small>+91 9360955435</small></div>
+        <div class="tile t-mini reveal" style="--d:.16s"><span class="t-label">Reach me</span><b><a href="mailto:kavinjs.dev@gmail.com">kavinjs.dev@gmail.com</a></b><small>Best way to reach me</small></div>
       </div>
     </div>
   </section>
@@ -163,7 +164,13 @@
     <div class="container">
       <div class="sec-head reveal"><span class="eyebrow">02 · Work</span><h2>Selected <em>projects</em></h2><p>Three flagship builds, followed by supporting projects across machine learning, systems and fundamentals.</p></div>
       <div class="features">
-      <article class="feature reveal" style="--i:0">
+        <ol class="stack-rail" aria-label="Flagship projects">
+          <li><a href="#p-1" data-i="0"><span>01</span><i>RagForge</i></a></li>
+          <li><a href="#p-2" data-i="1"><span>02</span><i>AIKA</i></a></li>
+          <li><a href="#p-3" data-i="2"><span>03</span><i>StyleMind AI</i></a></li>
+        </ol>
+        
+      <article class="feature reveal" id="p-1" style="--i:0">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="RagForge pipeline: adaptive routing, hybrid sparse and dense retrieval, cross-encoder reranking, answer">
   <rect x="22" y="140" width="76" height="60" rx="12" class="fl"/><text x="60" y="174" text-anchor="middle" class="t-ink">query</text>
   <path class="ln" d="M98 170 H124"/>
@@ -192,7 +199,7 @@
           <a class="link-arrow" href="https://github.com/Kavin-JS/RagForge" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-      <article class="feature reveal" style="--i:1">
+      <article class="feature reveal" id="p-2" style="--i:1">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="AIKA architecture: Next.js client, FastAPI modular monolith with identity and tenancy, PostgreSQL with pgvector and Redis, isolated per tenant, inside Docker">
   <rect x="14" y="14" width="532" height="312" rx="18" class="ln-d"/><text x="530" y="34" text-anchor="end" class="t-sm">DOCKER</text>
   <rect x="40" y="52" width="480" height="44" rx="12" class="fl"/><text x="280" y="79" text-anchor="middle" class="t-ink">Next.js client</text>
@@ -218,7 +225,7 @@
           <a class="link-arrow" href="https://github.com/Kavin-JS/AIKA" target="_blank" rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-      <article class="feature reveal" style="--i:2">
+      <article class="feature reveal" id="p-3" style="--i:2">
         <div class="viz-panel"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="StyleMind AI: a virtual wardrobe tagged by computer vision models, with an LLM chat for outfit recommendations">
   <text x="28" y="40" class="t-sm">WARDROBE · CV TAGS</text>
   <g><rect x="28" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-18 -14 L-8 -20 Q0 -14 8 -20 L18 -14 L13 -4 L9 -6 V16 H-9 V-6 L-13 -4 Z" transform="translate(70,96)" class="glyph"/><text x="70" y="134" text-anchor="middle" class="t-sm">TOP</text><rect x="28" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="0.0s" repeatCount="indefinite"/></rect></g><g><rect x="126" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-10 -18 H10 L12 20 H3 L0 -2 L-3 20 H-12 Z" transform="translate(168,96)" class="glyph"/><text x="168" y="134" text-anchor="middle" class="t-sm">DENIM</text><rect x="126" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="1.2s" repeatCount="indefinite"/></rect></g><g><rect x="224" y="58" width="84" height="84" rx="12" class="fl"/><path d="M-20 10 H16 Q22 10 22 15 H-20 Z M-20 10 V-8 H-8 L-4 0 H8" transform="translate(266,96)" class="glyph"/><text x="266" y="134" text-anchor="middle" class="t-sm">SHOES</text><rect x="224" y="58" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="2.4s" repeatCount="indefinite"/></rect></g><g><rect x="28" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-19 -14 L-8 -20 H8 L19 -14 L16 14 H-16 Z M0 -20 V14" transform="translate(70,194)" class="glyph"/><text x="70" y="232" text-anchor="middle" class="t-sm">JACKET</text><rect x="28" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="3.5999999999999996s" repeatCount="indefinite"/></rect></g><g><rect x="126" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-6 -18 H6 L8 -6 L18 20 H-18 L-8 -6 Z" transform="translate(168,194)" class="glyph"/><text x="168" y="232" text-anchor="middle" class="t-sm">DRESS</text><rect x="126" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="4.8s" repeatCount="indefinite"/></rect></g><g><rect x="224" y="156" width="84" height="84" rx="12" class="fl"/><path d="M-18 8 Q-18 -14 0 -14 Q18 -14 18 8 Z M10 8 H26" transform="translate(266,194)" class="glyph"/><text x="266" y="232" text-anchor="middle" class="t-sm">CAP</text><rect x="224" y="156" width="84" height="84" rx="12" class="ac" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.16;.22;1" dur="7.2s" begin="6.0s" repeatCount="indefinite"/></rect></g>
@@ -239,7 +246,9 @@
           <div class="tags"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Computer Vision</span><span class="tag">LLM Integration</span></div>
           <a class="link-arrow" href="https://github.com/Kavin-JS/Shonowear-Ver4.0" target="_blank" rel="noopener">See the previous version <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-      </article></div>
+      </article>
+      </div>
+      <div class="more-head reveal"><span class="eyebrow">Also built</span><h3>More projects</h3><p>Supporting work across machine learning, systems and fundamentals.</p></div>
       <div class="grid-3">
         <article class="card reveal" style="--d:0s">
           <div class="viz-panel"><svg class="viz" viewBox="0 0 360 200" role="img" aria-label="Live audio waveform with a confidence meter and a wake-word indicator LED">
@@ -319,28 +328,18 @@
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="block" id="experience">
+  <section class="block" id="leadership">
     <div class="container">
-      <div class="sec-head reveal"><span class="eyebrow">03 · Experience</span><h2>Where I've <em>worked</em></h2></div>
+      <div class="sec-head reveal"><span class="eyebrow">03 · Leadership</span><h2>Where I've <em>led</em></h2></div>
       <div class="timeline">
         <article class="entry reveal">
-          <div><div class="when">Jan 2026 – Present</div><div class="org">AMCFOSS<small>Amrita Vishwa Vidyapeetham, Chennai</small></div></div>
+          <div><div class="when">Jun 2026 – Present</div><div class="org">AMCFOSS<small>Amrita Vishwa Vidyapeetham, Chennai</small></div></div>
           <div>
             <h3>PR Lead</h3>
             <ul class="points">
               <li>Lead structured industry and sponsorship outreach for AMCFOSS: researching organizations, identifying decision-makers, and managing a tracker across event, prize and technical-collaboration sponsorships.</li>
               <li>Represent the club in external communication with companies, startups and developer communities to build partnerships and mentorship and internship pipelines.</li>
               <li>Drive internal community engagement: member onboarding, volunteer coordination, and cross-team collaboration across workshops, hackathons and coding contests.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="entry reveal" style="--d:.08s">
-          <div><div class="when">Jan 2026 – Feb 2026</div><div class="org">SkillCraft Technology<small>Remote, India</small></div></div>
-          <div>
-            <h3>Prompt Engineering Intern</h3>
-            <ul class="points">
-              <li>Engineered 4 structured LLM prompt workflows across summarization, classification, translation and extraction.</li>
-              <li>Applied chain-of-thought reasoning, role prompting and few-shot techniques, cutting prompt iteration cycles by about 40%.</li>
             </ul>
           </div>
         </article>
@@ -352,7 +351,7 @@
   <section class="block alt" id="skills">
     <div class="container">
       <div class="sec-head reveal"><span class="eyebrow">04 · Skills</span><h2>Tools I <em>work with</em></h2></div>
-      <div class="skills-grid"><div class="skill-card reveal"><h3>Languages</h3><div class="pills"><span class="pill core">Python</span><span class="pill core">Java</span><span class="pill core">C++</span><span class="pill core">JavaScript</span><span class="pill">C</span><span class="pill">Haskell</span><span class="pill">SQL</span><span class="pill">VHDL</span></div></div><div class="skill-card reveal"><h3>Web and backend</h3><div class="pills"><span class="pill core">FastAPI</span><span class="pill core">React</span><span class="pill">REST APIs</span><span class="pill">HTML · CSS · JS</span><span class="pill">Bootstrap</span></div></div><div class="skill-card reveal"><h3>AI and tooling</h3><div class="pills"><span class="pill core">LLM Integration</span><span class="pill core">RAG</span><span class="pill core">Computer Vision</span><span class="pill core">Recommendation Systems</span><span class="pill">OpenAI API</span><span class="pill">Prompt Engineering</span><span class="pill">Git · GitHub</span><span class="pill">Linux / Bash</span></div></div><div class="skill-card reveal"><h3>Databases and CS core</h3><div class="pills"><span class="pill core">Computer Networks</span><span class="pill core">System Design Fundamentals</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">FAISS · ChromaDB</span><span class="pill">DSA</span><span class="pill">OOP</span><span class="pill">DBMS</span><span class="pill">OS</span><span class="pill">Computer Architecture</span></div></div></div>
+      <div class="skills-grid"><div class="skill-card reveal"><h3>Languages</h3><div class="pills"><span class="pill core">Python</span><span class="pill core">Java</span><span class="pill core">C++</span><span class="pill">C</span><span class="pill">Haskell</span><span class="pill">SQL</span><span class="pill">VHDL</span></div></div><div class="skill-card reveal"><h3>Web and backend</h3><div class="pills"><span class="pill core">HTML</span><span class="pill core">CSS</span><span class="pill core">JavaScript</span><span class="pill core">React</span><span class="pill core">FastAPI</span><span class="pill">REST APIs</span><span class="pill">Bootstrap</span></div></div><div class="skill-card reveal"><h3>AI and tooling</h3><div class="pills"><span class="pill core">LLM Integration</span><span class="pill core">RAG</span><span class="pill core">Computer Vision</span><span class="pill core">Recommendation Systems</span><span class="pill">OpenAI API</span><span class="pill">Prompt Engineering</span><span class="pill">Git · GitHub</span><span class="pill">Linux / Bash</span></div></div><div class="skill-card reveal"><h3>Databases and CS core</h3><div class="pills"><span class="pill core">Computer Networks</span><span class="pill core">System Design Fundamentals</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">DSA</span><span class="pill">OOP</span><span class="pill">DBMS</span><span class="pill">OS</span><span class="pill">Computer Architecture</span></div></div></div>
       <div class="legend reveal"><span class="pill core">Highlighted</span> skills I use most in current projects</div>
     </div>
   </section>
@@ -421,7 +420,7 @@
       <aside class="note reveal" style="--d:.1s">
         <h3>Quick note</h3>
         <p>I'm a CSE undergraduate seeking a <strong>Software Development Engineer internship</strong>. I'm most interested in roles involving <strong>full-stack development, AI/ML engineering</strong> or <strong>backend systems</strong>.</p>
-        <p>I work well in fast-paced environments and have shipped full-stack and AI-powered applications under tight timelines, from RAG pipelines to production prompt workflows.</p>
+        <p>I work well in fast-paced environments and have shipped full-stack and AI-powered applications under tight timelines, from RAG pipelines to full-stack web applications.</p>
         <div class="loc">Chennai, Tamil Nadu, India<small>Open to remote and hybrid</small></div>
       </aside>
     </div>
