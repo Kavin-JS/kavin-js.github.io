@@ -84,7 +84,7 @@ $("#qf").addEventListener("submit",e=>{e.preventDefault();ask(QS.value||QS.place
 $("#chs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;QS.value=b.textContent;ask(b.textContent)});
 addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()=="k"){e.preventDefault();$("#ask").scrollIntoView({behavior:"smooth"});setTimeout(()=>QS.focus({preventScroll:true}),500)}});
 /* ---------- Living hero: particle name ---------- */
-(async()=>{const cv=$("#pc");if(!cv||rm)return;const ctx=cv.getContext("2d");try{await document.fonts.load("800 100px Inter")}catch(e){}
+(async()=>{const cv=$("#pc");if(!cv||rm||window.__fluid)return;const ctx=cv.getContext("2d");try{await document.fonts.load("800 100px Inter")}catch(e){}
  await new Promise(r=>B.classList.contains("rdy")?r():document.addEventListener("rdy",r,{once:true}));
  let P0=[],P1=[],W,H,box,mx=-999,my=-999,vis=true,dark=false,ink="#0b0b0b",fr=0,sz=3;
  function build(){const dpr=Math.min(devicePixelRatio||1,2);W=hero.clientWidth;H=hero.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);

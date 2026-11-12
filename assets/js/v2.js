@@ -72,8 +72,8 @@ function retrieve(s){const q=tok(s);
  const best=(a,t)=>t[a.indexOf(Math.max(...a))];
  return{q,top,miss:!q.length||top[0].cov===0,bmTop:Math.max(...bm)>0?DOC[bm.indexOf(Math.max(...bm))].d[1]:"no match",deTop:DOC[de.indexOf(Math.max(...de))].d[1]}}
 const sl=ms=>new Promise(r=>setTimeout(r,rm?0:ms)),QS=$("#q"),PL=[...document.querySelectorAll("#pipe li")];let run=0;
-async function ask(s){s=s.trim();if(!s)return;const id=++run,A=$("#ans"),S=$("#src");A.textContent="";A.classList.remove("t");S.innerHTML="";PL.forEach(l=>{l.classList.remove("on");l.querySelector("span").textContent=""});
- const R=retrieve(s),dets=[R.q.length+" tokens · "+(R.q.slice(0,3).join(" · ")||"none"),"best: "+R.bmTop,"best: "+R.deTop,"RRF k=60 · "+N+" chunks","5 → "+(R.miss?0:Math.min(3,R.top.length))+" sources",R.miss?"no grounded answer":"grounded in "+Math.min(3,R.top.length)+" chunks"];
+async function ask(s){s=s.trim();if(!s)return;window.askMap&&askMap.reset();const id=++run,A=$("#ans"),S=$("#src");A.textContent="";A.classList.remove("t");S.innerHTML="";PL.forEach(l=>{l.classList.remove("on");l.querySelector("span").textContent=""});
+ const R=retrieve(s);window.askMap&&askMap.show(R,s);const dets=[R.q.length+" tokens · "+(R.q.slice(0,3).join(" · ")||"none"),"best: "+R.bmTop,"best: "+R.deTop,"RRF k=60 · "+N+" chunks","5 → "+(R.miss?0:Math.min(3,R.top.length))+" sources",R.miss?"no grounded answer":"grounded in "+Math.min(3,R.top.length)+" chunks"];
  for(let i=0;i<6;i++){await sl(380);if(id!==run)return;PL[i].classList.add("on");PL[i].querySelector("span").textContent=dets[i]}
  await sl(200);if(id!==run)return;
  const txt=R.miss?"That isn't in my portfolio yet. Try asking about projects, tech stack, internships or education, or email kavinjs.dev@gmail.com.":R.top.filter((p,n)=>n<3&&p.score>=R.top[0].score*.88).map(p=>DOC[p.i].d[2]).join(" ");
@@ -110,3 +110,6 @@ const tl=document.querySelector(".tl2"),rows=[...document.querySelectorAll(".tl2
 if(tl){const f=()=>{const r=tl.getBoundingClientRect(),y=innerHeight*.62;tl.style.setProperty("--p",Math.max(0,Math.min(1,(y-r.top)/r.height)));rows.forEach(w=>w.classList.toggle("on",w.getBoundingClientRect().top<y))};addEventListener("scroll",f,{passive:true});f()}
 if(!rm){let ps=scrollY,sk=0;(function s(){const d=scrollY-ps;ps=scrollY;sk+=(Math.max(-9,Math.min(9,d*.22))-sk)*.12;document.documentElement.style.setProperty("--sk",sk.toFixed(2)+"deg");requestAnimationFrame(s)})()}
 if(wk)wk.addEventListener("pointermove",e=>{const r=wk.getBoundingClientRect();wk.style.setProperty("--wx",e.clientX-r.left+"px");wk.style.setProperty("--wy",e.clientY-r.top+"px")},{passive:true});
+
+document.querySelectorAll(".ce li").forEach(l=>{const b=l.querySelector("b"),r=l.textContent.slice(b.textContent.length).replace(/^\s*·\s*/,"");l.innerHTML=`<b>${b.textContent}</b><span>${r}</span>`;
+ l.addEventListener("pointermove",e=>{const r=l.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;l.style.setProperty("--cx",x*100+"%");l.style.setProperty("--cy",y*100+"%");if(!rm)l.style.transform=`rotateX(${(.5-y)*10}deg) rotateY(${(x-.5)*12}deg) translateZ(6px)`});l.addEventListener("pointerleave",()=>l.style.transform="")});

@@ -1,13 +1,12 @@
-/* GPU Navier–Stokes fluid (WebGL2) driving a liquid-lens typographic hero.
+/* GPU Navier–Stokes fluid (WebGL2) engine, reusable. Fluid({host,cv,draw,key,bg,liquid,start}) -> bool
    Pipeline per frame: curl → vorticity confinement → divergence → pressure (Jacobi x20) → gradient subtract → advect velocity → advect dye → refract text. */
 (()=>{
-const hero=document.querySelector(".hero"),cv0=document.querySelector("#pc");
-if(!hero||!cv0||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
 const T=document.createElement("canvas").getContext("webgl2");
-if(!T||!(T.getExtension("EXT_color_buffer_float")||T.getExtension("EXT_color_buffer_half_float")))return;
-let cv=cv0,gl;
-try{init()}catch(e){console.warn("fluid fallback",e);const n=cv0.cloneNode();cv0.replaceWith(n);return}
-function init(){
+const OK=!RM&&T&&(T.getExtension("EXT_color_buffer_float")||T.getExtension("EXT_color_buffer_half_float"));
+function Fluid(o){if(!OK||!o.host||!o.cv)return false;let cv=o.cv;try{return init(cv,o)}catch(e){console.warn("fluid fallback",e);const n=o.cv.cloneNode();o.cv.replaceWith(n);return false}}
+function init(cv,o){
+const hero=o.host;let gl;
 gl=cv.getContext("webgl2",{alpha:false,antialias:false,depth:false,stencil:false});
 gl.getExtension("EXT_color_buffer_float");gl.getExtension("EXT_color_buffer_half_float");
 const VS=`#version 300 es
@@ -41,14 +40,9 @@ const fbo=(w,h,f=gl.LINEAR)=>{const t=gl.createTexture();gl.bindTexture(gl.TEXTU
 const dbl=(w,h)=>{const o={r:fbo(w,h),w:fbo(w,h),sw(){const x=o.r;o.r=o.w;o.w=x}};return o};
 const tex=(f,i,loc)=>{gl.activeTexture(gl.TEXTURE0+i);gl.bindTexture(gl.TEXTURE_2D,f.t);gl.uniform1i(loc,i)};
 const blit=f=>{gl.bindFramebuffer(gl.FRAMEBUFFER,f?f.b:null);gl.viewport(0,0,f?f.w:cv.width,f?f.h:cv.height);gl.drawArrays(gl.TRIANGLES,0,3)};
-let V,Pr,Dv,Cu,D,W,Hh,TT={t:gl.createTexture()},bg=[.91,.91,.89],dark=false;
+let V,Pr,Dv,Cu,D,W,Hh,TT={t:gl.createTexture()},bg=[.91,.91,.89],key=o.key();
 const tc=document.createElement("canvas"),tx=tc.getContext("2d");
-function drawText(){const cs=getComputedStyle(hero),ink=cs.getPropertyValue("--ink").trim()||"#0b0b0b",paper=cs.getPropertyValue("--paper").trim()||"#e9e9e4";dark=document.documentElement.dataset.th=="dark";bg=[1,3,5].map(i=>parseInt(paper.substr(i,2),16)/255);
- const dpr=cv.width/W;tc.width=cv.width;tc.height=cv.height;tx.setTransform(dpr,0,0,dpr,0,0);tx.clearRect(0,0,W,Hh);
- const pad=Math.max(20,W*.034),nm=hero.querySelector(".name");tx.font="800 100px Inter";tx.letterSpacing="-7px";
- const wk=tx.measureText("Kavin ").width,wj=tx.measureText("JS").width,fs=Math.min(100*(W-2*pad)/(wk+wj+20),Hh*.52),f=fs/100,pj=.1*fs,wK=wk*f,wJ=wj*f,sx=(W-(wK+wJ+2*pj))/2,cy=Math.min(Hh*.46,nm.offsetTop+nm.offsetHeight*.52);
- tx.font="800 "+fs+"px Inter";tx.letterSpacing=(-.07*fs)+"px";tx.textBaseline="middle";tx.fillStyle=ink;tx.fillText("Kavin",sx,cy);
- tx.fillStyle=dark?"#d4ff3a":"#0b0b0b";tx.beginPath();tx.roundRect(sx+wK,cy-fs*.43,wJ+2*pj,fs*.86,fs*.1);tx.fill();tx.fillStyle=dark?"#0b0b0b":"#d4ff3a";tx.fillText("JS",sx+wK+pj,cy);
+function drawText(){key=o.key();bg=o.bg();const dpr=cv.width/W;tc.width=cv.width;tc.height=cv.height;tx.setTransform(dpr,0,0,dpr,0,0);tx.clearRect(0,0,W,Hh);o.draw(tx,W,Hh);
  gl.bindTexture(gl.TEXTURE_2D,TT.t);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,tc);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,false);
  [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.LINEAR));[gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.CLAMP_TO_EDGE))}
 function setup(){const dpr=Math.min(devicePixelRatio||1,1.5);W=hero.clientWidth;Hh=hero.clientHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(Hh*dpr);
@@ -65,20 +59,36 @@ function step(dt){let u=use("curl");gl.uniform2fv(u.texelSize,V.r.tx);tex(V.r,0,
  u=use("grad");gl.uniform2fv(u.texelSize,V.r.tx);tex(Pr.r,0,u.uP);tex(V.r,1,u.uV);blit(V.w);V.sw();
  u=use("adv");gl.uniform2fv(u.texelSize,V.r.tx);gl.uniform1f(u.dt,dt);tex(V.r,0,u.uV);tex(V.r,1,u.uS);gl.uniform1f(u.diss,1.0);blit(V.w);V.sw();
  tex(V.r,0,u.uV);tex(D.r,1,u.uS);gl.uniform1f(u.diss,2.4);blit(D.w);D.sw()}
-function show(){const u=use("show");tex(TT,0,u.uTx);tex(V.r,1,u.uVel);tex(D.r,2,u.uDye);gl.uniform2fv(u.uTexel,D.r.tx);gl.uniform3f(u.uBg,bg[0],bg[1],bg[2]);gl.uniform3f(u.uLime,.83,1,.23);blit(null)}
+function show(){const u=use("show");tex(TT,0,u.uTx);tex(V.r,1,u.uVel);tex(D.r,2,u.uDye);gl.uniform2fv(u.uTexel,D.r.tx);gl.uniform3f(u.uBg,bg[0],bg[1],bg[2]);gl.uniform3f(u.uLime,o.liquid[0],o.liquid[1],o.liquid[2]);blit(null)}
 setup();
 let px=null,py=null,vis=true,last=performance.now(),fr=0,t0=-1,ip=null,ni=performance.now()+5200,idle=null;
-document.addEventListener("rdy",()=>{t0=performance.now()},{once:true});
-new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(hero);
+if(o.start=="rdy")document.addEventListener("rdy",()=>{t0=performance.now()},{once:true});
+new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&o.start=="vis"&&t0<0)t0=performance.now()+300}).observe(hero);
 addEventListener("pointermove",e=>{const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=1-(e.clientY-r.top)/r.height;if(x<0||x>1||y<0||y>1){px=null;return}if(px!==null)move(x,y,px,py);px=x;py=y;ni=performance.now()+6000},{passive:true});
 addEventListener("pointerdown",e=>{const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=1-(e.clientY-r.top)/r.height;if(y<0||y>1)return;for(let i=0;i<8;i++){const a=i/8*6.283;splat(x,y,Math.cos(a)*700,Math.sin(a)*700,.3)}});
 let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(setup,200)});
 (function loop(now){requestAnimationFrame(loop);if(!vis||document.hidden){last=now;return}
  const dt=Math.min((now-last)/1000,.0167);last=now;
- if(fr++%20==0&&(document.documentElement.dataset.th=="dark")!==dark)drawText();
+ if(fr++%20==0&&o.key()!==key)drawText();
  if(t0>0){const p=(now-t0)/2600;if(p<1){const x=.07+.86*p,y=.5+.17*Math.sin(p*11)*(1-p*.35);if(ip)move(x,y,ip[0],ip[1],.28);ip=[x,y]}else ip=null}
  if(t0>0&&now>ni&&!idle){idle={s:now,x:.15+Math.random()*.7,y:.3+Math.random()*.35,a:Math.random()*6.28,p:null}}
  if(idle){const p=(now-idle.s)/900;if(p<1){const x=idle.x+Math.cos(idle.a)*.22*p,y=idle.y+Math.sin(idle.a)*.16*p;if(idle.p)move(x,y,idle.p[0],idle.p[1],.22);idle.p=[x,y]}else{idle=null;ni=now+4500}}
  step(dt);show()})(performance.now());
-hero.classList.add("pc");window.__fluid=true}
+if(o.ok)o.ok();return true}
+
+window.Fluid=Fluid;
+/* ---- hero instance: name in typography, lime liquid on paper/ink ---- */
+const hero=document.querySelector(".hero"),hv=()=>getComputedStyle(hero);
+const parse=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255);
+if(hero&&Fluid({host:hero,cv:document.querySelector("#pc"),start:"rdy",liquid:[.83,1,.23],
+ key:()=>document.documentElement.dataset.th||"l",bg:()=>parse(hv().getPropertyValue("--paper").trim()||"#e9e9e4"),
+ draw(tx,W,H){const cs=hv(),ink=cs.getPropertyValue("--ink").trim()||"#0b0b0b",dark=document.documentElement.dataset.th=="dark",pad=Math.max(20,W*.034),nm=hero.querySelector(".name");tx.font="800 100px Inter";tx.letterSpacing="-7px";
+  const wk=tx.measureText("Kavin ").width,wj=tx.measureText("JS").width,fs=Math.min(100*(W-2*pad)/(wk+wj+20),H*.52),f=fs/100,pj=.1*fs,wK=wk*f,wJ=wj*f,sx=(W-(wK+wJ+2*pj))/2,cy=Math.min(H*.46,nm.offsetTop+nm.offsetHeight*.52);
+  tx.font="800 "+fs+"px Inter";tx.letterSpacing=(-.07*fs)+"px";tx.textBaseline="middle";tx.fillStyle=ink;tx.fillText("Kavin",sx,cy);
+  tx.fillStyle=dark?"#d4ff3a":"#0b0b0b";tx.beginPath();tx.roundRect(sx+wK,cy-fs*.43,wJ+2*pj,fs*.86,fs*.1);tx.fill();tx.fillStyle=dark?"#0b0b0b":"#d4ff3a";tx.fillText("JS",sx+wK+pj,cy)},
+ ok(){hero.classList.add("pc");window.__fluid=true}}));
+/* ---- contact instance: black liquid on lime ---- */
+const ch=document.querySelector(".cfx");
+if(ch)Fluid({host:ch,cv:ch.querySelector("canvas"),start:"vis",liquid:[.035,.035,.035],key:()=>"c",bg:()=>[.831,1,.227],
+ draw(tx,W,H){const fs=W*.265;tx.font="800 "+fs+"px Inter";tx.letterSpacing=(-.07*fs)+"px";tx.textBaseline="middle";tx.fillStyle="#0b0b0b";tx.fillText("Let's",-fs*.03,H*.27);tx.fillText("talk.",-fs*.03,H*.74)},ok(){ch.classList.add("fx")}});
 })();

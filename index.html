@@ -4,9 +4,9 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kavin JS · Full-stack and AI Developer</title>
 <meta name="description" content="Kavin JS: full-stack and AI developer, B.Tech CSE at Amrita Vishwa Vidyapeetham. FastAPI, React and RAG systems. Open to SDE internships.">
-<meta name="theme-color" content="#e9e9e4">
-<meta property="og:title" content="Kavin JS · Full-stack and AI Developer"><meta property="og:type" content="website"><meta property="og:url" content="https://kavinjs.me/"><meta property="og:image" content="assets/img/og-preview.jpg">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="Kavin JS · Full-stack and AI Developer"><meta property="og:type" content="website"><meta property="og:url" content="https://kavinjs.me/"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://kavinjs.me/assets/img/og-preview.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon.ico" sizes="any"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/v2.css">
@@ -28,6 +28,7 @@
 <form id="qf" autocomplete="off"><input id="q" type="text" placeholder="What has he built with RAG?" aria-label="Ask a question about Kavin"><button class="btn fill" type="submit">Ask ↵</button></form>
 <div class="chs" id="chs"><button type="button">What has he built with RAG?</button><button type="button">Is he open to internships?</button><button type="button">What's his tech stack?</button><button type="button">Tell me about AMCFOSS</button><button type="button">What's his CGPA?</button></div>
 <ol class="pipe" id="pipe" aria-label="Retrieval pipeline"><li><b>Query</b><span></span></li><li><b>Sparse · BM25</b><span></span></li><li><b>Dense · char-grams</b><span></span></li><li><b>Fusion · RRF</b><span></span></li><li><b>Rerank</b><span></span></li><li><b>Answer</b><span></span></li></ol>
+<canvas id="map" aria-label="Map of the 17 knowledge chunks; your question lands near its best matches"></canvas><p class="m cap">Embedding space · 17 chunks · MDS of char-gram vectors · lime = projects · hover a dot</p>
 <p id="ans" aria-live="polite"></p><div class="src" id="src"></div>
 <p class="m" style="margin-top:34px;color:var(--mut)">A tiny hybrid retriever running in your browser, the same idea as RagForge. Press ⌘/Ctrl + K from anywhere.</p></div></section>
 
@@ -96,5 +97,6 @@
 <script src="assets/js/photo.js" defer></script>
 <script src="assets/js/skills.js" defer></script>
 <script src="assets/js/v2.js" defer></script>
+<script src="assets/js/ask-map.js" defer></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ W.innerHTML=D.map((p,i)=>{const n=String(i+1).padStart(2,"0");return`<article cl
 W.addEventListener("click",e=>{const b=e.target.closest(".ph");if(!b)return;const r=b.parentElement,o=!r.classList.contains("o");r.classList.toggle("o",o);b.setAttribute("aria-expanded",o)});
 const fine=matchMedia("(hover:hover) and (pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches;
 if(fine){let x=0,y=0,cx=0,cy=0,on=0;
- W.addEventListener("pointerover",e=>{const b=e.target.closest(".ph");if(!b)return;const p=D[b.dataset.i];fp.innerHTML=`<b>${String(+b.dataset.i+1).padStart(2,"0")}</b><span class="m">${p[1]}</span>`;fp.classList.add("on");on=1});
+ W.addEventListener("pointerover",e=>{const b=e.target.closest(".ph");if(!b)return;x=e.clientX+28;y=e.clientY-120;if(!on){cx=x;cy=y}const p=D[b.dataset.i];fp.innerHTML=`<b>${String(+b.dataset.i+1).padStart(2,"0")}</b><span class="m">${p[1]}</span>`;fp.classList.add("on");on=1});
  W.addEventListener("pointerleave",()=>{fp.classList.remove("on");on=0});
  W.addEventListener("pointermove",e=>{x=e.clientX+28;y=e.clientY-120});
  (function t(){cx+=(x-cx)*.14;cy+=(y-cy)*.14;fp.style.transform=`translate3d(${cx}px,${cy}px,0) scale(${on?1:.8}) rotate(${(x-cx)*.05-4}deg)`;requestAnimationFrame(t)})()}
@@ -104,3 +104,9 @@ addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()=="
   ctx.clearRect(0,0,W,H);ctx.fillStyle=dark?"#d4ff3a":"#0b0b0b";ctx.beginPath();ctx.roundRect(box[0],box[1],box[2],box[3],box[4]);ctx.fill();
   ctx.fillStyle=ink;for(const p of P0){step2(p);ctx.fillRect(p.x,p.y,sz,sz)}
   ctx.fillStyle=dark?"#0b0b0b":"#d4ff3a";for(const p of P1){step2(p);ctx.fillRect(p.x,p.y,sz,sz)}})()})();
+
+/* timeline progress, scroll-velocity skew, work spotlight */
+const tl=document.querySelector(".tl2"),rows=[...document.querySelectorAll(".tl2 .rw")],wk=document.querySelector(".work");
+if(tl){const f=()=>{const r=tl.getBoundingClientRect(),y=innerHeight*.62;tl.style.setProperty("--p",Math.max(0,Math.min(1,(y-r.top)/r.height)));rows.forEach(w=>w.classList.toggle("on",w.getBoundingClientRect().top<y))};addEventListener("scroll",f,{passive:true});f()}
+if(!rm){let ps=scrollY,sk=0;(function s(){const d=scrollY-ps;ps=scrollY;sk+=(Math.max(-9,Math.min(9,d*.22))-sk)*.12;document.documentElement.style.setProperty("--sk",sk.toFixed(2)+"deg");requestAnimationFrame(s)})()}
+if(wk)wk.addEventListener("pointermove",e=>{const r=wk.getBoundingClientRect();wk.style.setProperty("--wx",e.clientX-r.left+"px");wk.style.setProperty("--wy",e.clientY-r.top+"px")},{passive:true});
