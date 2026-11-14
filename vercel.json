@@ -1,0 +1,13 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/shonowear",
+      "destination": "https://shono-wear-peach.vercel.app"
+    },
+    {
+      "source": "/shonowear/:path*",
+      "destination": "https://shono-wear-peach.vercel.app/:path*"
+    }
+  ]
+}
