@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voice Wake-Word · Case study · Kavin JS</title>
+<meta name="description" content="Voice Wake-Word System: offline, real-time wake-word detection with a live dashboard, confidence tracking and a virtual LED.">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="Voice Wake-Word · Kavin JS"><meta property="og:description" content="Voice Wake-Word System: offline, real-time wake-word detection with a live dashboard, confidence tracking and a virtual LED."><meta property="og:type" content="article"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/v2.css"><link rel="stylesheet" href="/assets/css/case.css">
+</head><body>
+<div id="bar"></div><div id="cu" aria-hidden="true"></div>
+<nav aria-label="Primary"><a class="m" href="/">Kavin JS ©2026</a><ul class="m"><li><a href="/#work">Work</a></li><li><a href="/#ask">Ask</a></li><li><a href="/#contact">Contact</a></li></ul><span class="r m"><a href="/">← Home</a><button id="th" type="button" aria-label="Toggle light and dark theme">◐</button></span></nav>
+<main>
+<header class="ch"><p class="m"><span>Case study 04 / 08</span><span>Shipped</span></p>
+<div class="cfx" data-t="Wake-Word"><canvas aria-hidden="true"></canvas><h1 class="sr">Voice Wake-Word</h1></div>
+<dl class="meta"><div><dt>Role</dt><dd>Design and implementation</dd></div><div><dt>Stack</dt><dd>Python · Vosk · SoundDevice</dd></div><div><dt>Status</dt><dd>Shipped</dd></div><div><dt>Source</dt><dd><a href="https://github.com/Kavin-JS/Voice-Wake-Word-System" target="_blank" rel="noopener">GitHub ↗</a></dd></div></dl></header>
+<section class="cs"><span class="m">(01) Overview</span><div class="rv"><p class="stmt">An offline, real-time wake-word system built on Vosk and SoundDevice, with a live dashboard for confidence tracking and detection statistics, and a virtual LED that lights when the wake word is heard.</p>
+<div class="dec"><div><h3>Offline recognition</h3><p>Vosk runs locally: no network, no API keys, and audio never leaves the machine.</p></div><div><h3>Real-time streaming</h3><p>SoundDevice streams short audio blocks continuously, so detection keeps up with speech.</p></div><div><h3>Confidence, not yes/no</h3><p>Each detection carries a confidence value, so the threshold can be tuned instead of guessed.</p></div><div><h3>Visible state</h3><p>A live dashboard and a virtual LED make the system's behaviour observable while it runs.</p></div></div></div></section>
+<section class="lab" id="lab"><span class="tag">Interactive · simulated recognizer</span><h2>Detection lab</h2>
+<p class="sub">The real system recognizes speech offline with Vosk. This lab models what happens next: a noisy transcript is compared with the wake word, turned into a confidence score, and a threshold decides. Raise the noise, move the threshold, and watch missed detections trade off against false accepts.</p>
+<div class="pn"><div class="bx"><h3>Say it</h3><div class="ctl" style="grid-template-columns:1fr 1fr;margin:0 0 16px"><div><label for="ww">Wake word</label><input class="fld" id="ww" value="hey kavin"></div><div><label for="ut">You say</label><input class="fld" id="ut" value="hey kavin"></div></div>
+<div class="ctl" style="grid-template-columns:1fr 1fr;margin:0 0 18px"><div><label for="nz">Recognizer noise · <span id="nzv"></span></label><input id="nz" type="range" min="0" max="60" value="12"></div><div><label for="thr">Confidence threshold · <span id="thv"></span></label><input id="thr" type="range" min="50" max="99" value="80"></div></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="say" type="button" style="background:var(--lime);color:#0b0b0b">Say it</button><button class="btn ghost" id="sp" type="button" style="color:#e9e9e4">Say it 12 times</button></div>
+<div style="display:flex;gap:24px;align-items:center;margin-top:26px"><div class="led" id="led"></div><div style="flex:1;min-width:0"><p class="m" style="margin:0;color:var(--mut)">Recognizer heard</p><p id="hd" style="margin:4px 0 8px;font:700 1.4rem var(--sans);letter-spacing:-.03em;word-break:break-word"></p><div class="cbar"><i id="cb"></i><b id="tm"></b></div><p class="m" style="margin:0"><span id="vd"></span> · confidence <span id="cf" style="color:var(--lime)"></span></p></div></div>
+<div class="kpi" style="margin-top:22px"><div><strong id="dc">0</strong><span>Detections</span></div><div><strong id="mc">0</strong><span>Ignored</span></div></div><div class="spark" id="hs"></div></div>
+<div class="bx"><h3>Threshold trade-off · 200 wake words vs 200 near-misses</h3><div class="chart" id="roc"></div><div class="kpi"><div><strong id="tpr">0</strong><span>Wake word accepted</span></div><div><strong id="fpr" style="color:#ff7a59">0</strong><span>False accepts</span></div></div></div></div></section>
+<section class="cs"><span class="m">(03) Architecture</span><div class="rv"><h2 class="big">How it fits together</h2><div class="vz2 a2" data-p="3"></div></div></section>
+</main>
+<a class="nx" href="/work/recommender.html"><span class="m">Next case study →</span><b>Real-Time Recommender</b></a>
+<script src="/assets/js/fluid.js" defer></script><script src="/assets/js/arch-data.js" defer></script><script src="/assets/js/case.js" defer></script><script src="/assets/js/arch2d.js" defer></script><script src="/assets/js/lab-voice.js" defer></script>
+</body></html>

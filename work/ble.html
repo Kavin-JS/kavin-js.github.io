@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BLE Classroom Presence · Case study · Kavin JS</title>
+<meta name="description" content="BLE Classroom Presence: multi-node classroom presence verification with ESP32 nodes, RSSI, Wi-Fi and rule-based checks.">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="BLE Classroom Presence · Kavin JS"><meta property="og:description" content="BLE Classroom Presence: multi-node classroom presence verification with ESP32 nodes, RSSI, Wi-Fi and rule-based checks."><meta property="og:type" content="article"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/v2.css"><link rel="stylesheet" href="/assets/css/case.css">
+</head><body>
+<div id="bar"></div><div id="cu" aria-hidden="true"></div>
+<nav aria-label="Primary"><a class="m" href="/">Kavin JS ©2026</a><ul class="m"><li><a href="/#work">Work</a></li><li><a href="/#ask">Ask</a></li><li><a href="/#contact">Contact</a></li></ul><span class="r m"><a href="/">← Home</a><button id="th" type="button" aria-label="Toggle light and dark theme">◐</button></span></nav>
+<main>
+<header class="ch"><p class="m"><span>Case study 07 / 08</span><span>Capstone</span></p>
+<div class="cfx" data-t="BLE Presence"><canvas aria-hidden="true"></canvas><h1 class="sr">BLE Classroom Presence</h1></div>
+<dl class="meta"><div><dt>Role</dt><dd>Design and implementation</dd></div><div><dt>Stack</dt><dd>ESP32 · BLE · Embedded systems</dd></div><div><dt>Status</dt><dd>Capstone</dd></div><div><dt>Source</dt><dd><a href="https://github.com/Kavin-JS/BLE-Classroom-Presence" target="_blank" rel="noopener">GitHub ↗</a></dd></div></dl></header>
+<section class="cs"><span class="m">(01) Overview</span><div class="rv"><p class="stmt">My capstone: multi-node classroom presence verification using ESP32 nodes. They read BLE signal strength (RSSI), report over Wi-Fi, and a set of rule-based checks decides whether a device is really in the room.</p>
+<div class="dec"><div><h3>Multiple vantage points</h3><p>Several ESP32 nodes hear the same device, so no single noisy reading decides the result.</p></div><div><h3>RSSI as evidence</h3><p>Signal strength is noisy, so it is treated as evidence to combine, not as a precise distance.</p></div><div><h3>Wi-Fi reporting</h3><p>Nodes send their readings to a collector over Wi-Fi.</p></div><div><h3>Rule-based checks</h3><p>Explicit rules turn smoothed readings into a present / not-present verdict you can inspect and tune.</p></div></div></div></section>
+<section class="lab" id="lab"><span class="tag">Interactive · signal model</span><h2>Signal lab</h2>
+<p class="sub">Three ESP32 nodes measure the signal strength (RSSI) of a student's BLE device. Drag the device around the room and out of the door. The lab adds realistic noise, smooths it, estimates the position by trilateration and applies the rule checks. Turn the noise up to see why rules and smoothing matter.</p>
+<div class="pn" style="grid-template-columns:1.5fr 1fr"><div><canvas id="rm" aria-label="Classroom map: drag the BLE device"></canvas><p class="m" style="margin:10px 0 0;color:var(--mut)">Drag the device · ✕ = estimated position · rings = distance estimated by each node</p></div>
+<div class="bx"><h3>Environment</h3><div class="ctl" style="grid-template-columns:1fr;gap:18px;margin:0 0 14px"><div><label for="sg">Signal noise σ · <span id="sgv">3 dB</span></label><input id="sg" type="range" min="0" max="8" step="1" value="3"></div><div><label for="ne">Path-loss exponent · <span id="nev">2.4</span></label><input id="ne" type="range" min="2" max="3.5" step=".1" value="2.4"></div></div>
+<h3>Node readings (median of last 10)</h3><div class="hist" id="rs3" style="margin-bottom:16px"></div><h3>Rule checks</h3><div id="rl3"></div><div class="alert ok" id="vd3" style="font-weight:700;text-align:center"></div><p class="m" style="margin:14px 0 0;color:var(--mut)">Position error: <span id="er" style="color:var(--lime)"></span></p></div></div></section>
+<section class="cs"><span class="m">(03) Architecture</span><div class="rv"><h2 class="big">How it fits together</h2><div class="vz2 a2" data-p="6"></div></div></section>
+</main>
+<a class="nx" href="/work/dsa.html"><span class="m">Next case study →</span><b>DSA Practice</b></a>
+<script src="/assets/js/fluid.js" defer></script><script src="/assets/js/arch-data.js" defer></script><script src="/assets/js/case.js" defer></script><script src="/assets/js/arch2d.js" defer></script><script src="/assets/js/lab-ble.js" defer></script>
+</body></html>

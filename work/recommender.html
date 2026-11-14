@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Real-Time Recommender · Case study · Kavin JS</title>
+<meta name="description" content="Real-Time Recommendation System: a deep learning recommender with heuristic ranking and an inference pipeline, in Python.">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="Real-Time Recommender · Kavin JS"><meta property="og:description" content="Real-Time Recommendation System: a deep learning recommender with heuristic ranking and an inference pipeline, in Python."><meta property="og:type" content="article"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/v2.css"><link rel="stylesheet" href="/assets/css/case.css">
+</head><body>
+<div id="bar"></div><div id="cu" aria-hidden="true"></div>
+<nav aria-label="Primary"><a class="m" href="/">Kavin JS ©2026</a><ul class="m"><li><a href="/#work">Work</a></li><li><a href="/#ask">Ask</a></li><li><a href="/#contact">Contact</a></li></ul><span class="r m"><a href="/">← Home</a><button id="th" type="button" aria-label="Toggle light and dark theme">◐</button></span></nav>
+<main>
+<header class="ch"><p class="m"><span>Case study 05 / 08</span><span>Final-year project</span></p>
+<div class="cfx" data-t="Recommender"><canvas aria-hidden="true"></canvas><h1 class="sr">Real-Time Recommender</h1></div>
+<dl class="meta"><div><dt>Role</dt><dd>Design and implementation</dd></div><div><dt>Stack</dt><dd>Python · Deep learning · Recommendation systems</dd></div><div><dt>Status</dt><dd>Final-year project</dd></div><div><dt>Source</dt><dd><a href="https://github.com/Kavin-JS/Real-Time-Recommendation-System" target="_blank" rel="noopener">GitHub ↗</a></dd></div></dl></header>
+<section class="cs"><span class="m">(01) Overview</span><div class="rv"><p class="stmt">My final-year project: a deep learning-based real-time recommender. A learned model scores candidates, heuristic ranking refines the final list, and an inference pipeline serves it per request.</p>
+<div class="dec"><div><h3>Learned preferences</h3><p>A neural model learns user and item representations from interaction data instead of hand-written rules.</p></div><div><h3>Heuristic ranking</h3><p>Rules re-order the model's scores for the final list: diversity, popularity and business logic.</p></div><div><h3>Inference pipeline</h3><p>A serving path built for real-time requests, separate from training.</p></div><div><h3>Both worlds</h3><p>Learned scores plus transparent heuristics: accurate, and still explainable.</p></div></div></div></section>
+<section class="lab" id="lab"><span class="tag">Interactive · trains in your browser</span><h2>Training lab</h2>
+<p class="sub">A small matrix-factorization model, standing in for the deep model, learns the tastes of 24 synthetic users over 32 items in four genres. Watch the error fall as it trains, see items of the same genre cluster in the learned space, then get recommendations and re-rank them with heuristics.</p>
+<div class="pn"><div class="bx"><h3>Train</h3><div class="ctl" style="grid-template-columns:1fr 1fr;margin:0 0 14px"><div><label for="kk">Latent factors · <span id="kv">4</span></label><input id="kk" type="range" min="2" max="8" value="4"></div><div style="display:flex;gap:8px;align-items:end"><button class="btn" id="go" type="button" style="background:var(--lime);color:#0b0b0b;min-height:40px;padding:0 18px">Train</button><button class="btn ghost" id="rs" type="button" style="color:#e9e9e4;min-height:40px;padding:0 18px">Reset</button></div></div>
+<div class="chart" id="loss"></div><div class="kpi"><div><strong id="ep">0</strong><span>Epochs</span></div><div><strong id="tr">–</strong><span>Train RMSE</span></div><div><strong id="te">–</strong><span>Test RMSE</span></div></div></div>
+<div class="bx"><h3>Recommend</h3><div class="ctl" style="grid-template-columns:1fr;margin:0 0 10px"><div><select class="sl" id="us"></select></div><div style="display:flex;gap:22px;flex-wrap:wrap"><label style="display:flex;gap:8px;align-items:center;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font:500 .86rem var(--sans);color:var(--ink)"><input type="checkbox" id="dv" style="accent-color:#d4ff3a">Diversity re-rank (heuristic)</label><label style="display:flex;gap:8px;align-items:center;cursor:pointer;margin:0;text-transform:none;letter-spacing:0;font:500 .86rem var(--sans);color:var(--ink)"><input type="checkbox" id="pp" style="accent-color:#d4ff3a">Penalize popularity</label></div></div>
+<p class="m" id="fv" style="color:var(--lime);margin:0 0 4px"></p><div id="rc"></div><h3 style="margin:22px 0 10px">Learned item space · colour = genre</h3><div class="chart" id="map2"></div></div></div></section>
+<section class="cs"><span class="m">(03) Architecture</span><div class="rv"><h2 class="big">How it fits together</h2><div class="vz2 a2" data-p="4"></div></div></section>
+</main>
+<a class="nx" href="/work/transportsense.html"><span class="m">Next case study →</span><b>TransportSense</b></a>
+<script src="/assets/js/fluid.js" defer></script><script src="/assets/js/arch-data.js" defer></script><script src="/assets/js/case.js" defer></script><script src="/assets/js/arch2d.js" defer></script><script src="/assets/js/lab-rec.js" defer></script>
+</body></html>

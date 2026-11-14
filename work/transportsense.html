@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TransportSense · Case study · Kavin JS</title>
+<meta name="description" content="TransportSense: AI-powered transport emission analytics in pure Haskell with type-safe data pipelines.">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="TransportSense · Kavin JS"><meta property="og:description" content="TransportSense: AI-powered transport emission analytics in pure Haskell with type-safe data pipelines."><meta property="og:type" content="article"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/v2.css"><link rel="stylesheet" href="/assets/css/case.css">
+</head><body>
+<div id="bar"></div><div id="cu" aria-hidden="true"></div>
+<nav aria-label="Primary"><a class="m" href="/">Kavin JS ©2026</a><ul class="m"><li><a href="/#work">Work</a></li><li><a href="/#ask">Ask</a></li><li><a href="/#contact">Contact</a></li></ul><span class="r m"><a href="/">← Home</a><button id="th" type="button" aria-label="Toggle light and dark theme">◐</button></span></nav>
+<main>
+<header class="ch"><p class="m"><span>Case study 06 / 08</span><span>Shipped</span></p>
+<div class="cfx" data-t="TransportSense"><canvas aria-hidden="true"></canvas><h1 class="sr">TransportSense</h1></div>
+<dl class="meta"><div><dt>Role</dt><dd>Design and implementation</dd></div><div><dt>Stack</dt><dd>Haskell · Functional programming · Data analytics</dd></div><div><dt>Status</dt><dd>Shipped</dd></div><div><dt>Source</dt><dd><a href="https://github.com/Kavin-JS/TransportSense" target="_blank" rel="noopener">GitHub ↗</a></dd></div></dl></header>
+<section class="cs"><span class="m">(01) Overview</span><div class="rv"><p class="stmt">Transport emission analytics written in pure Haskell: a purely functional architecture with type-safe data pipelines, where the type system keeps invalid data out of the calculations.</p>
+<div class="dec"><div><h3>Pure functions</h3><p>Every transformation is side-effect free, so it is easy to test and reason about.</p></div><div><h3>Type-safe pipelines</h3><p>Malformed data is rejected where it enters, as a typed error, not discovered later as a wrong number.</p></div><div><h3>Functional architecture</h3><p>Data flows through composed functions: parse, transform, analyse, report.</p></div><div><h3>Emission analytics</h3><p>The pipeline turns cleaned trip data into emissions you can compare and act on.</p></div></div></div></section>
+<section class="lab" id="lab"><span class="tag">Interactive · typed pipeline</span><h2>Typed pipeline lab</h2>
+<p class="sub">TransportSense is written in pure Haskell: raw input is parsed into types before anything is computed, so bad data becomes a typed error instead of a wrong number. This lab mirrors that idea. Add trips, try the bad input, and watch invalid rows get rejected as <i>Left</i> while valid ones flow on as <i>Right</i>. Emission factors are illustrative.</p>
+<div class="pn"><div class="bx"><h3>Raw trips · untrusted input</h3><div class="row3"><select class="sl" id="md"><option>car</option><option>bus</option><option>rail</option><option>flight</option><option>bike</option><option>walk</option><option>teleport</option></select><input class="fld" id="km" type="text" value="10" aria-label="Distance in km"><input class="fld" id="px" type="text" value="1" aria-label="Passengers"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn" id="add" type="button" style="background:var(--lime);color:#0b0b0b;min-height:40px;padding:0 18px">Add trip</button><button class="btn ghost" id="bad" type="button" style="color:#e9e9e4;min-height:40px;padding:0 18px">Add bad input</button><button class="btn ghost" id="clr" type="button" style="color:#e9e9e4;min-height:40px;padding:0 18px">Clear</button></div><div id="tt"></div></div>
+<div class="bx"><h3>Pure pipeline output</h3><pre class="sql" style="margin-bottom:16px">parseTrip :: RawTrip -> <b>Either</b> TripError Trip
+emissions :: Trip -> Kg            <span style="color:#9a9d95">-- pure</span>
+report    :: [Trip] -> Report      <span style="color:#9a9d95">-- pure fold</span></pre><div class="kpi" style="margin:0 0 14px"><div><strong id="tot">0</strong><span>kg CO₂e total</span></div><div><strong id="ntr">0</strong><span>Valid / total</span></div></div><div class="hist" id="bars"></div>
+<label style="display:flex;gap:10px;align-items:center;cursor:pointer;margin:20px 0 6px;text-transform:none;letter-spacing:0;font:500 .9rem var(--sans);color:var(--ink)"><input type="checkbox" id="sw" style="accent-color:#d4ff3a;width:18px;height:18px">What if every car trip were a rail trip? Saves <b id="sav" style="color:var(--lime)">–</b></label><pre class="sql" id="hs2" style="margin-top:14px"></pre></div></div></section>
+<section class="cs"><span class="m">(03) Architecture</span><div class="rv"><h2 class="big">How it fits together</h2><div class="vz2 a2" data-p="5"></div></div></section>
+</main>
+<a class="nx" href="/work/ble.html"><span class="m">Next case study →</span><b>BLE Classroom Presence</b></a>
+<script src="/assets/js/fluid.js" defer></script><script src="/assets/js/arch-data.js" defer></script><script src="/assets/js/case.js" defer></script><script src="/assets/js/arch2d.js" defer></script><script src="/assets/js/lab-ts.js" defer></script>
+</body></html>
