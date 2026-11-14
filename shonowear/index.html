@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shonowear — taking you to the shop</title>
+  <meta name="description" content="Shonowear: outfits that actually fit your budget. Taking you to the shop.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://shop.kavinjs.me">
+  <meta http-equiv="refresh" content="6; url=https://shop.kavinjs.me">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@1&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f6f2; --card: #ffffff; --text: #15151f; --muted: #5d5d73;
+      --border: #e4e2da; --red: #e11d48; --red-text: #c4143a; --glow: rgba(225, 29, 72, .16);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d0d14; --card: #151521; --text: #f4f3ff; --muted: #a09fba;
+        --border: #272738; --red: #ff3b5c; --red-text: #ff6a84; --glow: rgba(255, 59, 92, .22);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text);
+      display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 20px; overflow: hidden;
+    }
+    body::before, body::after {
+      content: ''; position: fixed; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, var(--glow), transparent 68%); pointer-events: none; z-index: 0;
+    }
+    body::before { top: -180px; left: -140px; }
+    body::after { bottom: -200px; right: -160px; }
+    main {
+      position: relative; z-index: 1; width: 100%; max-width: 460px; text-align: center;
+      background: var(--card); border: 1px solid var(--border); border-radius: 24px;
+      padding: 40px clamp(20px, 6vw, 32px) 34px; box-shadow: 0 24px 60px -28px rgba(0, 0, 0, .35);
+      animation: rise .7s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    .mark { border-radius: 18px; box-shadow: 0 0 0 1px var(--border); width: 72px; height: 72px; margin: 0 auto 18px; display: block; animation: float 3.6s ease-in-out infinite; }
+    .brand { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(32px, 9.5vw, 52px); letter-spacing: .05em; line-height: 1; white-space: nowrap; }
+    .brand span { color: var(--red); }
+    .tag { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 20px; color: var(--muted); margin-top: 8px; }
+    .status { margin: 28px 0 10px; font-size: 14px; color: var(--muted); min-height: 21px; }
+    .bar { height: 4px; border-radius: 4px; background: var(--border); overflow: hidden; }
+    .bar i { display: block; height: 100%; width: 0; background: var(--red); border-radius: 4px; animation: fill 5.5s linear forwards; }
+    .btn {
+      display: inline-block; margin-top: 26px; padding: 14px 30px; border-radius: 999px;
+      background: var(--red); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 10px 24px -10px var(--red);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -10px var(--red); }
+    .btn:focus-visible, .back:focus-visible { outline: 3px solid var(--red-text); outline-offset: 3px; }
+    .back { display: block; margin-top: 18px; font-size: 13px; color: var(--red-text); text-decoration: underline; text-underline-offset: 3px; }
+    .url { margin-top: 22px; font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+    noscript p { margin-top: 14px; font-size: 13px; color: var(--muted); }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes fill { to { width: 100%; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="mark" viewBox="0 0 64 64" role="img" aria-label="Shonowear logo">
+      <rect width="64" height="64" rx="16" fill="#15151f"/>
+      <path d="M42 20c-2-4-6-6-11-6-6 0-10 3-10 8 0 11 22 6 22 18 0 5-5 8-11 8-5 0-9-2-11-6" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 44c2 4 6 6 11 6" fill="none" stroke="#e11d48" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    <div class="brand">SHONO<span>WEAR</span></div>
+    <p class="tag">Outfits that fit your budget.</p>
+    <p class="status" id="status" role="status" aria-live="polite">Taking you to the shop…</p>
+    <div class="bar" aria-hidden="true"><i></i></div>
+    <a class="btn" id="go" href="https://shop.kavinjs.me">Open the shop now</a>
+    <a class="back" href="https://kavinjs.me">← Back to Kavin JS</a>
+    <p class="url">shop.kavinjs.me</p>
+    <noscript><p>JavaScript is off, so this page will send you on after a few seconds, or use the button above.</p></noscript>
+  </main>
+  <script>
+    (function () {
+      var target = 'https://shop.kavinjs.me';
+      var q = location.search + location.hash;           // keep ?ref=… or #… from shared links
+      var dest = target + q;
+      document.getElementById('go').href = dest;
+      var left = 5, s = document.getElementById('status');
+      var t = setInterval(function () {
+        left--;
+        if (left <= 0) { clearInterval(t); s.textContent = 'Opening the shop…'; location.replace(dest); }
+        else s.textContent = 'Taking you to the shop in ' + left + '…';
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
