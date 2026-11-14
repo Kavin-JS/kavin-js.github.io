@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIKA · Case study · Kavin JS</title>
+<meta name="description" content="AIKA: a production-oriented, multi-tenant RAG knowledge platform with strict tenant isolation and Argon2id authentication.">
+<meta name="theme-color" content="#d4ff3a">
+<meta property="og:title" content="AIKA · Kavin JS"><meta property="og:description" content="AIKA: a production-oriented, multi-tenant RAG knowledge platform with strict tenant isolation and Argon2id authentication."><meta property="og:type" content="article"><meta property="og:image" content="https://kavinjs.me/assets/img/og-preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<script>try{if(localStorage.th=="dark")document.documentElement.dataset.th="dark"}catch(e){}</script>
+<link rel="stylesheet" href="/assets/css/v2.css"><link rel="stylesheet" href="/assets/css/case.css">
+</head><body>
+<div id="bar"></div><div id="cu" aria-hidden="true"></div>
+<nav aria-label="Primary"><a class="m" href="/">Kavin JS ©2026</a><ul class="m"><li><a href="/#work">Work</a></li><li><a href="/#ask">Ask</a></li><li><a href="/#contact">Contact</a></li></ul><span class="r m"><a href="/">← Home</a><button id="th" type="button" aria-label="Toggle light and dark theme">◐</button></span></nav>
+<main>
+<header class="ch"><p class="m"><span>Case study 02 / 03</span><span>In development · v0.2</span></p>
+<div class="cfx" data-t="AIKA"><canvas aria-hidden="true"></canvas><h1 class="sr">AIKA</h1></div>
+<dl class="meta"><div><dt>Role</dt><dd>Design and implementation</dd></div><div><dt>Stack</dt><dd>Next.js · FastAPI · pgvector · Redis · Docker</dd></div><div><dt>Status</dt><dd>In development · v0.2</dd></div><div><dt>Source</dt><dd><a href="https://github.com/Kavin-JS/AIKA" target="_blank" rel="noopener">GitHub ↗</a></dd></div></dl></header>
+<section class="cs"><span class="m">(01) Overview</span><div class="rv"><p class="stmt">AIKA is a production-oriented, multi-tenant RAG knowledge platform, built with real security and architectural hygiene rather than as a prototype. It is complete through Identity and Tenancy (v0.2) and validated in Docker at every milestone.</p>
+<div class="dec"><div><h3>Modular monolith</h3><p>One deployable unit with hard module boundaries: the simplicity of a monolith, with seams that can be split later if needed.</p></div><div><h3>Strict tenant isolation</h3><p>Every customer's data stays theirs. The lab below shows why that has to hold in the data layer.</p></div><div><h3>Argon2id authentication</h3><p>Passwords are hashed with Argon2id, a memory-hard function designed to make large-scale cracking expensive.</p></div><div><h3>Instruction-aware embeddings</h3><p>Queries and documents are embedded with different instructions, which improves how well they align in vector space.</p></div></div></div></section>
+<section class="lab" id="lab"><span class="tag">Interactive · illustrative demo</span><h2>Tenant isolation lab</h2>
+<p class="sub">Two tenants share one database. Search as each one, then switch the tenant filter off to simulate the classic multi-tenant bug and watch another customer's documents leak into the results.</p>
+<div class="pn"><div class="bx"><h3>Request</h3><div class="ctl" style="grid-template-columns:1fr 1fr;margin:0 0 16px"><div><span class="k">Signed in as</span><div class="tg2" id="tn"><button type="button" data-t="acme" aria-pressed="true">Acme</button><button type="button" data-t="globex" aria-pressed="false">Globex</button></div></div><div><span class="k">Tenant filter</span><div class="tg2" id="fl"><button type="button" data-f="1" aria-pressed="true">Enforced</button><button type="button" data-f="0" aria-pressed="false">Removed</button></div></div></div>
+<div class="io" style="margin-bottom:12px"><input id="q2" type="text" placeholder="pricing strategy" aria-label="Search" autocomplete="off" style="font-size:1.4rem"></div><div class="chs l" id="qs2"><button type="button">pricing strategy</button><button type="button">salary review</button><button type="button">acquisition targets</button><button type="button">security audit</button></div>
+<pre class="sql" id="sql" style="margin-top:20px"></pre><p id="trace" style="font:400 .74rem/1.8 var(--mono);color:var(--mut);margin:14px 0 0"></p></div>
+<div class="bx"><h3>Results</h3><div id="r2"></div><div class="alert ok" id="al2"></div></div></div>
+<h2 style="margin-top:80px">Password hashing cost</h2><p class="sub">Slow, salted hashing is what makes stolen password databases expensive to crack. This runs a real PBKDF2-SHA256 derivation in your browser. AIKA uses Argon2id, which is memory-hard; browsers don't ship Argon2, so PBKDF2 stands in to show the same cost idea.</p>
+<div class="pn"><div class="bx"><h3>Derive a hash</h3><div class="io"><input id="pw" type="password" placeholder="correct horse battery staple" aria-label="Password" autocomplete="off" style="font-size:1.4rem"></div><div class="ctl" style="grid-template-columns:1fr 1fr;margin:22px 0 0"><div><label for="it">Iterations</label><select class="sl" id="it"><option value="1000">1,000</option><option value="10000">10,000</option><option value="100000" selected>100,000</option><option value="600000">600,000</option></select></div><div><span class="k">Salt</span><button class="btn" type="button" id="rs" style="min-height:40px;padding:0 18px">New salt</button></div></div>
+<p class="m" style="margin:20px 0 4px;color:var(--mut)">salt (16 bytes)</p><p class="hs" id="salt"></p><p class="m" style="margin:14px 0 4px;color:var(--mut)">derived key (256 bit) · <span id="ms" style="color:var(--lime)"></span></p><p class="hs" id="hash"></p></div><div class="bx"><h3>Time per hash · more iterations, more cost for an attacker</h3><div class="hist" id="hist"></div></div></div></section>
+<section class="cs"><span class="m">(03) Architecture</span><div class="rv"><h2 class="big">System design</h2><div class="vz2"><svg class="viz" viewBox="0 0 560 340" role="img" aria-label="AIKA architecture: Next.js client, FastAPI modular monolith with identity and tenancy, PostgreSQL with pgvector and Redis, isolated per tenant, inside Docker">
+  <rect x="14" y="14" width="532" height="312" rx="18" class="ln-d"/><text x="530" y="34" text-anchor="end" class="t-sm">DOCKER</text>
+  <rect x="40" y="52" width="480" height="44" rx="12" class="fl"/><text x="280" y="79" text-anchor="middle" class="t-ink">Next.js client</text>
+  <rect x="40" y="128" width="480" height="96" rx="14" class="fl-soft"/><text x="58" y="148" class="t-sm">FASTAPI · MODULAR MONOLITH</text><text x="504" y="148" text-anchor="end" class="t-sm">DASHED = PLANNED</text>
+  <rect x="58" y="160" width="104" height="44" rx="10" class="ac-soft"/><text x="110" y="187" text-anchor="middle" class="t-ink">Identity</text>
+  <rect x="172" y="160" width="104" height="44" rx="10" class="ac-soft"/><text x="224" y="187" text-anchor="middle" class="t-ink">Tenancy</text>
+  <rect x="286" y="160" width="104" height="44" rx="10" class="ln-d"/><text x="338" y="187" text-anchor="middle" class="t">Documents</text>
+  <rect x="400" y="160" width="104" height="44" rx="10" class="ln-d"/><text x="452" y="187" text-anchor="middle" class="t">Retrieval</text>
+  <path class="ln-d" d="M120 96 V252"/><path class="ln-d" d="M250 96 V252"/><path class="ln-d" d="M440 224 V252"/>
+  <rect x="40" y="252" width="300" height="58" rx="12" class="fl"/><text x="56" y="271" class="t-sm">POSTGRESQL + PGVECTOR</text>
+  <rect x="56" y="280" width="130" height="20" rx="5" class="ac-soft"/><text x="64" y="294" class="t-ac">tenant A</text>
+  <rect x="196" y="280" width="130" height="20" rx="5" class="fl-soft"/><text x="204" y="294" class="t-sm">tenant B</text>
+  <rect x="360" y="252" width="160" height="58" rx="12" class="fl"/><text x="440" y="287" text-anchor="middle" class="t-ink">Redis</text>
+  <circle r="4" class="ac-f"><animateMotion path="M120 96 V252" dur="2.8s" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="2.8s" begin="0s" repeatCount="indefinite"/></circle><circle r="4" class="dot-b"><animateMotion path="M250 96 V252" dur="2.8s" begin="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.06;.9;1" dur="2.8s" begin="1.4s" repeatCount="indefinite"/></circle>
+</svg></div></div></section>
+</main>
+<a class="nx" href="/work/stylemind.html"><span class="m">Next case study →</span><b>StyleMind AI</b></a>
+<script src="/assets/js/fluid.js" defer></script><script src="/assets/js/case.js" defer></script><script src="/assets/js/lab-aika.js" defer></script>
+</body></html>
