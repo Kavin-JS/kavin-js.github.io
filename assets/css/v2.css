@@ -129,3 +129,23 @@ body{transition:background .5s,color .5s}.sk li:hover{color:#0b0b0b}
 @media(max-width:860px){.arch .am{top:150px;bottom:110px;width:auto;right:var(--pad);justify-content:flex-end;pointer-events:none}.ai{position:absolute;top:-34px;left:0;right:0;display:flex;gap:6px;overflow-x:auto;pointer-events:auto;scrollbar-width:none}.ai::-webkit-scrollbar{display:none}.ai li{flex:none}.ai button{width:auto;display:flex;gap:6px;padding:6px 12px;border:1px solid var(--ln);border-radius:99px}.ai button.on{padding-left:12px;background:var(--lime);color:#0b0b0b}.ai button.on b{color:#0b0b0b}.arch .tf,.arch .hint,.ni{display:none}.ac h2{font-size:clamp(2rem,9vw,3rem)}.ac #ad{-webkit-line-clamp:2}.tr #ts{font-size:.85rem}.tr{gap:8px}}
 @media(max-height:780px){.arch .am{top:110px}.ai button{padding:4px 0}.ac #ad{-webkit-line-clamp:2}.ac h2{font-size:clamp(2rem,3.6vw,3.2rem)}}
 @media(prefers-reduced-motion:reduce){.arch{height:calc(100vh + 8*62vh)}}
+
+/* ---- v17: funnel + wayfinding ---- */
+.pm{display:grid;gap:4px;justify-items:end;text-align:right;max-width:none}.pm .lb{font:500 .8rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--lime)}.pm .m{color:inherit;opacity:.75}
+.ph:hover .pm .lb,.ph[aria-expanded=true] .pm .lb{color:#0b0b0b}
+.lk.ghost{background:none;color:#e9e9e4;border:1px solid rgba(233,233,228,.3)}.lk.ghost:hover{background:none;border-color:var(--lime);color:var(--lime)}
+#fp{padding:16px 16px 14px}#fp .m{display:block;margin:0}
+.rail{position:fixed;z-index:45;right:12px;top:50%;transform:translateY(-50%);display:grid;gap:2px;mix-blend-mode:difference;color:#fff}.rail a{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:7px 6px;text-decoration:none;font:400 .6rem var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.rail span{opacity:0;transform:translateX(8px);transition:opacity .3s,transform .4s var(--e)}.rail a:hover span,.rail a.on span{opacity:1;transform:none}.rail a.on span{opacity:.8}
+.rail i{display:block;width:7px;height:7px;border:1.5px solid currentColor;border-radius:50%;transition:.3s var(--e)}.rail a.on i{background:currentColor;transform:scale(1.4)}
+@media(max-width:1100px){.rail{display:none}}
+dialog.tl{border:0;padding:0;background:none;max-width:none;max-height:none;width:100%;height:100%;color:#e9e9e4}dialog.tl::backdrop{background:rgba(6,6,6,.82);backdrop-filter:blur(14px)}
+.tlp{--ink:#e9e9e4;--paper:#0b0b0b;--ln:rgba(233,233,228,.22);position:relative;width:min(1000px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:auto;margin:16px auto;padding:clamp(24px,4vw,52px);background:#0b0b0b;border:1px solid var(--ln);border-radius:26px;box-shadow:0 40px 100px rgba(0,0,0,.6);animation:tlin .55s var(--e)}
+@keyframes tlin{from{opacity:0;transform:translateY(30px) scale(.98)}}
+.tlp .m{color:#9a9d95;margin:0 0 14px}.tlp h2{margin:0;max-width:16em;font:800 clamp(2rem,4.8vw,4.2rem)/.96 var(--sans);letter-spacing:-.055em;color:#e9e9e4}.tlp h2 em{font-style:normal;color:var(--lime)}
+.tlg{display:grid;grid-template-columns:1fr 1fr;margin:30px 0 24px;border-top:1.5px solid #e9e9e4}.tlg>div{padding:20px 22px 22px 0;border-bottom:1px solid var(--ln)}.tlg>div:nth-child(odd){border-right:1px solid var(--ln)}.tlg>div:nth-child(even){padding-left:22px}
+.tlg h3{margin:0 0 8px;font:400 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}.tlg p,.tlg li{margin:0;color:#c9cbc2;font-size:.98rem;line-height:1.5}.tlg ul{margin:0;padding:0;list-style:none}.tlg li{padding:4px 0}.tlg a{display:block;text-decoration:none;color:#c9cbc2;transition:color .2s}.tlg a b{display:block;color:#e9e9e4;font-weight:700;letter-spacing:-.02em;transition:color .2s}.tlg a:hover b{color:var(--lime)}
+.tla{display:flex;gap:10px;flex-wrap:wrap}.tlp .x{position:absolute;top:16px;right:16px;width:42px;height:42px;border:1px solid var(--ln);border-radius:50%;background:none;color:#e9e9e4;font-size:1.3rem;cursor:pointer}.tlp .x:hover{background:rgba(255,255,255,.1)}
+@media(max-width:700px){.tlg{grid-template-columns:1fr}.tlg>div:nth-child(n){border-right:0;padding-left:0}}
+@media(min-width:861px){.hb{grid-template-columns:.75fr 1.15fr 1.5fr}.ctas{flex-wrap:nowrap}.ctas .btn{white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){.tlp{animation:none}}
